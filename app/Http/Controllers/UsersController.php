@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
 
+    use RegistersUsers;
     /**
      * Create a new controller instance.
      *
@@ -89,5 +93,37 @@ class UsersController extends Controller
             $user->delete();
         }
         return redirect()->route('users.index');
+    }
+
+    public function create() 
+    {
+        return view('dashboard.admin.userCreate');
+    }
+
+    public function store(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if($validatedData) {
+            $user =  User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+            ]);
+            $user->assignRole('coordinator');
+            $user->save();
+            $request->session()->flash('message', 'Successfully created coordinator');
+            return redirect()->route('coordinators.create');
+        }
+
+        return back()->withErrors([
+            'password' => 'The provided credentials do not match our records.',
+        ]);
+        
     }
 }
