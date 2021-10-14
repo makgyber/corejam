@@ -8,7 +8,9 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <h1>Login</h1>
+                <div class="row justify-content-center">
+                  <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="280em"/>
+                </div>
                 <p class="text-muted">Sign In to your account</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -43,22 +45,30 @@
                     </div>
               </div>
             </div>
-            <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <div class="card text-primary py-5 d-md-down-none" style="width:44%">
               <div class="card-body text-center">
                 <div>
-                  <h2>Sign up</h2>
+                  
+                  <h2>{{ __('Sign Up') }}</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                   @if (Route::has('password.request'))
                     <a href="{{ route('register') }}" class="btn btn-primary active mt-3">{{ __('Register') }}</a>
                   @endif
+                </div>
+                <div class="row align-bottom justify-content-center">
+                  <span>Powered by:
+                  <img src="{{ URL::to('/assets/img/qtech.jpg') }}" width="140em"/></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+      
+      
     </div>
-
+    
 @endsection
 
 @section('javascript')
