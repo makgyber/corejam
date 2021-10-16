@@ -16,8 +16,8 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">9.823</div>
-                      <div>Members online</div>
+                      <div class="text-value-lg">{{ $totals['voters'] }}</div>
+                      <div>Total Voters</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                       <canvas class="chart" id="card-chart1" height="70"></canvas>
@@ -33,8 +33,8 @@
                           <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-location-pin"></use>
                         </svg>
                       </button>
-                      <div class="text-value-lg">9.823</div>
-                      <div>Members online</div>
+                      <div class="text-value-lg">{{ $totals['government'] }}</div>
+                      <div>New Registrations</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                       <canvas class="chart" id="card-chart2" height="70"></canvas>
@@ -53,8 +53,8 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">9.823</div>
-                      <div>Members online</div>
+                      <div class="text-value-lg">{{ $totals['ngo'] }}</div>
+                      <div>Coordinators</div>
                     </div>
                     <div class="c-chart-wrapper mt-3" style="height:70px;">
                       <canvas class="chart" id="card-chart3" height="70"></canvas>
@@ -73,8 +73,8 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">9.823</div>
-                      <div>Members online</div>
+                      <div class="text-value-lg">{{ $totals['other'] }}</div>
+                      <div>Organizations</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                       <canvas class="chart" id="card-chart4" height="70"></canvas>
@@ -83,237 +83,23 @@
                 </div>
                 <!-- /.col-->
               </div>
-              <!-- /.row-->
- 
-              <!-- /.card-->
-              <div class="row">
-                <div class="col-sm-6 col-lg-4">
-                  <div class="card">
-                    <div class="card-header bg-facebook content-center">
-                      <svg class="c-icon c-icon-3xl text-white my-4">
-                        <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#facebook-f"></use>
-                      </svg>
-                      <div class="c-chart-wrapper">
-                        <canvas id="social-box-chart-1" height="90"></canvas>
-                      </div>
-                    </div>
-                    <div class="card-body row text-center">
-                      <div class="col">
-                        <div class="text-value-xl">89k</div>
-                        <div class="text-uppercase text-muted small">friends</div>
-                      </div>
-                      <div class="c-vr"></div>
-                      <div class="col">
-                        <div class="text-value-xl">459</div>
-                        <div class="text-uppercase text-muted small">feeds</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-4">
-                  <div class="card">
-                    <div class="card-header bg-twitter content-center">
-                      <svg class="c-icon c-icon-3xl text-white my-4">
-                        <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#twitter"></use>
-                      </svg>
-                      <div class="c-chart-wrapper">
-                        <canvas id="social-box-chart-2" height="90"></canvas>
-                      </div>
-                    </div>
-                    <div class="card-body row text-center">
-                      <div class="col">
-                        <div class="text-value-xl">973k</div>
-                        <div class="text-uppercase text-muted small">followers</div>
-                      </div>
-                      <div class="c-vr"></div>
-                      <div class="col">
-                        <div class="text-value-xl">1.792</div>
-                        <div class="text-uppercase text-muted small">tweets</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-4">
-                  <div class="card">
-                    <div class="card-header bg-linkedin content-center">
-                      <svg class="c-icon c-icon-3xl text-white my-4">
-                        <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#linkedin"></use>
-                      </svg>
-                      <div class="c-chart-wrapper">
-                        <canvas id="social-box-chart-3" height="90"></canvas>
-                      </div>
-                    </div>
-                    <div class="card-body row text-center">
-                      <div class="col">
-                        <div class="text-value-xl">500+</div>
-                        <div class="text-uppercase text-muted small">contacts</div>
-                      </div>
-                      <div class="c-vr"></div>
-                      <div class="col">
-                        <div class="text-value-xl">292</div>
-                        <div class="text-uppercase text-muted small">feeds</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.col-->
-              </div>
+
               <!-- /.row-->
               <div class="row">
                 <div class="col-md-12">
                   <div class="card">
-                    <div class="card-header">Traffic & Sales</div>
+                    <div class="card-header">Registration Activities</div>
                     <div class="card-body">
                       <div class="row">
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="c-callout c-callout-info"><small class="text-muted">New Clients</small>
-                                <div class="text-value-lg">9,123</div>
-                              </div>
-                            </div>
-                            <!-- /.col-->
-                            <div class="col-6">
-                              <div class="c-callout c-callout-danger"><small class="text-muted">Recuring Clients</small>
-                                <div class="text-value-lg">22,643</div>
-                              </div>
-                            </div>
-                            <!-- /.col-->
-                          </div>
-                          <!-- /.row-->
-                          <hr class="mt-0">
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Monday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Tuesday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Wednesday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Thursday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Friday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Saturday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-4">
-                            <div class="progress-group-prepend"><span class="progress-group-text">Sunday</span></div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <!-- /.col-->
                         <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="c-callout c-callout-warning"><small class="text-muted">Pageviews</small>
-                                <div class="text-value-lg">78,623</div>
-                              </div>
-                            </div>
-                            <!-- /.col-->
-                            <div class="col-6">
-                              <div class="c-callout c-callout-success"><small class="text-muted">Organic</small>
-                                <div class="text-value-lg">49,123</div>
-                              </div>
-                            </div>
-                            <!-- /.col-->
-                          </div>
-                          <!-- /.row-->
-                          <hr class="mt-0">
-                          <div class="progress-group">
-                            <div class="progress-group-header">
-                              <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-user"></use>
-                              </svg>
-                              <div>Male</div>
-                              <div class="ml-auto font-weight-bold">43%</div>
-                            </div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="progress-group mb-5">
-                            <div class="progress-group-header">
-                              <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-user-female"></use>
-                              </svg>
-                              <div>Female</div>
-                              <div class="ml-auto font-weight-bold">37%</div>
-                            </div>
-                            <div class="progress-group-bars">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
+                          <!-- /.row-->             
                           <div class="progress-group">
                             <div class="progress-group-header align-items-end">
                               <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-globe-alt"></use>
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
                               </svg>
-                              <div>Organic Search</div>
+                              <div>Region I</div>
                               <div class="ml-auto font-weight-bold mr-2">191.235</div>
                               <div class="text-muted small">(56%)</div>
                             </div>
@@ -326,9 +112,9 @@
                           <div class="progress-group">
                             <div class="progress-group-header align-items-end">
                               <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-facebook"></use>
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
                               </svg>
-                              <div>Facebook</div>
+                              <div>Region II</div>
                               <div class="ml-auto font-weight-bold mr-2">51.223</div>
                               <div class="text-muted small">(15%)</div>
                             </div>
@@ -341,9 +127,9 @@
                           <div class="progress-group">
                             <div class="progress-group-header align-items-end">
                               <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-twitter"></use>
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
                               </svg>
-                              <div>Twitter</div>
+                              <div>Region III</div>
                               <div class="ml-auto font-weight-bold mr-2">37.564</div>
                               <div class="text-muted small">(11%)</div>
                             </div>
@@ -356,9 +142,39 @@
                           <div class="progress-group">
                             <div class="progress-group-header align-items-end">
                               <svg class="c-icon progress-group-icon">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-linkedin"></use>
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
                               </svg>
-                              <div>LinkedIn</div>
+                              <div>Region IV</div>
+                              <div class="ml-auto font-weight-bold mr-2">27.319</div>
+                              <div class="text-muted small">(8%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region V</div>
+                              <div class="ml-auto font-weight-bold mr-2">27.319</div>
+                              <div class="text-muted small">(8%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region VI</div>
                               <div class="ml-auto font-weight-bold mr-2">27.319</div>
                               <div class="text-muted small">(8%)</div>
                             </div>
@@ -370,6 +186,99 @@
                           </div>
                         </div>
                         <!-- /.col-->
+                        <div class="col-sm-6">
+                          <!-- /.row-->             
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region I</div>
+                              <div class="ml-auto font-weight-bold mr-2">191.235</div>
+                              <div class="text-muted small">(56%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region II</div>
+                              <div class="ml-auto font-weight-bold mr-2">51.223</div>
+                              <div class="text-muted small">(15%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region III</div>
+                              <div class="ml-auto font-weight-bold mr-2">37.564</div>
+                              <div class="text-muted small">(11%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region IV</div>
+                              <div class="ml-auto font-weight-bold mr-2">27.319</div>
+                              <div class="text-muted small">(8%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region V</div>
+                              <div class="ml-auto font-weight-bold mr-2">27.319</div>
+                              <div class="text-muted small">(8%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-error" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <div class="progress-group-header align-items-end">
+                              <svg class="c-icon progress-group-icon">
+                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
+                              </svg>
+                              <div>Region VI</div>
+                              <div class="ml-auto font-weight-bold mr-2">27.319</div>
+                              <div class="text-muted small">(8%)</div>
+                            </div>
+                            <div class="progress-group-bars">
+                              <div class="progress progress-xs">
+                                <div class="progress-bar bg-fail" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <!-- /.row--><br>
                       <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -380,8 +289,8 @@
                                 <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-people"></use>
                               </svg>
                             </th>
-                            <th>User</th>
-                            <th class="text-center">Country</th>
+                            <th>Coordinators</th>
+                            <th class="text-center">Region</th>
                             <th>Usage</th>
                             <th class="text-center">Payment Method</th>
                             <th>Activity</th>

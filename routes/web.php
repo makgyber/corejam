@@ -12,12 +12,7 @@
 */
 
 Route::group(['middleware' => ['get.menu']], function () {
-    Route::get('/', function () {      
-        if(!Auth::check()) {
-            return view('auth.login');
-        }
-        return view('dashboard.homepage');
-     });
+    Route::get('/', 'DashboardController@index');
 
     Route::group(['middleware' => ['role:coordinator']], function () {
         Route::prefix('notifications')->group(function () {  
