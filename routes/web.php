@@ -26,6 +26,13 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::get('/modals', function(){   return view('dashboard.notifications.modals'); });
         });
         Route::resource('notes', 'NotesController');
+        Route::prefix('/profile')->group(function(){
+            Route::get('/', 'ProfileController@index')->name('profile.index');
+            Route::post('/change-password', 'ProfileController@index')->name('profile.changePassword');
+            Route::post('/details', 'ProfileController@index')->name('profile.details');
+        });
+        Route::resource('affiliations',  'AffiliationController');
+        Route::resource('members',  'MemberController');
     });
     Auth::routes();
 
