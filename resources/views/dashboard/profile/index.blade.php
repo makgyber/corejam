@@ -5,7 +5,15 @@
 
 <div class="container-fluid">
   <div class="fade-in">
+  @if(Session::has('message'))
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+            </div>
+        </div>
+    @endif  
     <div class="row">
+    
       <div class="col-sm-6">
         <div class="card">
           <div class="card-header"><h4>{{ Auth::user()->name }}</h4></div>

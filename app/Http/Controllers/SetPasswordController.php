@@ -18,7 +18,7 @@ class SetPasswordController extends Controller
         auth()->user()->update([
             'password' => bcrypt($request->password)
         ]);
-        return redirect()->route('dashboard')->with('message', 'Welcome ' . auth()->user()->name);
+        return redirect()->route('profile.index')->with('message', 'Welcome! Please fill in your profile data to complete the registration.');
     }
 
     public function invitation(User $user)
@@ -28,6 +28,6 @@ class SetPasswordController extends Controller
         }
 
         auth()->login($user);
-        return redirect()->route('dashboard');
+        return redirect()->route('setpassword');
     } 
 }

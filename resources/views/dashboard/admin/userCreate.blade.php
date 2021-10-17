@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Create Coordinator Account</h4></div>
+          <div class="card-header"><h4>Coordinator Invitation</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="row">
@@ -35,7 +35,7 @@
                     <div class="card-body p-4">
                 <form method="POST" action="{{ route('coordinators.store') }}">
                     @csrf
-                    <h1>{{ __('Add New Coordinator') }}</h1>
+                    <h1>{{ __('Invite New Coordinator') }}</h1>
                     <p class="text-muted">Create a new coordinator account</p>
                     <div class="input-group mb-3">
                         <input class="form-control" type="text" placeholder="{{ __('Name') }}" id="name" name="name" value="{{ old('name') }}" required autofocus>
@@ -43,7 +43,7 @@
                     <div class="input-group mb-3">
                         <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ old('email') }}" required>
                     </div>
-                    <button class="btn btn-success" type="submit">{{ __('Save') }}</button>
+                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                     <a href="{{ route('coordinators.index') }}" class="btn btn-primary m-2">{{ __('Return') }}</a>
                 </form>
             </div>
