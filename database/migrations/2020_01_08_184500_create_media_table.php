@@ -22,9 +22,9 @@ class CreateMediaTable extends Migration
             $table->string('conversions_disk');
             $table->unsignedBigInteger('size');
             $table->unsignedBigInteger('uuid');
-            $table->json('manipulations');
-            $table->json('custom_properties');
-            $table->json('responsive_images');
+            $table->text('manipulations');
+            $table->text('custom_properties');
+            $table->text('responsive_images');
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();
         });
