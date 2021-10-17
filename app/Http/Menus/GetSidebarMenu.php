@@ -27,12 +27,12 @@ class GetSidebarMenu implements MenuInterface{
             ->orderBy('menus.sequence', 'asc')->get();       
     }
 
-    private function getGuestMenu( $menuId ){
+    private function getGuestMenu($menuId ){
         $this->getMenuFromDB($menuId, 'guest');
     }
 
     private function getUserMenu( $menuId ){
-        $this->getMenuFromDB($menuId, 'user');
+        $this->getMenuFromDB($menuId, 'coordinator');
     }
 
     private function getAdminMenu( $menuId ){

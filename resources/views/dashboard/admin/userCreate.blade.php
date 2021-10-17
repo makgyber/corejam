@@ -43,12 +43,6 @@
                     <div class="input-group mb-3">
                         <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ old('email') }}" required>
                     </div>
-                    <div class="input-group mb-3">
-                        <input class="form-control" type="password" placeholder="{{ __('Password') }}" name="password" required>
-                    </div>
-                    <div class="input-group mb-4">
-                        <input class="form-control" type="password" placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required>
-                    </div>
                     <button class="btn btn-success" type="submit">{{ __('Save') }}</button>
                     <a href="{{ route('coordinators.index') }}" class="btn btn-primary m-2">{{ __('Return') }}</a>
                 </form>

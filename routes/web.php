@@ -11,8 +11,17 @@
 |
 */
 
+Route::get('invitation/{user}', 'SetPasswordController@invitation')->name('invitation');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/setpassword', 'SetPasswordController@create')->name('setpassword');
+    Route::post('/setpassword','SetPasswordController@store')->name('setpassword.store');
+});
+
 Route::group(['middleware' => ['get.menu']], function () {
-    Route::get('/', 'DashboardController@index');
+    
+
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::group(['middleware' => ['role:coordinator']], function () {
         Route::prefix('notifications')->group(function () {  

@@ -8,23 +8,10 @@
           <div class="card-group">
             <div class="card p-4  bg-dark text-white">
               <div class="card-body">
-                <h2>Sign In</h2>
-                <p class="text-muted">Sign In to your account</p>
-                <form method="POST" action="{{ route('login') }}">
+                <h2>Welcome, {{ auth()->user()->name }}!</h2>
+                <p class="text-muted">Please enter a password with minimum of 6 alphanumeric characters.</p>
+                <form method="POST" action="{{ route('setpassword') }}">
                     @csrf
-                    <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <svg class="c-icon">
-                          <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-user"></use>
-                        </svg>
-                      </span>
-                    </div>
-                    <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ old('email') }}" required autofocus>
-                    @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    </div>
                     <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -38,14 +25,21 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     </div>
+                    <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <svg class="c-icon">
+                          <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-lock-locked"></use>
+                        </svg>
+                      </span>
+                    </div>
+                    <input class="form-control" type="password" placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required>
+                    </div>
                     <div class="row">
                     <div class="col-6">
-                        <button class="btn btn-dark border-light px-4" type="submit">{{ __('Login') }}</button>
+                        <button class="btn btn-dark border-light px-4" type="submit">{{ __('Submit') }}</button>
                     </div>
                     </form>
-                    <div class="col-6 text-right">
-                        <a href="{{ route('password.request') }}" class="btn btn-link px-0 text-light">{{ __('Forgot Your Password?') }}</a>
-                    </div>
                     </div>
               </div>
             </div>

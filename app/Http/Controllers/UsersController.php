@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Notifications\CoordinatorInviteNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreCoordinatorRequest;
+use Illuminate\Support\Facades\URL;
 
 class UsersController extends Controller
 {
@@ -100,30 +103,21 @@ class UsersController extends Controller
         return view('dashboard.admin.userCreate');
     }
 
-    public function store(Request $request)
+    public function store(StoreCoordinatorRequest $request)
     {
-
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $user =  User::create($request->validated() +
+        [
+            'password' => 'secret'
         ]);
 
-        if($validatedData) {
-            $user =  User::create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-            ]);
-            $user->assignRole('coordinator');
-            $user->save();
-            $request->session()->flash('message', 'Successfully created coordinator');
-            return redirect()->route('coordinators.create');
-        }
+        $user->assignRole('coordinator');
 
-        return back()->withErrors([
-            'password' => 'The provided credentials do not match our records.',
-        ]);
+        $url = URL::signedRoute('invitation', $user);
+        
+        $user->notify(new CoordinatorInviteNotification($url));
+        return redirect()->route('coordinators.create')->with('message', 'Successfully created coordinator');
         
     }
+
+ 
 }
