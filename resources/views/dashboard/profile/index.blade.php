@@ -19,50 +19,51 @@
           <div class="card-header"><h4>{{ Auth::user()->name }}</h4></div>
             <div class="card-body">
                 
-                <form>
+                <form href="{{ route('profile.details')  }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName">
+                        <input type="text" class="form-control" id="firstName"  name="first_name">
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName">
+                        <input type="text" class="form-control" id="lastName"   name="last_name">
                     </div>
                     <div class="mb-3">
                         <label for="contact1" class="form-label">Contact No 1</label>
-                        <input type="text" class="form-control" id="contact1">
+                        <input type="text" class="form-control" id="contact1"   name="contact1">
                     </div>
                     <div class="mb-3">
                         <label for="contact2" class="form-label">Contact No 2</label>
-                        <input type="text" class="form-control" id="contact2">
+                        <input type="text" class="form-control" id="contact2"  name="contact2">
                     </div>
                     <div class="mb-3">
                         <label for="region" class="form-label">Region</label>
                         <select class="form-control" id="region" name="region">   
-                            <option value="1">Region I</option>
-                            <option value="2">Region II</option>
-                            <option value="3">Region III</option>
+
+                            @forelse ($regions as $region)
+                            <option value="{{$region->code}}">{{$region->name}}</option>
+                            @empty
+                            <option value="">No regions found</option>
+                            @endforelse
+
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="province" class="form-label">Province</label>
                         <select class="form-control" id="province" name="province">
-                            <option value="1">Ilocos Norte</option>
-                            <option value="2">Ilocos Sur</option>
-                            <option value="3">Pangasinan</option>
+
                         </select>
                         </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">City/Municipality</label>
                         <select class="form-control" id="city" name="city">   
-                            <option value="1">Laoag</option>
-                            <option value="2">Tarlac</option>
-                            <option value="3">Pangasinan</option>
+
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="street" class="form-label">Street Address</label>
-                        <input type="text" class="form-control" id="street">
+                        <input type="text" class="form-control" id="street" name="street">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -167,5 +168,8 @@
 @endsection
 
 @section('javascript')
+
+<script src="{{ asset('js/axios.min.js') }}"></script> 
+<script src="{{ asset('js/locations.js') }}"></script>
 
 @endsection

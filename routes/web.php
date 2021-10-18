@@ -37,6 +37,9 @@ Route::group(['middleware' => ['get.menu']], function () {
         });
         Route::resource('affiliations',  'AffiliationController');
         Route::resource('members',  'MemberController');
+
+        Route::get('/provinces', 'LocationsController@provinces');
+        Route::get('/cities', 'LocationsController@cities');
     });
     Auth::routes();
 
