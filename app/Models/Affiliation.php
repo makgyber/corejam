@@ -25,16 +25,16 @@ class Affiliation extends Model
 
     public function region()
     {
-        return $this->belongsTo(Region::class, 'region_code', 'code');
+        return $this->belongsTo(Regions::class, 'region_code', 'code');
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_code', 'code');
+        return $this->belongsTo(Provinces::class, 'province_code', 'code');
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_code', 'code');
+        return $this->belongsTo(Cities::class, 'city_code', 'code');
     }
 }

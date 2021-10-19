@@ -23,6 +23,9 @@
                             <th>Address</th>
                             <th>Type</th>
                             <th>Position in Organisation</th>
+                            <th>Region</th>
+                            <th>Province</th>
+                            <th>City</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -30,12 +33,16 @@
                         </thead>
                         <tbody>
                           @forelse($affiliations as $affiliation)
+                          
                             <tr>
                               <td><strong>{{ $affiliation->name }}</strong></td>
                               <td>{{ $affiliation->description }}</td>
                               <td>{{ $affiliation->address }}</td>
                               <td>{{ $affiliation->organisation_type }}</td>
-                              <td>{{ $affiliation->region }}</td>
+                              <td>{{ $affiliation->position }}</td>
+                              <td>{{ $affiliation->region->name }}</td>
+                              <td>{{ $affiliation->province->name }}</td>
+                              <td>{{ $affiliation->city->name }}</td>
                               <td>
                                 <a href="{{ url('/affiliations/' . $affiliation->id) }}" class="btn btn-block btn-primary">View</a>
                               </td>
@@ -55,7 +62,7 @@
                             @endforelse
                         </tbody>
                       </table>
-                      {{ $affiliations->links() }}
+                      
                       @endif
                     </div>
                 </div>
