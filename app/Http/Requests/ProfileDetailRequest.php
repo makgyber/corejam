@@ -26,10 +26,13 @@ class ProfileDetailRequest extends FormRequest
         return [
             'last_name' => 'required|string',
             'first_name' => 'required|string',
-            'email' => 'email',
-            'last_name' => 'required|string',
-            'last_name' => 'required|string',
-            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'contact_number' => 'string',
+            'region_code' => 'required|string',
+            'province_code' => 'required|string',
+            'city_code' => 'required|string',
+            'street' => 'string',
+            'barangay' => 'string',
         ];
     }
 }

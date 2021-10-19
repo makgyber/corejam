@@ -95,20 +95,23 @@
 
 var self = this;
 
-this.buildSelectOptions = function (data) {
+this.buildSelectOptions = function (data, selectedId) {
   var result = '';
+  var selectedValue = document.getElementById(selectedId).value;
 
   for (var i = 0; i < data.length; i++) {
-    result += '<option value="' + data[i].code + '">' + data[i].name + '</option>';
+    result += '<option value="' + data[i].code + '"';
+    if (selectedValue == data[i].code) result += ' selected  ';
+    result += '>' + data[i].name + '</option>';
   }
 
   return result;
 };
 
 this.updateSelectProvince = function () {
-  axios.get('/provinces?region=' + document.getElementById("region").value).then(function (response) {
-    document.getElementById("province").innerHTML = self.buildSelectOptions(response.data);
-    self.updateSelectCities(document.getElementById("province").value);
+  axios.get('/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
+    document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province');
+    self.updateSelectCities(document.getElementById("province_code").value);
   })["catch"](function (error) {
     // handle error
     console.log(error);
@@ -117,14 +120,14 @@ this.updateSelectProvince = function () {
 
 this.updateSelectCities = function () {
   var $province = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var provinceCode = document.getElementById("province").value;
+  var provinceCode = document.getElementById("province_code").value;
 
   if ($province) {
     provinceCode = $province;
   }
 
   axios.get('/cities?province=' + provinceCode).then(function (response) {
-    document.getElementById("city").innerHTML = self.buildSelectOptions(response.data);
+    document.getElementById("city_code").innerHTML = self.buildSelectOptions(response.data, 'city');
   })["catch"](function (error) {
     // handle error
     console.log(error);
@@ -134,11 +137,11 @@ this.updateSelectCities = function () {
 this.updateSelectProvince();
 this.updateSelectCities();
 
-document.getElementById("region").onchange = function () {
+document.getElementById("region_code").onchange = function () {
   self.updateSelectProvince();
 };
 
-document.getElementById("province").onchange = function () {
+document.getElementById("province_code").onchange = function () {
   self.updateSelectCities();
 };
 

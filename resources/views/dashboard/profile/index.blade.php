@@ -12,37 +12,51 @@
             </div>
         </div>
     @endif  
+    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif   
     <div class="row">
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>{{ Auth::user()->name }}</h4></div>
+          <div class="card-header"><h4>Details</h4></div>
             <div class="card-body">
                 
-                <form href="{{ route('profile.details')  }}" method="POST">
+                <form href="{{ url('profile.store')  }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName"  name="first_name">
+                        <input type="text" class="form-control" id="firstName"  name="first_name" value="{{ $user->first_name }}" />
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName"   name="last_name">
+                        <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ $user->last_name }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact1" class="form-label">Contact No 1</label>
-                        <input type="text" class="form-control" id="contact1"   name="contact1">
+                        <label for="contact1" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="email"   name="email" value="{{ $user->email }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact2" class="form-label">Contact No 2</label>
-                        <input type="text" class="form-control" id="contact2"  name="contact2">
+                        <label for="contact2" class="form-label">Contact Number</label>
+                        <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $user->contact_number }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="region" class="form-label">Region</label>
-                        <select class="form-control" id="region" name="region">   
+                        <label for="region_code" class="form-label">Region</label>
+                        <select class="form-control" id="region_code" name="region_code">   
 
                             @forelse ($regions as $region)
-                            <option value="{{$region->code}}">{{$region->name}}</option>
+                                @if ($user->region_code == $region->code)
+                                    <option value="{{$region->code}}" selected>{{$region->name}}</option> 
+                                @else
+                                    <option value="{{$region->code}}">{{$region->name}}</option>    
+                                @endif
+                            
                             @empty
                             <option value="">No regions found</option>
                             @endforelse
@@ -50,22 +64,28 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="province" class="form-label">Province</label>
-                        <select class="form-control" id="province" name="province">
+                        <input type="hidden" id="province" value="{{$user->province_code}}" />
+                        <label for="province_code" class="form-label">Province</label>
+                        <select class="form-control" id="province_code" name="province_code">
 
                         </select>
                         </div>
                     <div class="mb-3">
-                        <label for="city" class="form-label">City/Municipality</label>
-                        <select class="form-control" id="city" name="city">   
+                    <input type="hidden" id="city" value="{{$user->city_code}}" />
+                        <label for="city_code" class="form-label">City/Municipality</label>
+                        <select class="form-control" id="city_code" name="city_code">   
 
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="street" class="form-label">Street Address</label>
-                        <input type="text" class="form-control" id="street" name="street">
+                        <label for="street" class="form-label">Barangay</label>
+                        <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $user->barangay }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="street" name="street" value="{{ $user->street }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Details</button>
                 </form>
             </div>
           </div>

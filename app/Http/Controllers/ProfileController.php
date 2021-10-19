@@ -5,22 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Regions;
-use App\Requests\ProfileDetailRequest;
+use App\Http\Requests\ProfileDetailRequest;
 
 class ProfileController extends Controller
 {
     public function index(User $user) 
     {
-
         return view('dashboard.profile.index', [
             'user'=> auth()->user(),
             'regions' => Regions::all()
         ]);
     }
 
-    public function details(ProfileDetailRequest $request)
+    public function store(ProfileDetailRequest $request)
     {
-        //TODO
+        $user = auth()->user();
+        $user->update($request->validated());
+        $request->session()->flash('message', 'Successfully updated user');
+        return redirect()->route('profile.index');
     }
 
     public function changePassword(Request $request)

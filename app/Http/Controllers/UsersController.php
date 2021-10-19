@@ -118,6 +118,8 @@ class UsersController extends Controller
 
         if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {
             $user->assignRole('admin');
+            $user->menuroles='coordinator,admin';
+            $user->save();
         }
         $user->assignRole('coordinator');
 
