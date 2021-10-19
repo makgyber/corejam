@@ -17,10 +17,11 @@ class CreateAffiliationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->string('region_code');
+            $table->string('province_code');
+            $table->string('city_code');
             $table->text('address');
-            $table->string('position');
             $table->string('organisation_type');
-            $table->integer('users_id')->unsigned();
             $table->timestamps();
         });
     }

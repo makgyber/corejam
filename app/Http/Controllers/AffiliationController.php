@@ -4,28 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Affiliation;
+use App\Models\Regions;
 
 class AffiliationController extends Controller
 {
     public function index()
     {
-        $affiliations = Affiliation::where('users_id', auth()->user()->id)->paginate(20);
-        return view('dashboard.affiliations.index', ['affiliations' => $affiliations]);
+        $affiliations = auth()->user()->affiliations();
+        return view('dashboard.affiliations.index', [
+            'affiliations' => $affiliations,
+            'regions' => Regions::all(),
+            'user' => auth()->user()
+        ]);
     }
 
     public function create()
     {
-        return view('dashboard.affiliations.create');
+        $affiliations = auth()->user()->affiliations();
+        return view('dashboard.affiliations.create',[
+            'affiliations' => $affiliations,
+            'regions' => Regions::all(),
+            'user' => auth()->user()
+        ]);
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'organisation_type' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'position' => 'required',
-            'address' => 'required',
+            
         ]);
 
         $user = auth()->user();

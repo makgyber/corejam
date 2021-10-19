@@ -55,6 +55,53 @@
                                     <textarea class="form-control" name="description">{{ old('description') }}</textarea>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th>
+                                    Region
+                                </th>
+                                <td>
+                                    <select class="form-control" id="region_code" name="region_code">   
+
+                                    @forelse ($regions ?? [] as $region)
+                                        @if ($user->region_code == $region->code)
+                                            <option value="{{$region->code}}" selected>{{$region->name}}</option> 
+                                        @else
+                                            <option value="{{$region->code}}">{{$region->name}}</option>    
+                                        @endif
+
+                                    @empty
+                                    <option value="">No regions found</option>
+                                    @endforelse
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Province
+                                </th>
+                                <td>
+                                    <input type="hidden" id="province" value="{{$user->province_code ?? ''}}" />
+                                    <select class="form-control" id="province_code" name="province_code">
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    City/Municipality
+                                </th>
+                                <td>
+                                <input type="hidden" id="city" value="{{$user->city_code ?? ''}}" />
+                                    <select class="form-control" id="city_code" name="city_code">   
+
+                                    </select>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <th>
                                     Address
@@ -80,6 +127,21 @@
                                     <input type="text" class="form-control  d-none" placeholder="please specify position" name="position_other" id="position_other"/>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th>
+                                    
+                                </th>
+                                <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" id="is_primary" name="is_primary">
+                                    <label class="form-check-label" for="is_primary">
+                                    This is my primary organisation
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <button class="btn btn-primary" type="submit">Save</button>
@@ -112,5 +174,6 @@ this.toggleOther()
 document.getElementById("position").onchange = function(){self.toggleOther()}
 </script>
 
-
+<script src="{{ asset('js/axios.min.js') }}"></script> 
+<script src="{{ asset('js/locations.js') }}"></script>
 @endsection

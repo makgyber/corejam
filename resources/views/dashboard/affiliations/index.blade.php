@@ -8,13 +8,13 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Affiliations') }}</div>
+                      <i class="fa fa-align-justify"></i><h4>{{ __('Affiliations') }}</h4></div>
                     <div class="card-body">
                         <div class="row"> 
                           <a href="{{ route('affiliations.create') }}" class="btn btn-primary m-2">{{ __('Add  affiliation') }}</a>
                         </div>
                         <br>
-                        @if($affiliations)
+                        @if($affiliations->count())
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
@@ -35,7 +35,7 @@
                               <td>{{ $affiliation->description }}</td>
                               <td>{{ $affiliation->address }}</td>
                               <td>{{ $affiliation->organisation_type }}</td>
-                              <td>{{ $affiliation->position }}</td>
+                              <td>{{ $affiliation->region }}</td>
                               <td>
                                 <a href="{{ url('/affiliations/' . $affiliation->id) }}" class="btn btn-block btn-primary">View</a>
                               </td>

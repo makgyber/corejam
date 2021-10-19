@@ -62,4 +62,13 @@ class User extends Authenticatable
         'street'=> '',
         'recommended_date'=> '',
     ];
+
+
+    /**
+     * Get the User that is member of the affiliation.
+     */
+    public function affiliations()
+    {
+        return $this->belongsToMany(Affiliation::class, 'user_affiliation');
+    }
 }
