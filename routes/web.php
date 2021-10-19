@@ -56,6 +56,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('bread',  'BreadController');   //create BREAD (resource)
         Route::resource('coordinators',        'UsersController');
+        Route::resource('users',        'UsersController');
         Route::resource('roles',        'RolesController');
         Route::resource('mail',        'MailController');
         Route::get('prepareSend/{id}',        'MailController@prepareSend')->name('prepareSend');

@@ -105,11 +105,20 @@ class UsersController extends Controller
 
     public function store(StoreCoordinatorRequest $request)
     {
-        $user =  User::create($request->validated() +
-        [
+
+        $validated = $request->validated();
+
+        $user =  User::create([
+            'name' => $validated['first_name'].' '.$validated['last_name'],
+            'last_name' => $validated['last_name'],
+            'first_name' => $validated['first_name'],
+            'email' => $validated['email'],
             'password' => 'secret'
         ]);
 
+        if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {
+            $user->assignRole('admin');
+        }
         $user->assignRole('coordinator');
 
         $url = URL::signedRoute('invitation', $user);

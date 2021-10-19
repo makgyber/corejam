@@ -24,7 +24,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'first_name', 'last_name', 'password', 'menuroles','contact_number', 'skillsets', 'is_registered_voter',
+        'region_code', 'province_code', 'city_code', 'barangay', 'street', 'recommended_date'
     ];
 
     /**
@@ -51,5 +52,14 @@ class User extends Authenticatable
 
     protected $attributes = [ 
         'menuroles' => 'coordinator',
+        'contact_number' => '', 
+        'skillsets'=> '',
+        'is_registered_voter'=> 1,
+        'region_code'=> '',
+        'province_code'=> '',
+        'city_code'=> '',
+        'barangay'=> '',
+        'street'=> '',
+        'recommended_date'=> '',
     ];
 }
