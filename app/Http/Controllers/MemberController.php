@@ -18,7 +18,7 @@ class MemberController extends Controller
     {
         $members = [];
         $user = auth()->user();
-        $affiliations = Affiliation::where('users_id', $user->id)->get();
+        $affiliations = $user->affiliations()->get();
 
         if($request->has('affiliation_id')) {
             $affiliation_id = $request['affiliation_id'];
