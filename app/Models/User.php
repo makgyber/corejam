@@ -69,7 +69,7 @@ class User extends Authenticatable
      */
     public function affiliations()
     {
-        return $this->belongsToMany(Affiliation::class, 'user_affiliation');
+        return $this->belongsToMany(Affiliation::class, 'user_affiliation')->withPivot('position', 'is_primary');
     }
 
     public function region()

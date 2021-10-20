@@ -18,9 +18,9 @@ class Affiliation extends Model
     /**
      * Get the User that is member of the affiliation.
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'user_affiliation');
+        return $this->belongsToMany(User::class, 'user_affiliation')->withPivot('position', 'is_primary');
     }
 
     public function region()

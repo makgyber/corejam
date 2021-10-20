@@ -64,7 +64,7 @@
                               <td>{{ $member->contact_number }}</td>
                               <td>{{ $member->skillsets }}</td>
                               <td>
-                                <a href="{{ url('/members/' . $member->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ url('/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary">Edit</a>
                               </td>
                               <td>
                                 <form action="{{ route('members.destroy', $member->id ) }}" method="POST">
@@ -79,9 +79,7 @@
                             @endforelse
                         </tbody>
                       </table>
-                      @if(!empty($members))
-                      {{ $members->links()  }}
-                      @endif
+
                     </div>
                 </div>
               </div>
