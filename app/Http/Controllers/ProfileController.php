@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Regions;
 use App\Http\Requests\ProfileDetailRequest;
+use App\Http\Requests\ChangePasswordRequest;
 
 class ProfileController extends Controller
 {
@@ -25,8 +26,19 @@ class ProfileController extends Controller
         return redirect()->route('profile.index');
     }
 
-    public function changePassword(Request $request)
+    public function edit()
     {
-        //TODO
+        return view('dashboard.profile.edit', [
+            'user'=> auth()->user(),
+            'regions' => Regions::all()
+        ]);
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = auth()->user();
+        $user->update($request->validated());
+        $request->session()->flash('message', 'Successfully updated user');
+        return redirect()->route('profile.index');
     }
 }

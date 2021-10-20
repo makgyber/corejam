@@ -32,7 +32,8 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::resource('notes', 'NotesController');
         Route::prefix('/profile')->group(function(){
             Route::get('/', 'ProfileController@index')->name('profile.index');
-            Route::post('/change-password', 'ProfileController@changePassword')->name('profile.changePassword');
+            Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
+            Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
             Route::post('/', 'ProfileController@store')->name('profile.store');
         });
         Route::resource('affiliations',  'AffiliationController');

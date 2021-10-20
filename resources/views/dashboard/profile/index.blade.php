@@ -26,67 +26,79 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-header"><h4>Details</h4></div>
+
+            
             <div class="card-body">
-                
-                <form href="{{ url('profile.store')  }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName"  name="first_name" value="{{ $user->first_name }}" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ $user->last_name }}" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="contact1" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email"   name="email" value="{{ $user->email }}" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="contact2" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $user->contact_number }}" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="region_code" class="form-label">Region</label>
-                        <select class="form-control" id="region_code" name="region_code">   
-
-                            @forelse ($regions as $region)
-                                @if ($user->region_code == $region->code)
-                                    <option value="{{$region->code}}" selected>{{$region->name}}</option> 
-                                @else
-                                    <option value="{{$region->code}}">{{$region->name}}</option>    
-                                @endif
-                            
-                            @empty
-                            <option value="">No regions found</option>
-                            @endforelse
-
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" id="province" value="{{$user->province_code}}" />
-                        <label for="province_code" class="form-label">Province</label>
-                        <select class="form-control" id="province_code" name="province_code">
-
-                        </select>
-                        </div>
-                    <div class="mb-3">
-                    <input type="hidden" id="city" value="{{$user->city_code}}" />
-                        <label for="city_code" class="form-label">City/Municipality</label>
-                        <select class="form-control" id="city_code" name="city_code">   
-
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="street" class="form-label">Barangay</label>
-                        <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $user->barangay }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="street" class="form-label">Street Address</label>
-                        <input type="text" class="form-control" id="street" name="street" value="{{ $user->street }}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Details</button>
-                </form>
+            <table class="table table-responsive-sm table-striped">
+                <tbody>
+                    <tr>
+                        <th class="text-muted">First Name</th>
+                        <td class="h4">
+                        {{ $user->first_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Last Name</th>
+                        <td class="h4">
+                        {{ $user->last_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Email</th>
+                        <td class="h4">
+                        {{ $user->email }}
+                        </td>
+                    </tr><tr>
+                        <th class="text-muted">Contact Number</th>
+                        <td class="h4">
+                        {{ $user->contact_number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Region</th>
+                        <td class="h4">
+                        {{ $user->region_code  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Region</th>
+                        <td class="h4">
+                        {{ $user->region_code  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Province</th>
+                        <td class="h4">
+                        {{ $user->province_code  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">City / Municipality</th>
+                        <td class="h4">
+                        {{ $user->city_code  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Barangay</th>
+                        <td class="h4">
+                        {{ $user->barangay  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Street Address</th>
+                        <td class="h4">
+                        {{ $user->street  }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Skills And Capabilities</th>
+                        <td class="h4">
+                        {{ $user->skillsets  }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>
             </div>
           </div>
         </div>
@@ -94,89 +106,17 @@
             <div class="card ">
                 <div class="card-header"><h4>Change Password</h4></div>
                 <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="existingPassword" class="form-label">Current Password</label>
-                            <input type="password" class="form-control" id="existingPassword">
-                        </div>
+                    <form method="POST" action="{{ route('profile.change-password') }}">
+                        @csrf
                         <div class="mb-3">
                             <label for="newPassword" class="form-label">New Password</label>
-                            <input type="password" class="form-control" id="newPassword">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-               
-            <div class="card">
-                <div class="card-header">
-                    <h4>Skills And Capabilities</h4>
-                    <p>Please describe your professional skills, capabilities and recognized spiritual gifts</p>
-                </div>
-                <div class="card-body">
-                    <form>
-                    <div class="row">   
-                        <div class="col-sm-6">
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Preaching
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Teaching
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Evangelism
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Discipleship
-                                    </label>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-sm-6">
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Leadership
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Administration
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Finance
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="mb-3">
-                            <label for="otherSkills" class="form-label">Others (separate multiple items with commas)</label>
-                            <input type="text" class="form-control" id="otherSkills">
-                        </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -188,8 +128,5 @@
 @endsection
 
 @section('javascript')
-
-<script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/locations.js') }}"></script>
 
 @endsection
