@@ -28,7 +28,8 @@
           <div class="card-header"><h4>Edit Member</h4></div>
           <div class="card-header"><h5>{{$affiliation->name}}</h5></div>
             <div class="card-body">
-                <form action="{{ route('members.store')  }}" method="POST">
+                <form action="{{ url('/members/'. $member->id ) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <input type="hidden" name="affiliation_id" value="{{$affiliation->id}}"/>
                     <div class="mb-3">

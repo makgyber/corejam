@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Edit menu element</h4></div>
+          <div class="card-header"><h4>Edit Affiliation</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
@@ -22,56 +22,21 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('menu.update') }}" method="POST">
+                <form action="{{ url('/affiliations/'.$affiliation->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $menuElement->id }}" id="menuElementId"/>
                     <table class="table table-striped table-bordered datatable">
                         <tbody>
                             <tr>
                                 <th>
-                                    Menu
+                                    Organisation Type
                                 </th>
                                 <td>
-                                    <select class="form-control" name="menu" id="menu">
-                                        @foreach($menulist as $menu1)
-                                            @if($menu1->id == $menuElement->menu_id  )
-                                                <option value="{{ $menu1->id }}" selected>{{ $menu1->name }}</option>
-                                            @else
-                                                <option value="{{ $menu1->id }}">{{ $menu1->name }}</option>
-                                            @endif
-                                        @endforeach
+                                    <select class="form-control" name="organisation_type" id="type">
+                                        <option value="church">Church or Faith-based Organisation</option>
+                                        <option value="government">Government</option>
+                                        <option value="ngo">NGO</option>
+                                        <option value="other">Other</option>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    User Roles
-                                </th>
-                                <td>
-                                    <table class="table">
-                                    @foreach($roles as $role)
-                                        <tr>
-                                            <td>
-                                                <?php
-                                                    $temp = false;
-                                                    foreach($menuroles as $menurole){
-                                                        if($role == $menurole->role_name){
-                                                            $temp = true;
-                                                        }
-                                                    }
-                                                    if($temp === true){
-                                                        echo '<input checked type="checkbox" name="role[]" value="' . $role . '" class="form-control"/>';
-                                                    }else{
-                                                        echo '<input type="checkbox" name="role[]" value="' . $role . '" class="form-control"/>';
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                {{ $role }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </table>
                                 </td>
                             </tr>
                             <tr>
@@ -79,86 +44,108 @@
                                     Name
                                 </th>
                                 <td>
-                                    <input 
-                                    type="text" 
-                                    class="form-control" 
-                                    name="name" 
-                                    value="{{ $menuElement->name }}"
-                                    placeholder="Name"
-                                    />
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>
-                                    Type
+                                    Brief Introduction or Description
                                 </th>
                                 <td>
-                                    <select class="form-control" name="type" id="type">
-                                        @if($menuElement->slug === 'link')
-                                            <option value="link" selected>Link</option>
+                                    <textarea class="form-control" name="description">{{ old('description') }}</textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Region
+                                </th>
+                                <td>
+                                    <select class="form-control" id="region_code" name="region_code">   
+
+                                    @forelse ($regions ?? [] as $region)
+                                        @if ($user->region_code == $region->code)
+                                            <option value="{{$region->code}}" selected>{{$region->name}}</option> 
                                         @else
-                                            <option value="link">Link</option>
+                                            <option value="{{$region->code}}">{{$region->name}}</option>    
                                         @endif
-                                        @if($menuElement->slug === 'title')
-                                            <option value="title" selected>Title</option>
-                                        @else
-                                            <option value="title">Title</option>
-                                        @endif
-                                        @if($menuElement->slug === 'dropdown')
-                                            <option value="dropdown" selected>Dropdown</option>
-                                        @else
-                                            <option value="dropdown">Dropdown</option>
-                                        @endif
+
+                                    @empty
+                                    <option value="">No regions found</option>
+                                    @endforelse
+
                                     </select>
                                 </td>
                             </tr>
+
                             <tr>
                                 <th>
-                                    Other
+                                    Province
                                 </th>
                                 <td>
-                                    <div id="div-href">
-                                        Href:
-                                        <input 
-                                            type="text" 
-                                            name="href" 
-                                            class="form-control" 
-                                            placeholder="href"
-                                            value="{{ $menuElement->href }}"
-                                        />
-                                    </div>
-                                    <br><br>
-                                    <div id="div-dropdown-parent">
-                                        Dropdown parent:
-                                        <input type="hidden" id="parentId" value="{{ $menuElement->parent_id }}"/>
-                                        <select class="form-control" name="parent" id="parent">
+                                    <input type="hidden" id="province" value="{{$user->province_code ?? ''}}" />
+                                    <select class="form-control" id="province_code" name="province_code">
 
-                                        </select>
-                                    </div>
-                                    <br><br>
-                                    <div id="div-icon">
-                                        Icon - Find icon class in: 
-                                        <a 
-                                            href="https://coreui.io/docs/icons/icons-list/#coreui-icons-free-502-icons"
-                                            target="_blank"
-                                        >
-                                            CoreUI icons documentation
-                                        </a>
-                                        <br>
-                                        <input 
-                                            class="form-control" 
-                                            name="icon" 
-                                            type="text" 
-                                            placeholder="CoreUI Icon class - example: cil-bell"
-                                            value="{{ $menuElement->icon }}"
-                                        >
-                                    </div>
+                                    </select>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th>
+                                    City/Municipality
+                                </th>
+                                <td>
+                                <input type="hidden" id="city" value="{{$user->city_code ?? ''}}" />
+                                    <select class="form-control" id="city_code" name="city_code">   
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Address
+                                </th>
+                                <td>
+                                    <textarea class="form-control"  name="address" >{{ old('address') }}</textarea>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th>
+                                    Position in organisation
+                                </th>
+                                <td>
+                                    <select class="form-control" name="position" id="position">
+                                        <option value="Bishop">Bishop</option>
+                                        <option value="Pastor">Pastor</option>
+                                        <option value="Elder">Elder</option>
+                                        <option value="Board Member/Director">Board Member/Director</option>
+                                        <option value="Member">Member</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <input type="text" class="form-control  d-none" placeholder="please specify position" name="position_other" id="position_other"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    
+                                </th>
+                                <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" id="is_primary" name="is_primary">
+                                    <label class="form-check-label" for="is_primary">
+                                    This is my primary organisation
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <a class="btn btn-primary" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">Return</a>
+                    <a class="btn btn-primary" href="{{ route('affiliations.index') }}">Return</a>
                 </form>
             </div>
           </div>
@@ -171,9 +158,22 @@
 @endsection
 
 @section('javascript')
+
+<script>
+let self = this;
+this.toggleOther = function(){
+    let value = document.getElementById("position").value
+    if(value === 'Other'){
+        document.getElementById('position_other').classList.remove('d-none')
+    }else{
+        document.getElementById('position_other').classList.add('d-none')
+    }
+}
+
+this.toggleOther()
+document.getElementById("position").onchange = function(){self.toggleOther()}
+</script>
+
 <script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/menu-edit.js') }}"></script> 
-
-
-
+<script src="{{ asset('js/locations.js') }}"></script>
 @endsection

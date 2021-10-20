@@ -30,6 +30,16 @@ class AffiliationController extends Controller
         ]);
     }
 
+    public function edit(Affiliation $affiliation)
+    {
+        $affiliations = auth()->user()->affiliations();
+        return view('dashboard.affiliations.edit',[
+            'affiliation' => $affiliation,
+            'regions' => Regions::all(),
+            'user' => auth()->user()
+        ]);
+    }
+
     public function store(StoreAffiliationRequest $request)
     {
         $user = auth()->user();
@@ -51,7 +61,7 @@ class AffiliationController extends Controller
             'is_primary' => $request['is_primary']=='true' ? 1 : 0,
         ]);
         $request->session()->flash('message', 'Successfully created affiliation');
-        
+
         return redirect()->route('affiliations.index');
     }
 
