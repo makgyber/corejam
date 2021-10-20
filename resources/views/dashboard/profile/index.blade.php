@@ -25,7 +25,7 @@
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>Details</h4></div>
+          <div class="card-header"><h4>Personal Information</h4></div>
 
             
             <div class="card-body">
@@ -57,25 +57,19 @@
                     <tr>
                         <th class="text-muted">Region</th>
                         <td class="h4">
-                        {{ $user->region_code  }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-muted">Region</th>
-                        <td class="h4">
-                        {{ $user->region_code  }}
+                        {{ $user->region->name  }}
                         </td>
                     </tr>
                     <tr>
                         <th class="text-muted">Province</th>
                         <td class="h4">
-                        {{ $user->province_code  }}
+                        {{ $user->province->name  }}
                         </td>
                     </tr>
                     <tr>
                         <th class="text-muted">City / Municipality</th>
                         <td class="h4">
-                        {{ $user->city_code  }}
+                        {{ $user->city->name  }}
                         </td>
                     </tr>
                     <tr>
