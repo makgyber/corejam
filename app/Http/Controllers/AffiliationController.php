@@ -16,7 +16,6 @@ class AffiliationController extends Controller
 
         return view('dashboard.affiliations.index', [
             'affiliations' => $affiliations,
-            'regions' => Regions::all(),
             'user' => auth()->user()
         ]);
     }
@@ -49,10 +48,10 @@ class AffiliationController extends Controller
             'user_id' => $user->id,
             'affiliation_id' => $affiliation->id,
             'position' => $validatedData['position'],
-            'is_primary' => empty($validatedData['is_primary']),
+            'is_primary' => $request['is_primary']=='true' ? 1 : 0,
         ]);
-
         $request->session()->flash('message', 'Successfully created affiliation');
+        
         return redirect()->route('affiliations.index');
     }
 

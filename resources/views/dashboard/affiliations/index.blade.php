@@ -26,6 +26,7 @@
                             <th>Region</th>
                             <th>Province</th>
                             <th>City</th>
+                            <th>Is Primary</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -39,21 +40,22 @@
                               <td>{{ $affiliation->description }}</td>
                               <td>{{ $affiliation->address }}</td>
                               <td>{{ $affiliation->organisation_type }}</td>
-                              <td>{{ $affiliation->position }}</td>
+                              <td>{{ $affiliation->pivot->position }}</td>
                               <td>{{ $affiliation->region->name }}</td>
                               <td>{{ $affiliation->province->name }}</td>
                               <td>{{ $affiliation->city->name }}</td>
+                              <td>{{ $affiliation->pivot->is_primary  ? 'Yes' : 'No'}}</td>
                               <td>
-                                <a href="{{ url('/affiliations/' . $affiliation->id) }}" class="btn btn-block btn-primary">View</a>
+                                <a href="{{ url('/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
                               <td>
-                                <a href="{{ url('/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ url('/members?affiliation_id=' . $affiliation->id ) }}" class="btn btn-block btn-primary btn-sm">Members</a>
                               </td>
                               <td>
                                 <form action="{{ route('affiliations.destroy', $affiliation->id ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-block btn-danger">Delete</button>
+                                    <button class="btn btn-block btn-danger btn-sm">Delete</button>
                                 </form>
                               </td>
                             </tr>
