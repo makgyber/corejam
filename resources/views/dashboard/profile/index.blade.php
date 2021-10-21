@@ -57,19 +57,19 @@
                     <tr>
                         <th class="text-muted">Region</th>
                         <td class="h4">
-                        {{ $user->region->name  }}
+                        {{ $user->region->name ??'' }}
                         </td>
                     </tr>
                     <tr>
                         <th class="text-muted">Province</th>
                         <td class="h4">
-                        {{ $user->province->name  }}
+                        {{ $user->province->name ??'' }}
                         </td>
                     </tr>
                     <tr>
                         <th class="text-muted">City / Municipality</th>
                         <td class="h4">
-                        {{ $user->city->name  }}
+                        {{ $user->city->name ??'' }}
                         </td>
                     </tr>
                     <tr>
