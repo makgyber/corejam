@@ -5,20 +5,27 @@
 @endsection
 
 @section("content")
-
+<main class="container mt-5">
     @if(config("binshopsblog.reading_progress_bar"))
-        <div id="scrollbar">
-            <div id="scrollbar-bg"></div>
-        </div>
-    @endif
+    <div id="scrollbar">
+        <div id="scrollbar-bg"></div>
+    </div>
+@endif
+
+    @include("binshopsblog::partials.show_errors")
+    @include("binshopsblog::partials.full_post_details")
+
+    
+
+</main>
+
 
 
     <div class='container'>
     <div class='row'>
         <div class='col-sm-12 col-md-12 col-lg-12'>
 
-            @include("binshopsblog::partials.show_errors")
-            @include("binshopsblog::partials.full_post_details")
+            
 
 
             @if(config("binshopsblog.comments.type_of_comments_to_show","built_in") !== 'disabled')

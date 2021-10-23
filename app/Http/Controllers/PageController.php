@@ -8,10 +8,7 @@ class PageController extends Controller
 {
     public function index()
     {
-
-        return view('pages.blog',[
-
-        ]);
+        return redirect('/blog');    
     }
 
     public function page($page)

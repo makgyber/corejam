@@ -48,19 +48,17 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/activities">Activities</a>
+                    <a class="nav-link" href="/blog">Activities</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
+                    <a class="nav-link" href="/blog/about-us">About Us</a>
                   </li>
                 </ul>
-                
+                <form class="d-flex">
+                  <input method='get' action='{{route("binshopsblog.search")}}'  value='{{\Request::get("s")}}' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <input type='submit' value='Search' class='btn btn-outline-success'>
+                </form>
               </div>
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <a class="nav-link btn btn-sm btn-secondary" href="{{route('login')}}">Login</a>
-                </li>
-              </ul>
             </div>
           </nav>
         </header>
@@ -68,7 +66,7 @@
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-end"><a href="#">Back to top</a></p>
-        <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; 2021 Quantum Tech &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
     </main>
   </div>
