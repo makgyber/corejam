@@ -36,7 +36,7 @@
   <body class="c-app flex-row align-items-center">
     <div class="container-fluid">
         <header>
-          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gradient-primary">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">M6:10</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,16 +58,12 @@
               </div>
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('login')}}">Login</a>
+                  <a class="nav-link btn btn-sm btn-secondary" href="{{route('login')}}">Login</a>
                 </li>
               </ul>
             </div>
           </nav>
         </header>
-
-
-    
-      
     @yield('content') 
     <!-- FOOTER -->
     <footer class="container">

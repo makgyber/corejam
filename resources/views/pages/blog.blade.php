@@ -2,13 +2,19 @@
 
 @section('content')
   
-  <main class="container">
-    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-      <div class="col-md-6 px-0">
-        <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-        <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+  <main class="container mt-5">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="background-image: url('{{asset('assets/img/m610.png')}}'); background-size: contain; background-repeat: no-repeat; background-position:center ">
+      
+      <div class="px-0 d-flex flex-row-reverse">
+        
+        <p class="lead mb-0"></p>
+        <h1 class="display-4 fst-italic ">
+            "Thy kingdom come,<br>
+            Thy will be done,<br>
+            on earth as it is in heaven."
+        </h1>
       </div>
+      <p class="lead my-3 d-flex flex-row-reverse">Matthew 6:10</p>
     </div>
   
     <div class="row mb-2">
@@ -21,8 +27,8 @@
             <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
             <a href="#" class="stretched-link">Continue reading</a>
           </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="col-auto d-none d-lg-block bg-gradient-warning">
+            <svg class="bd-placeholder-img " width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
   
           </div>
         </div>
