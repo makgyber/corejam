@@ -36,8 +36,9 @@ class ProfileController extends Controller
 
     public function changePassword(ChangePasswordRequest $request)
     {
-        $user = auth()->user();
-        $user->update($request->validated());
+        auth()->user()->update([
+            'password' => bcrypt($request->password)
+        ]);
         $request->session()->flash('message', 'Successfully updated user');
         return redirect()->route('profile.index');
     }

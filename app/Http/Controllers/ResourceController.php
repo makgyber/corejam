@@ -103,8 +103,10 @@ class ResourceController extends Controller
      */
     public function store($table, Request $request)
     {
+        
         $guestHasPermission = false;
         $role = Role::where('name', '=', 'guest')->first();
+        
         try {
             if($role->hasPermissionTo('add bread ' . $table)){
                 $guestHasPermission = true;
@@ -112,6 +114,7 @@ class ResourceController extends Controller
         } catch (\Throwable $e) {
             $guestHasPermission = false;
         }       
+ 
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -127,7 +130,9 @@ class ResourceController extends Controller
         foreach($formFields as $formField){
             $toValidate[$formField->column_name] = 'required';
         }
+       
         $request->validate($toValidate);
+        
         if($form->add == 1){
             $resourceService = new ResourceService();
             $resourceService->add($form->id, $form->table_name, $request->all() );

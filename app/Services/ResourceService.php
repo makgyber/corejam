@@ -36,6 +36,7 @@ class ResourceService{
             $path = $file->path();
             $oryginalName = $file->getClientOriginalName();
             $mediaFolder = Folder::where('resource', '=', 1)->first();
+           
             if(!empty($mediaFolder)){
                 $mediaFolder->addMedia($path)->usingFileName( date('YmdHis') . $oryginalName )->usingName($oryginalName)->toMediaCollection();
                 $result = DB::getPdo()->lastInsertId(); 
@@ -145,6 +146,7 @@ class ResourceService{
     }
 
     public function add($formId, $tableName, $request){
+        
         $columns = $this->getColumnsForAdd($formId);
         $toInsert = array();
         foreach($columns as $column){
@@ -155,7 +157,7 @@ class ResourceService{
                     $toInsert[ $column->column_name ] = '';
                 }
             }elseif( $column->type == 'file' || $column->type == 'image' ){
-                $toInsert[ $column->column_name ] = $this->addMedia($request, $column->column_name);
+                // $toInsert[ $column->column_name ] = $this->addMedia($request, $column->column_name);
             }else{
                 $toInsert[ $column->column_name ] = $request[$column->column_name];
             }

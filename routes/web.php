@@ -107,4 +107,4 @@ Route::prefix('/cms')->group(function() {
 
 Route::get('invitation/{user}', 'SetPasswordController@invitation')->name('invitation');
 Route::get('/', 'PageController@index')->name('index');
-Route::get('/{page}', 'PageController@page')->name('page');
+// Route::get('/{page}', 'PageController@page')->name('page');

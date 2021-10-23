@@ -30,17 +30,17 @@
             <div class="dropdown-menu dropdown-menu-right pt-0">
               <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
               
-              <a class="dropdown-item" href="{{ url('/profile') }}">
+              <a class="dropdown-item" href="{{ url('cms/profile') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-user') }}"></use>
                 </svg> Profile</a>
 
-              <a class="dropdown-item" href="{{ url('/reminders') }}">
+              <a class="dropdown-item" href="{{ url('cms/reminders') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
                 </svg> Reminders<span class="badge badge-info ml-auto">42</span></a>
                 
-                <a class="dropdown-item" href="{{ url('/messages') }}">
+                <a class="dropdown-item" href="{{ url('cms/messages') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-envelope-open') }}"></use>
                 </svg> Messages<span class="badge badge-success ml-auto">42</span></a>
