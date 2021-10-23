@@ -93,9 +93,7 @@ class User extends Authenticatable
         // Maybe you can just hardcode in a user id that you
         //   know is always an admin ID?
 
-        if (       $this->id === 1
-             && $this->email === "admin@admin.com"
-           ){
+        if (   strpos($this->menuroles,"admin") ){
 
            // return true so this user CAN edit/post/delete
            // blog posts (and post any HTML/JS)
