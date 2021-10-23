@@ -86,4 +86,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Cities::class, 'city_code', 'code');
     }
+
+
 }

@@ -11,6 +11,7 @@ class MenuBuilder{
     private $menu;
     private $dropdown;
     private $dropdownDeep;
+    private const ADMINPREFIX = '/cms';
 
     public function __construct(){
        $this->menu = array();
@@ -39,6 +40,7 @@ class MenuBuilder{
     }
 
     private function addRegularLink($id, $name, $href, $icon, $iconType, $sequence = 0){
+        $href = self::ADMINPREFIX . $href;
         $hasIcon = ( $icon === false || strlen($icon) === 0 ) ? false : true;
         if($hasIcon){
             array_push($this->menu, array(
@@ -64,6 +66,7 @@ class MenuBuilder{
     }
 
     private function addDropdownLink($id, $name, $href, $icon, $iconType, $sequence = 0){
+        $href = self::ADMINPREFIX . $href;
         $num = count($this->menu);
         $hasIcon = ( $icon === false || strlen($icon) === 0 ) ? false : true;
         if($hasIcon){

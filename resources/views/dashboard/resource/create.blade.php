@@ -32,7 +32,7 @@
                 @endif
                 <div class="row">
                     <div class="col-6">
-                        <form method="POST" action="{{ route('resource.store', $form->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('resource.store', $form->id) }}" enctype="multipart/form-data" id="createPostForm">
                             @csrf
                             @foreach($columns as $column)
                                 <?php
@@ -86,7 +86,9 @@
                                 }elseif($column->type == 'text_area'){
                                     echo '<div class="form-group row">';
                                     echo '<label class="col-form-label">' . $column->name . '</label>';
-                                    echo '<textarea class="form-control" name="' . $column->column_name . '" rows="9"></textarea>';
+                                    //echo '<textarea class="form-control" name="' . $column->column_name . '" rows="9"></textarea>';
+                                    echo '<div id="editor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></div>';
+                                    echo '<input type="hidden" name="' . $column['column_name'] . '" id="hidden_content" value="">';
                                     echo '</div>';
                                 }else{
                                     echo '<p>Not recognize field type: ' . $column->type . '</p>';
@@ -119,6 +121,6 @@
 @endsection
 
 @section('javascript')
-
+<script src="{{ asset('js/editor.js') }}"></script>
 
 @endsection
