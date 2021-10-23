@@ -23,7 +23,7 @@ this.buildSelectOptions = function (data, selectedId) {
 };
 
 this.updateSelectProvince = function () {
-  axios.get('/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
+  axios.get('/cms/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
     document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province');
     self.updateSelectCities(document.getElementById("province_code").value);
   })["catch"](function (error) {
@@ -40,7 +40,7 @@ this.updateSelectCities = function () {
     provinceCode = $province;
   }
 
-  axios.get('/cities?province=' + provinceCode).then(function (response) {
+  axios.get('/cms/cities?province=' + provinceCode).then(function (response) {
     document.getElementById("city_code").innerHTML = self.buildSelectOptions(response.data, 'city');
   })["catch"](function (error) {
     // handle error

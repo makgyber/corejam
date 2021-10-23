@@ -13,7 +13,7 @@ this.buildSelectOptions = function( data , selectedId){
 }
 
 this.updateSelectProvince = function(){
-    axios.get( '/provinces?region=' + document.getElementById("region_code").value )
+    axios.get( '/cms/provinces?region=' + document.getElementById("region_code").value )
     .then(function (response) {
         document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province')
         self.updateSelectCities(document.getElementById("province_code").value)
@@ -30,7 +30,7 @@ this.updateSelectCities = function($province=null){
         provinceCode =  $province
     }
 
-    axios.get( '/cities?province=' + provinceCode)
+    axios.get( '/cms/cities?province=' + provinceCode)
     .then(function (response) {
         document.getElementById("city_code").innerHTML = self.buildSelectOptions(response.data, 'city')
     })
