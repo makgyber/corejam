@@ -46,10 +46,10 @@
                               <td>{{ $affiliation->city->name }}</td>
                               <td>{{ $affiliation->pivot->is_primary  ? 'Yes' : 'No'}}</td>
                               <td>
-                                <a href="{{ url('/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>
+                                <a href="{{ url('/cms/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
                               <td>
-                                <a href="{{ url('/members?affiliation_id=' . $affiliation->id ) }}" class="btn btn-block btn-primary btn-sm">Members</a>
+                                <a href="{{ url('/cms/members?affiliation_id=' . $affiliation->id ) }}" class="btn btn-block btn-primary btn-sm">Members</a>
                               </td>
                               <td>
                                 <form action="{{ route('affiliations.destroy', $affiliation->id ) }}" method="POST">
