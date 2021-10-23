@@ -2,6 +2,7 @@
 /node_modules
 /database/database.sqlite
 /storage/*.key
+/vendor
 .env
 .env.backup
 .phpunit.result.cache
