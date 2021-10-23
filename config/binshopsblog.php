@@ -14,7 +14,7 @@ return [
     'include_default_routes' => true, // set to false to not include routes.php for BinshopsBlogReaderController and admin related routes. Default: true. If you disable this, you will have to manually copy over the data from routes.php and add it to your web.php.
 
     'blog_prefix' => "blog", // used in routes.php. If you want to your http://yoursite.com/latest-news (or anything else), then enter that here. Default: blog
-    'admin_prefix' => "blog_admin", // similar to above, but used for the admin panel for the blog. Default: blog_admin
+    'admin_prefix' => "cms/blog_admin", // similar to above, but used for the admin panel for the blog. Default: blog_admin
 
     'use_custom_view_files' => false, // set to false to disable the use of being able to make blog posts include a view from resources/views/custom_blog_posts/*.blade.php. Default: false. Set to true to use this feature. Default: false
 
