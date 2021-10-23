@@ -48,16 +48,12 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/blog">Activities</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link" href="/blog/about-us">About Us</a>
                   </li>
                 </ul>
-                <form class="d-flex">
-                  <input method='get' action='{{route("binshopsblog.search")}}'  value='{{\Request::get("s")}}' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <input type='submit' value='Search' class='btn btn-outline-success'>
-                </form>
+                <span class="d-flex">
+                  <a class="btn btn-sm btn-primary" href="/cms/login">Login</a>
+                </span>
               </div>
             </div>
           </nav>
