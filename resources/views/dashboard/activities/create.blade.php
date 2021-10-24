@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td>Success Indicators</td>
-                            <th><textarea type="text" class="form-control" id="success_indicator"  name="success_indicator">{{ old('success_indicators') }}</textarea></th>
+                            <th><textarea type="text" class="form-control" id="success_indicator"  name="success_indicator">{{ old('success_indicator') }}</textarea></th>
                         </tr>
                         <tr>
                             <td>Plan B</td>
@@ -58,11 +58,11 @@
                                 <div class="row">
                                     <div class="col-6">
                                         From: 
-                                        <input type="date" class="form-control" id="target_start"  name="target_start" value="{{ date('Y-m-d', strtotime(old('target_start') )) }}" />
+                                        <input type="date" class="form-control" id="target_start"  name="target_start" value="{{ date('Y-m-d', strtotime(old('target_start') ?? now() )) }}" />
                                     </div>
                                     <div class="col-6">
                                         To:
-                                        <input type="date" class="form-control" id="target_end"  name="target_end" value="{{ date('Y-m-d', strtotime(old('target_end')))
+                                        <input type="date" class="form-control" id="target_end"  name="target_end" value="{{ date('Y-m-d', strtotime(old('target_end') ?? now()))
                                          }}" />
                                     </div>
                                 </div>
