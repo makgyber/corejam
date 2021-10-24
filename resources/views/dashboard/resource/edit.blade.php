@@ -111,11 +111,18 @@
                                         echo '<label class="btn btn-primary mt-2 ml-1">';
                                         echo $column['name'] . ' <input type="file" name="' . $column['column_name'] . '">';
                                         echo '</label>';
+
+
                                     }elseif($column['type'] == 'text_area'){
                                         array_push($editors, ['name' => $column['column_name'], 'value' => $column['value']]);
-                                        echo '<div class="form-group row">';
+                                        echo '<div class="form-group">';
                                         echo '<label class="col-form-label">' . $column['name'] . '</label>';
-                                        // echo '<textarea class="form-control" name="' . $column['column_name'] . '" rows="9">' . $column['value'] . '</textarea>';
+                                        echo '<textarea class="form-control" name="' . $column['column_name'] . '" rows="9">' . $column['value'] . '</textarea>';
+                                        echo '</div>';
+                                    }elseif($column['type'] == 'editor'){
+                                        array_push($editors, ['name' => $column['column_name'], 'value' => $column['value']]);
+                                        echo '<div class="form-group">';
+                                        echo '<label class="col-form-label">' . $column['name'] . '</label>';
                                         echo '<div id="editor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></div>';
                                         echo '<input type="hidden" name="' . $column['column_name'] . '" id="hidden_content" value="' . $column['value'] . '"">';
                                         echo '</div>';

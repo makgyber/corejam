@@ -25,6 +25,17 @@ Route::prefix('/cms')->group(function() {
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
         Route::group(['middleware' => ['role:coordinator']], function () {
+            Route::resource('targets', 'TargetController');
+            Route::get('/targets/{target}/activities', 'ActivityController@index')->name('activities.index');
+            Route::get('/targets/{target}/activities/create', 'ActivityController@index')->name('activities.create');
+            Route::get('/targets/{target}/activities', 'ActivityController@index')->name('activities.index');
+            Route::post('/targets/{target}/activities', 'ActivityController@store')->name('activities.store');
+            Route::get('/targets/{target}/activities/create', 'ActivityController@create')->name('activities.create');
+            Route::put('/targets/{target}/activities/{activity}', 'ActivityController@update')->name('activities.update');
+            Route::delete('/targets/{target}/activities/{activity}', 'ActivityController@destroy')->name('activities.delete');
+            Route::get('/targets/{target}/activities/{activity}/edit', 'ActivityController@edit')->name('activities.edit');
+            
+
             Route::prefix('notifications')->group(function () {  
                 Route::get('/alerts', function(){   return view('dashboard.notifications.alerts'); });
                 Route::get('/badge', function(){    return view('dashboard.notifications.badge'); });
@@ -56,6 +67,7 @@ Route::prefix('/cms')->group(function() {
         ]);
 
         Route::group(['middleware' => ['role:admin']], function () {
+
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
             Route::resource('coordinators',        'UsersController');
             Route::resource('users',        'UsersController');

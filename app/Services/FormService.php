@@ -331,6 +331,10 @@ class FormService{
                 'name' => 'text area'
             ),
             array(
+                'value' => 'editor',
+                'name' => 'editor'
+            ),
+            array(
                 'value'=> 'relation_select',
                 'name' => 'relation select'
             ),
