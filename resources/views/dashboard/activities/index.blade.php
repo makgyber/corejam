@@ -20,22 +20,24 @@
                     <div class="card-body">
 
                         <br>
-                        <table class="table table-responsive-sm table-striped">
-                        <thead>
+                        <table class="table table-responsive-sm table-bordered table-condensed">
+                        <thead class="thead-dark">
                           <tr>
-                            <th>Title</th>
-                            <th>Success Indicator</th>
-                            <th>Location</th>
-                            <th>Remarks</th>
-                            <th>Plan B</th>
-                            <th>Support Request</th>
+                            <th rowspan="2">Title</th>
+                            <th rowspan="2">Success Indicator</th>
+                            <th rowspan="2">Location</th>
+                            <th rowspan="2">Duration</th>
+                            <th rowspan="2">Plan B</th>
+                            <th colspan="4" style="text-align:center">Support Request</th>
+                            <th rowspan="2">Remarks</th>
+                            <th rowspan="2"></th>
+                            <th rowspan="2"></th>
+                          </tr>
+                          <tr>
+                            <th>What</th>
                             <th>From Whom</th>
                             <th>How Much</th>
                             <th>When Needed</th>
-                            <th>Target Start</th>
-                            <th>Target End</th>
-                            <th></th>
-                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -45,14 +47,13 @@
                               <td><strong>{{ $activity->title }}</strong></td>
                               <td>{{ $activity->success_indicator }}</td>
                               <td>{{ $activity->location }}</td>
+                              <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
                               <td>{{ $activity->remarks }}</td>
                               <td>{{ $activity->plan_b }}</td>
                               <td>{{ $activity->support_request }}</td>
                               <td>{{ $activity->support_from_whom }}</td>
                               <td>{{ $activity->support_how_much }}</td>
                               <td>{{ $activity->support_when_needed }}</td>
-                              <td>{{ $activity->target_start }}</td>
-                              <td>{{ $activity->target_end }}</td>
                               <td>
                                 <a href="{{ route('activities.edit', [$target->id,$activity->id]) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
