@@ -41,7 +41,7 @@
                         
 @forelse($targets as $target)
 <thead class="thead-light">
-<tr><th colspan="13"><h2>{{ $target->objective }}</h2>  {{ $target->tldr }} </th></tr>
+<tr><th colspan="13"><h3>{{ $target->objective }}</h3>  <p>{{ $target->tldr }}</p> <span class="text-dark">Coordinator: {{ $target->user->name }}</span></th></tr>
 </thead>
                           @forelse($target->activities ?? '' as $activity)
                           <tbody>
