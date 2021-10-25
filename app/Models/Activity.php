@@ -26,6 +26,10 @@ class Activity extends Model
         'target_start' ,
         'target_end' ,
     ];
+
+    protected $attributes = [
+        'owner' => 1
+    ];
     
     public function user()
     {

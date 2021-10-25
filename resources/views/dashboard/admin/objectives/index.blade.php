@@ -17,32 +17,34 @@
 
                     <div class="card-body">
 
-                        <br>
-                        <table class="table table-responsive-sm table-bordered table-condensed">
-                        <thead class="thead-dark">
-                          <tr>
-                            <th rowspan="2">#</th>
-                            <th rowspan="2">Title</th>
-                            <th rowspan="2">Success Indicator</th>
-                            <th rowspan="2">Location</th>
-                            <th rowspan="2">Duration</th>
-                            <th rowspan="2">Plan B</th>
-                            <th colspan="4" style="text-align:center">Support Request</th>
-                            <th rowspan="2">Remarks</th>
-                            <th rowspan="2"></th>
-                          </tr>
-                          <tr>
-                            <th>What</th>
-                            <th>From Whom</th>
-                            <th>How Much</th>
-                            <th>When Needed</th>
-                          </tr>
-                        </thead>
+                        
+                        
                         
 @forelse($targets as $target)
-<thead class="thead-light">
-<tr><th colspan="13"><h3>{{ $target->objective }}</h3>  <p>{{ $target->tldr }}</p> <span class="text-dark">Coordinator: {{ $target->user->name }}</span></th></tr>
+<br>
+                        <table class="table table-responsive-sm table-bordered table-condensed table-sm">
+<thead class="thead-dark">
+<tr><th colspan="13"><h3>{{ $target->objective }}</h3>  <p>{{ $target->tldr }}</p> <span class="text-warning">Coordinator: {{ $target->user->name }}</span></th></tr>
 </thead>
+<thead class="">
+    <tr>
+      <th rowspan="2">#</th>
+      <th rowspan="2">Title</th>
+      <th rowspan="2">Success Indicator</th>
+      <th rowspan="2">Location</th>
+      <th rowspan="2">Duration</th>
+      <th rowspan="2">Plan B</th>
+      <th colspan="4" style="text-align:center">Support Request</th>
+      <th rowspan="2">Remarks</th>
+      <th rowspan="2"></th>
+    </tr>
+    <tr>
+      <th>What</th>
+      <th>From Whom</th>
+      <th>How Much</th>
+      <th>When Needed</th>
+    </tr>
+  </thead>
                           @forelse($target->activities ?? '' as $activity)
                           <tbody>
                             <tr>
@@ -64,11 +66,12 @@
                         </tbody>
                             @empty
                             @endforelse
+                          </table>
                             @empty
                             <div class="alert alert-info">No activities have been saved yet.</div>
                             @endforelse
                         
-                      </table>
+                      
 
                     </div>
                 </div>
@@ -76,7 +79,7 @@
             </div>
           </div>
         </div>
-
+{{ $targets->links()}}
 @endsection
 
 
