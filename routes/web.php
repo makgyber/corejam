@@ -73,6 +73,7 @@ Route::prefix('/cms')->group(function() {
             Route::resource('users',        'UsersController');
             Route::resource('roles',        'RolesController');
             Route::resource('mail',        'MailController');
+            Route::get('/objectives', 'ObjectivesController@index')->name('objectives');
             Route::get('prepareSend/{id}',        'MailController@prepareSend')->name('prepareSend');
             Route::post('mailSend/{id}',        'MailController@send')->name('mailSend');
             Route::get('/roles/move/move-up',      'RolesController@moveUp')->name('roles.up');
