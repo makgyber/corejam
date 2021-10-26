@@ -12,7 +12,7 @@
 
                       <div class="card-header">
                           <div> 
-                              <h1>M610 Strategic Action Planning Worksheet</h1>  
+                              <h1>M6:10 Strategic Action Planning Worksheet</h1>  
                           </div> 
 
                     <div class="card-body">
@@ -50,7 +50,7 @@
                           <tbody>
                             <tr>
                               <td>{{$loop->index+1}}</td>
-                              <td><strong>@php if($loop->index==0) $target->objective @endphp</strong></td>
+                              <td><strong>@php if($loop->index==1) $target->objective @endphp</strong></td>
                               <td><strong>{{ $activity->title }}</strong></td>
                               <td>{{ $target->user->name }}</td>
                               <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
