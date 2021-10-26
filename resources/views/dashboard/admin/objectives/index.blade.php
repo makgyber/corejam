@@ -27,12 +27,12 @@
 <thead class="thead-dark">
     <tr>
       <th rowspan="2">#</th> 
-      <th rowspan="2" style="text-align:center">TARGET OUTCOME (Very Important Priority - VIP)</th>
+      <th rowspan="2" style="text-align:center">TARGET OUTCOME <br>(Very Important Priority - VIP)</th>
       <th rowspan="2" style="text-align:center">VIP - CRITICAL ACTIVITIES</th>
       <th rowspan="2" style="text-align:center">IN-CHARGE</th>
-      <th rowspan="2" style="text-align:center">TIMELINE Schedules Start-Finish</th>
-      <th rowspan="2" style="text-align:center">LOCATION Address</th>
-      <th rowspan="2" style="text-align:center">SUCCESS INDICATORS Metrics</th>
+      <th rowspan="2" style="text-align:center">TIMELINE <br>Schedules <br>Start-Finish</th>
+      <th rowspan="2" style="text-align:center">LOCATION <br>Address</th>
+      <th rowspan="2" style="text-align:center">SUCCESS INDICATORS <br>Metrics</th>
       <th colspan="6" style="text-align:center">SUPPORT REQUEST</th>
       
       <th rowspan="2"></th>
