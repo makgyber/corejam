@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Edit Target Objective</h4></div>
+          <div class="card-header"><h4>Edit Target Outcome</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
@@ -29,7 +29,7 @@
                         <tbody>
                             <tr>
                                 <th>
-                                    Objective
+                                    Target Outcome
                                 </th>
                                 <td>
                                     <input type="text" class="form-control" name="objective" value="{{ $target->objective }}"/>

@@ -8,17 +8,17 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i><h4>{{ __('Target Objectives') }}</h4></div>
+                      <i class="fa fa-align-justify"></i><h4>{{ __('Target Outcomes (Very Important Priorities - VIP)') }}</h4></div>
                     <div class="card-body">
                         <div class="row"> 
-                          <a href="{{ route('targets.create') }}" class="btn btn-primary m-2">{{ __('Add  target objectives') }}</a>
+                          <a href="{{ route('targets.create') }}" class="btn btn-primary m-2">{{ __('Add Target Outcome') }}</a>
                         </div>
                         <br>
                         @if($targets->count())
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
-                            <th>Objective</th>
+                            <th>Target Outcome</th>
                             <th>Description</th>
                             <th></th>
                             <th></th>
