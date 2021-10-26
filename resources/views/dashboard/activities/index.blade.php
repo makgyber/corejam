@@ -30,7 +30,7 @@
                             <th rowspan="2" style="text-align:center">LOCATION <br>Address</th>
                             <th rowspan="2" style="text-align:center">SUCCESS INDICATORS <br>Metrics</th>
                             <th colspan="6" style="text-align:center">SUPPORT REQUEST</th>
-                            
+                            <th rowspan="2"></th>
                             <th rowspan="2"></th>
                           </tr>
                           <tr>
