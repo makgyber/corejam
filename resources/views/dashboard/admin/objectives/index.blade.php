@@ -27,30 +27,30 @@
 <thead class="thead-dark">
     <tr>
       <th rowspan="2">#</th> 
-      <th rowspan="2">TARGET OUTCOME (Very Important Priority - VIP)</th>
-      <th rowspan="2">VIP - CRITICAL ACTIVITIES</th>
-      <th rowspan="2">IN-CHARGE</th>
-      <th rowspan="2">TIMELINE Schedules Start-Finish</th>
-      <th rowspan="2">LOCATION Address</th>
-      <th rowspan="2">SUCCESS INDICATORS Metrics</th>
-      <th colspan="6" style="text-align:center">Support Request</th>
+      <th rowspan="2" style="text-align:center">TARGET OUTCOME (Very Important Priority - VIP)</th>
+      <th rowspan="2" style="text-align:center">VIP - CRITICAL ACTIVITIES</th>
+      <th rowspan="2" style="text-align:center">IN-CHARGE</th>
+      <th rowspan="2" style="text-align:center">TIMELINE Schedules Start-Finish</th>
+      <th rowspan="2" style="text-align:center">LOCATION Address</th>
+      <th rowspan="2" style="text-align:center">SUCCESS INDICATORS Metrics</th>
+      <th colspan="6" style="text-align:center">SUPPORT REQUEST</th>
       
       <th rowspan="2"></th>
     </tr>
     <tr>
-      <th>WHAT IS IT</th>
-      <th>WHEN</th> 
-      <th>FROM WHOM</th>
-      <th>HOW MUCH</th>
-      <th >REMARKS</th>
-      <th >PLAN B (For what if)</th>
+      <th style="text-align:center">WHAT IS IT</th>
+      <th style="text-align:center">WHEN</th> 
+      <th style="text-align:center">FROM WHOM</th>
+      <th style="text-align:center">HOW MUCH</th>
+      <th  style="text-align:center">REMARKS</th>
+      <th  style="text-align:center">PLAN B <br>(For what if)</th>
     </tr>
   </thead>
                           @forelse($target->activities ?? '' as $activity)
                           <tbody>
                             <tr>
                               <td>{{$loop->index+1}}</td>
-                              <td><strong>@php if($loop->index==1) $target->objective @endphp</strong></td>
+                              <td><strong class="text-primary">@php if($loop->index==0) echo $target->objective; @endphp</strong></td>
                               <td><strong>{{ $activity->title }}</strong></td>
                               <td>{{ $target->user->name }}</td>
                               <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
