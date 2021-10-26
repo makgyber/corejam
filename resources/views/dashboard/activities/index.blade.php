@@ -47,9 +47,7 @@
 
                           @forelse($target->activities ?? '' as $activity)
                             <tr>
-                              <td><strong>{{ $activity->Blade::include('
-                              
-                              ', 'input'); }}</strong></td>
+                              <td><strong>{{ $activity->id }}</strong></td>
                               <td><strong>{{ $activity->title }}</strong></td>
                               <td>{{ $target->user->name }}</td>
                               <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
