@@ -23,39 +23,44 @@
                         <table class="table table-responsive-sm table-bordered table-condensed">
                         <thead class="thead-dark">
                           <tr>
-                            <th rowspan="2">#</th>
-                            <th rowspan="2">Title</th>
-                            <th rowspan="2">Success Indicator</th>
-                            <th rowspan="2">Location</th>
-                            <th rowspan="2">Duration</th>
-                            <th rowspan="2">Plan B</th>
-                            <th colspan="4" style="text-align:center">Support Request</th>
-                            <th rowspan="2">Remarks</th>
-                            <th rowspan="2"></th>
+                            <th rowspan="2">#</th> 
+                            <th rowspan="2" style="text-align:center">TARGET OUTCOME <br>(Very Important Priority - VIP)</th>
+                            <th rowspan="2" style="text-align:center">VIP - CRITICAL ACTIVITIES</th>
+                            <th rowspan="2" style="text-align:center">IN-CHARGE</th>
+                            <th rowspan="2" style="text-align:center">TIMELINE <br>Schedules <br>Start-Finish</th>
+                            <th rowspan="2" style="text-align:center">LOCATION <br>Address</th>
+                            <th rowspan="2" style="text-align:center">SUCCESS INDICATORS <br>Metrics</th>
+                            <th colspan="6" style="text-align:center">SUPPORT REQUEST</th>
+                            
                             <th rowspan="2"></th>
                           </tr>
                           <tr>
-                            <th>What</th>
-                            <th>From Whom</th>
-                            <th>How Much</th>
-                            <th>When Needed</th>
+                            <th style="text-align:center">WHAT IS IT</th>
+                            <th style="text-align:center">WHEN</th> 
+                            <th style="text-align:center">FROM WHOM</th>
+                            <th style="text-align:center">HOW MUCH</th>
+                            <th  style="text-align:center">REMARKS</th>
+                            <th  style="text-align:center">PLAN B <br>(For what if)</th>
                           </tr>
                         </thead>
                         <tbody>
 
                           @forelse($target->activities ?? '' as $activity)
                             <tr>
-                              <td>{{$activity->id}}</td>
+                              <td><strong>{{ $activity->Blade::include('
+                              
+                              ', 'input'); }}</strong></td>
                               <td><strong>{{ $activity->title }}</strong></td>
-                              <td>{{ $activity->success_indicator }}</td>
-                              <td>{{ $activity->location }}</td>
+                              <td>{{ $target->user->name }}</td>
                               <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
-                              <td>{{ $activity->plan_b }}</td>
+                              <td>{{ $activity->location }}</td>
+                              <td>{{ $activity->success_indicator }}</td>
                               <td>{{ $activity->support_request }}</td>
+                              <td>{{ $activity->support_when_needed }}</td>
                               <td>{{ $activity->support_from_whom }}</td>
                               <td>{{ $activity->support_how_much }}</td>
-                              <td>{{ $activity->support_when_needed }}</td>
                               <td>{{ $activity->remarks }}</td>
+                              <td>{{ $activity->plan_b }}</td>
                               <td>
                                 <a href="{{ route('activities.edit', [$target->id,$activity->id]) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
