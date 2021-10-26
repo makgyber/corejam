@@ -24,7 +24,6 @@
                         <thead class="thead-dark">
                           <tr>
                             <th rowspan="2">#</th> 
-                            <th rowspan="2" style="text-align:center">TARGET OUTCOME <br>(Very Important Priority - VIP)</th>
                             <th rowspan="2" style="text-align:center">VIP - CRITICAL ACTIVITIES</th>
                             <th rowspan="2" style="text-align:center">IN-CHARGE</th>
                             <th rowspan="2" style="text-align:center">TIMELINE <br>Schedules <br>Start-Finish</th>
