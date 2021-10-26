@@ -8,11 +8,11 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Target Objectives') }}</div>
+                      <i class="fa fa-align-justify"></i>{{ __('M610 Strategic Action Planning Worksheet') }}</div>
 
                       <div class="card-header">
                           <div> 
-                              <h1>Target Objectives</h1>  
+                              <h1>M610 Strategic Action Planning Worksheet</h1>  
                           </div> 
 
                     <div class="card-body">
@@ -23,42 +23,45 @@
 @forelse($targets as $target)
 <br>
                         <table class="table table-responsive-sm table-bordered table-condensed table-sm">
+
 <thead class="thead-dark">
-<tr><th colspan="13"><h3>{{ $target->objective }}</h3>  <p>{{ $target->tldr }}</p> <span class="text-warning">Coordinator: {{ $target->user->name }}</span></th></tr>
-</thead>
-<thead class="">
     <tr>
-      <th rowspan="2">#</th>
-      <th rowspan="2">Title</th>
-      <th rowspan="2">Success Indicator</th>
-      <th rowspan="2">Location</th>
-      <th rowspan="2">Duration</th>
-      <th rowspan="2">Plan B</th>
-      <th colspan="4" style="text-align:center">Support Request</th>
-      <th rowspan="2">Remarks</th>
+      <th rowspan="2">#</th> 
+      <th rowspan="2">TARGET OUTCOME (Very Important Priority - VIP)</th>
+      <th rowspan="2">VIP - CRITICAL ACTIVITIES</th>
+      <th rowspan="2">IN-CHARGE</th>
+      <th rowspan="2">TIMELINE Schedules Start-Finish</th>
+      <th rowspan="2">LOCATION Address</th>
+      <th rowspan="2">SUCCESS INDICATORS Metrics</th>
+      <th colspan="6" style="text-align:center">Support Request</th>
+      
       <th rowspan="2"></th>
     </tr>
     <tr>
-      <th>What</th>
-      <th>From Whom</th>
-      <th>How Much</th>
-      <th>When Needed</th>
+      <th>WHAT IS IT</th>
+      <th>WHEN</th> 
+      <th>FROM WHOM</th>
+      <th>HOW MUCH</th>
+      <th >REMARKS</th>
+      <th >PLAN B (For what if)</th>
     </tr>
   </thead>
                           @forelse($target->activities ?? '' as $activity)
                           <tbody>
                             <tr>
-                              <td>{{$activity->id}}</td>
+                              <td>{{$loop->index+1}}</td>
+                              <td><strong>@php if($loop->index==0) $target->objective @endphp</strong></td>
                               <td><strong>{{ $activity->title }}</strong></td>
-                              <td>{{ $activity->success_indicator }}</td>
-                              <td>{{ $activity->location }}</td>
+                              <td>{{ $target->user->name }}</td>
                               <td>{{ date('Y-m-d', strtotime($activity->target_start)) }} to {{ date('Y-m-d', strtotime($activity->target_end)) }}</td>
-                              <td>{{ $activity->plan_b }}</td>
+                              <td>{{ $activity->location }}</td>
+                              <td>{{ $activity->success_indicator }}</td>
                               <td>{{ $activity->support_request }}</td>
+                              <td>{{ $activity->support_when_needed }}</td>
                               <td>{{ $activity->support_from_whom }}</td>
                               <td>{{ $activity->support_how_much }}</td>
-                              <td>{{ $activity->support_when_needed }}</td>
                               <td>{{ $activity->remarks }}</td>
+                              <td>{{ $activity->plan_b }}</td>
                               <td>
                                 <a href="{{ route('activities.edit', [$target->id,$activity->id]) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
@@ -70,9 +73,6 @@
                             @empty
                             <div class="alert alert-info">No activities have been saved yet.</div>
                             @endforelse
-                        
-                      
-
                     </div>
                 </div>
               </div>
