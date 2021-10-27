@@ -25,14 +25,19 @@ class ProfileDetailRequest extends FormRequest
     {
         return [
             'last_name' => 'required|string',
+            'middle_name' => 'required|string',
             'first_name' => 'required|string',
-            'email' => 'required|email',
-            'contact_number' => 'string',
+            'email' => 'sometimes|email',
+            'contact_number' => 'sometimes|string',
             'region_code' => 'required|string',
             'province_code' => 'required|string',
             'city_code' => 'required|string',
-            'street' => 'string',
-            'barangay' => 'string',
+            'street' => 'sometimes|string',
+            'barangay' => 'sometimes|string',
+            'birthday' => 'sometimes|date',
+            'is_registered_voter' => 'sometimes',
+            'skillsets' => 'sometimes',
+            'other_skillsets' => 'sometimes',
         ];
     }
 }

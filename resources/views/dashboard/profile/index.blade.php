@@ -1,3 +1,4 @@
+
 @extends('dashboard.base')
 
 @section('content')
@@ -38,9 +39,21 @@
                         </td>
                     </tr>
                     <tr>
+                        <th class="text-muted">Middle Name</th>
+                        <td class="h4">
+                        {{ $user->middle_name ?? old('middle_name')}}
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="text-muted">Last Name</th>
                         <td class="h4">
                         {{ $user->last_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Birthday</th>
+                        <td class="h4">
+                        {{ $user->birthday }}
                         </td>
                     </tr>
                     <tr>
@@ -48,10 +61,17 @@
                         <td class="h4">
                         {{ $user->email }}
                         </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                         <th class="text-muted">Contact Number</th>
                         <td class="h4">
                         {{ $user->contact_number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Registered Voter</th>
+                        <td class="h4">
+                        {{ $user->is_registered_voter ?  'Yes' : 'No' }}
                         </td>
                     </tr>
                     <tr>
