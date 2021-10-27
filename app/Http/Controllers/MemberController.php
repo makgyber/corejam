@@ -9,9 +9,16 @@ use App\Models\UserAffiliation;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
 
+use App\Http\Requests\UpdateMemberRequest;
+
 
 class MemberController extends Controller
 {
+    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
+    var $skillOptions = [
+        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
+    ];
+     
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +60,9 @@ class MemberController extends Controller
         return view('dashboard.members.create', [
             'affiliation' => $affiliation,
             'user' => $user,
-            'regions' => Regions::all()
+            'regions' => Regions::all(),
+            'skillOptions' => $this->skillOptions,
+            'positionOptions' => $this->positionOptions
         ]);
     }
 
@@ -65,17 +74,39 @@ class MemberController extends Controller
      */
     public function store(CreateMemberRequest $request)
     {
-        $validatedData = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'affiliation_id' => 'required',
-        ]);
+        $checkUserExists = User::where('first_name', $request['first_name'])
+                            ->where('last_name', $request['last_name'])
+                            ->where('middle_name', $request['middle_name'])
+                            ->first();
+        if($checkUserExists) {
+            return back()->withError('A user with the same name already exists in the database.')
+                        ->withInput();
+        }
+        
+        $validated = $request->safe()->except(['skillsets', 'other_skillsets']);
 
-        $validatedUser = $request->validated();
+        $skillsets = '';
+        if(!empty($request['skillsets'])) {
+            if(is_array($request['skillsets'])) {
+                $skillsets = implode( ',', $request['skillsets'] );
+            } else {
+                $skillsets = $request['skillsets'];
+            }
+        }
 
-        $member = User::create($request->validated() + [
-            'name' =>  $request['first_name'] . ' ' . $request['last_name'],
-            'password' => 'sikreto'
+
+        if(!empty($request['other_skillsets'])) {
+            $skillsets .= ',' . $request['other_skillsets'];
+        }
+
+        $validatedData = $request->safe()->except(['position_other', 'skillsets', 'other_skillsets']);
+
+        $member = User::create(
+            $validatedData + [
+            'name' =>  $request['first_name'] . ' ' . $request['middle_name'] . ' ' . $request['last_name'],
+            'password' => 'sikreto',
+            'skillsets' => $skillsets,
+            'position' => $request['position_other']
         ]);
 
         UserAffiliation::create([
@@ -108,10 +139,25 @@ class MemberController extends Controller
      */
     public function edit(User $member, Request  $request)
     {
+        
+        $skillsets = explode(',', $member->skillsets);
+        $other_skillsets = implode(',', array_diff($skillsets, $this->skillOptions));
+
+        
+
+        $affiliation =$member->affiliations->find($request['affiliation_id']);
+        $position = $affiliation->pivot->position;
+        $showOther = !in_array($position, $this->positionOptions);
         return view('dashboard.members.edit', [
-            'affiliation'=>$member->affiliations->find($request['affiliation_id']),
+            'affiliation'=> $affiliation,
             'member' => $member,
-            'regions' => Regions::all()
+            'regions' => Regions::all(),
+            'skillsets' => $skillsets,
+            'other_skillsets' => $other_skillsets,
+            'skillOptions' => $this->skillOptions,
+            'position_other' => $affiliation->pivot->position,
+            'showOther'=>$showOther,
+            'positionOptions' => $this->positionOptions
         ]);
     }
 
@@ -122,9 +168,44 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(UpdateMemberRequest $request, User $member)
     {
-        //
+        $checkUserExists = User::where('first_name', $request['first_name'])
+                            ->where('last_name', $request['last_name'])
+                            ->where('middle_name', $request['middle_name'])
+                            ->where('id','!=', $member->id)
+                            ->first();
+        if($checkUserExists) {
+            return back()->withError('A user with the same name already exists in the database.')
+                        ->withInput();
+        }
+        
+        $validated = $request->safe()->except(['skillsets', 'other_skillsets','position_other', 'position']);
+
+        $skillsets = '';
+        if(!empty($request['skillsets'])) {
+            if(is_array($request['skillsets'])) {
+                $skillsets = implode( ',', $request['skillsets'] );
+            } else {
+                $skillsets = $request['skillsets'];
+            }
+        }
+
+
+        if(!empty($request['other_skillsets'])) {
+            $skillsets .= ',' . $request['other_skillsets'];
+        }
+   
+        $member->update($validated + [
+            'skillsets' =>  $skillsets
+        ]);
+
+        $member->affiliations()->update([
+            'position' => $request['position_other']
+        ]);
+
+        $request->session()->flash('message', 'Successfully updated user');
+        return redirect()->route('members.index', 'affiliation_id='.$request['affiliation_id']);
     }
 
     /**
@@ -133,7 +214,7 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy(User $member)
     {
         //
     }

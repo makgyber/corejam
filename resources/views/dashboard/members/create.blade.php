@@ -36,17 +36,44 @@
                         <input type="text" class="form-control" id="firstName"  name="first_name" value="{{ old('first_name') }}" />
                     </div>
                     <div class="mb-3">
+                        <label for="firstName" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" id="middleName"  name="middle_name" value="{{ old('middle_name') }}" />
+                    </div>
+                    <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
                         <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ old('last_name') }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact1" class="form-label">Email</label>
+                        <label for="birthday" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="birthday"   name="birthday" value="{{ old('birthday') }}" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="email"   name="email" value="{{ old('email') }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact2" class="form-label">Contact Number</label>
+                        <label for="contact_number" class="form-label">Contact Number</label>
                         <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ old('contact_number') }}" />
                     </div>       
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-4">Is Registered Voter?</div>
+                            <div class="col-2">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
+                                    {{ old('is_registered_voter') ? 'checked' : ''}}/>
+                                    <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
+                                    {{ old('is_registered_voter') ? '' : 'checked'}}/>
+                                    <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             <hr class=""/>
@@ -60,63 +87,29 @@
                 <div class="row">   
                     <div class="col-sm-6">
                         <div class="mb-3">
+
+                            @forelse($skillOptions as $skillOption)
+
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Preaching
+                                <input class="form-check-input" type="checkbox" value="{{$skillOption}}" id="skills{{ $loop->index}}" name="skillsets[]"/>
+                                <label class="form-check-label" for="skills{{ $loop->index}}">
+                                {{$skillOption}}
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Teaching
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Evangelism
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Discipleship
-                                </label>
-                            </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div> 
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Leadership
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Administration
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Finance
-                                </label>
-                            </div>
+                            <label for="otherSkills" class="form-label">Others (separate multiple items with commas)</label>
+                    <input type="text" class="form-control" id="otherSkills" value="{{ old('other_skillsets') }}" name="other_skillsets">
                         </div>
                     </div>
+                    
                 </div>
-                <div class="mb-3">
-                    <label for="otherSkills" class="form-label">Others (separate multiple items with commas)</label>
-                    <input type="text" class="form-control" id="otherSkills">
-                </div>
-            </div>
 
-          </div>
-        </div>
+            </div></div></div>
         <div class="col-sm-6">
 
             <div class="card">
@@ -129,7 +122,7 @@
                         <select class="form-control" id="region_code" name="region_code">   
 
                             @forelse ($regions as $region)
-                                @if ($user->region_code == $region->code)
+                                @if (old('region_code') == $region->code)
                                     <option value="{{$region->code}}" selected>{{$region->name}}</option> 
                                 @else
                                     <option value="{{$region->code}}">{{$region->name}}</option>    
@@ -142,14 +135,14 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" id="province" value="{{$user->province_code}}" />
+                        <input type="hidden" id="province" value="{{old('province_code')}}" />
                         <label for="province_code" class="form-label">Province</label>
                         <select class="form-control" id="province_code" name="province_code">
 
                         </select>
                         </div>
                     <div class="mb-3">
-                    <input type="hidden" id="city" value="{{$user->city_code}}" />
+                    <input type="hidden" id="city" value="{{old('city_code')}}" />
                         <label for="city_code" class="form-label">City/Municipality</label>
                         <select class="form-control" id="city_code" name="city_code">   
 

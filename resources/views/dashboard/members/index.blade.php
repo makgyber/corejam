@@ -64,7 +64,7 @@
                               <td>{{ $member->contact_number }}</td>
                               <td>{{ $member->skillsets }}</td>
                               <td>
-                                <a href="{{ url('/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
+                                <a href="{{ url('/cms/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
                               <td>
                                 <form action="{{ route('members.destroy', $member->id ) }}" method="POST">

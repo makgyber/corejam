@@ -28,7 +28,7 @@
           <div class="card-header"><h4>Edit Member</h4></div>
           <div class="card-header"><h5>{{$affiliation->name}}</h5></div>
             <div class="card-body">
-                <form action="{{ url('/members/'. $member->id ) }}" method="POST">
+                <form action="{{ route('members.update', $member->id ) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="affiliation_id" value="{{$affiliation->id}}"/>
@@ -37,17 +37,43 @@
                         <input type="text" class="form-control" id="firstName"  name="first_name" value="{{ $member->first_name }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ $member->last_name}}" />
+                        <label for="firstName" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" id="middleName"  name="middle_name" value="{{ $member->middle_name }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact1" class="form-label">Email</label>
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ $member->last_name }}" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthday" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="birthday"   name="birthday" value="{{ $member->birthday }}" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="email"   name="email" value="{{ $member->email }}" />
                     </div>
                     <div class="mb-3">
-                        <label for="contact2" class="form-label">Contact Number</label>
+                        <label for="contact_number" class="form-label">Contact Number</label>
                         <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $member->contact_number }}" />
                     </div>       
+                    <div class="mb-3">
+                        <div class="row">
+                        <div class="col-4">Is Registered Voter?</div>
+                        <div class="col-2">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
+                        {{ $member->is_registered_voter ? 'checked' : ''}}/>
+                        <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
+                            {{ $member->is_registered_voter ? '' : 'checked'}}/>
+                            <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                          </div>
+                        </div>
+                    </div>     
             </div>
 
             <hr class=""/>
@@ -61,60 +87,28 @@
                 <div class="row">   
                     <div class="col-sm-6">
                         <div class="mb-3">
+
+                            @forelse($skillOptions as $skillOption)
+
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Preaching
+                                <input class="form-check-input" type="checkbox" value="{{$skillOption}}" id="skills{{ $loop->index}}" name="skillsets[]"
+                                {{ in_array($skillOption, $skillsets)? 'checked' : ''}}
+                                />
+                                <label class="form-check-label" for="skills{{ $loop->index}}">
+                                {{$skillOption}}
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Teaching
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Evangelism
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Discipleship
-                                </label>
-                            </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div> 
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Leadership
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Administration
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                Finance
-                                </label>
-                            </div>
+                            <label for="otherSkills" class="form-label">Others (separate multiple items with commas)</label>
+                    <input type="text" class="form-control" id="otherSkills" value="{{ $other_skillsets ?? old('other_skillsets') }}" name="other_skillsets">
                         </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="otherSkills" class="form-label">Others (separate multiple items with commas)</label>
-                    <input type="text" class="form-control" id="otherSkills">
-                </div>
-            </div>
+            </div></div></div>
 
           </div>
         </div>
@@ -174,18 +168,17 @@
                     <div class="mb-3">
                         <label for="region_code" class="form-label">Position</label>
                         <select class="form-control" name="position" id="position">
-                            <option value=""></option>
-                            <option value="Bishop">Bishop</option>
-                            <option value="Pastor">Pastor</option>
-                            <option value="Elder">Elder</option>
-                            <option value="Board Member/Director">Board Member/Director</option>
-                            <option value="Member">Member</option>
-                            <option value="Other">Other</option>
+                            @forelse($positionOptions as $positionOption)
+                            <option value="{{$positionOption}}"
+                            {{ $positionOption == $position_other ? 'selected' : ($showOther==1 && $positionOption == 'Other' ? 'selected' : '')}}
+                            >{{$positionOption}}</option>
+                            @empty
+                            @endforelse
                         </select>
-                        <input type="text" class="form-control  d-none" placeholder="please specify position" name="position_other" id="position_other" value="{{$affiliation->pivot->position}}"/>
+                        <input type="text" class="form-control  {{ $showOther==1 ? ''  : 'd-none'}}" placeholder="please specify position" name="position_other" id="position_other" value="{{$position_other}}"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Details</button>
-                    <a href="{{ route('members.index') }}" class="btn btn-primary">Return</a>
+                    <a href="{{ route('members.index').'?affiliation_id='.$affiliation->id }}" class="btn btn-primary">Return</a>
                 </div>
                 
             </div>
@@ -207,16 +200,15 @@
     this.toggleOther = function(){
         let value = document.getElementById("position").value
         if(value === 'Other'){
-            document.getElementById('position_other').value=''
             document.getElementById('position_other').classList.remove('d-none')
         }else{
             document.getElementById('position_other').value=value
             document.getElementById('position_other').classList.add('d-none')
         }
     }
-    
-    this.toggleOther()
+
     document.getElementById("position").onchange = function(){self.toggleOther()}
+
 </script>
 
 <script src="{{ asset('js/axios.min.js') }}"></script> 

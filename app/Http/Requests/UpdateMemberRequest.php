@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateMemberRequest extends FormRequest
+class UpdateMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,18 +28,18 @@ class CreateMemberRequest extends FormRequest
             'last_name' => 'required|string',
             'middle_name' => 'required|string',
             'first_name' => 'required|string',
-            'birthday' => 'sometimes|date',
-            'email' => 'required|email|unique:users,email',
-            'contact_number' => 'string',
+            'email' => 'sometimes|email',
+            'contact_number' => 'sometimes|string',
             'region_code' => 'required|string',
             'province_code' => 'required|string',
             'city_code' => 'required|string',
-            'street' => 'string',
-            'barangay' => 'string',
-            'position_other' => 'required|string',
+            'street' => 'sometimes|string',
+            'barangay' => 'sometimes|string',
+            'birthday' => 'sometimes|date',
+            'is_registered_voter' => 'sometimes',
             'skillsets' => 'sometimes',
             'other_skillsets' => 'sometimes',
-            'is_registered_voter' => 'sometimes',
+            'position_other' => 'sometimes',
         ];
     }
 }
