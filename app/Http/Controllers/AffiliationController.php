@@ -7,9 +7,11 @@ use App\Models\Affiliation;
 use App\Models\UserAffiliation;
 use App\Models\Regions;
 use App\Http\Requests\StoreAffiliationRequest;
+use App\Http\Requests\UpdateAffiliationRequest;
 
 class AffiliationController extends Controller
 {
+    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
     public function index()
     {
         $affiliations = auth()->user()->affiliations()->with('region')->get();
@@ -32,11 +34,17 @@ class AffiliationController extends Controller
 
     public function edit(Affiliation $affiliation)
     {
-        $affiliations = auth()->user()->affiliations();
+        $user = auth()->user();
+        $pivot = $user->affiliations->find($affiliation->id)->pivot;
+        $showOther = !in_array($pivot->position, $this->positionOptions);
         return view('dashboard.affiliations.edit',[
             'affiliation' => $affiliation,
             'regions' => Regions::all(),
-            'user' => auth()->user()
+            'user' => $user,
+            'pivot' => $pivot,
+            'position_other' => $pivot->position,
+            'showOther'=>$showOther,
+            'positionOptions' => $this->positionOptions
         ]);
     }
 
@@ -79,9 +87,21 @@ class AffiliationController extends Controller
         return redirect()->route('affiliations.index');
     }
 
-    public function update($affiliation)
+    public function update(UpdateAffiliationRequest $request, Affiliation $affiliation)
     {
-            
+        $validatedData = $request->safe()->except(['position_other','is_primary']);
+        $affiliation->update($validatedData);
+
+        $position = ($request['position']=='Other')?$request['position_other']:$request['position'];
+        auth()->user()->affiliations->find($affiliation->id)->pivot->update(
+            [
+                'position' => $position,
+                'is_primary' => $request['is_primary']?1:0
+                
+            ]
+            );
+        $request->session()->flash('message', 'Successfully updated affiliation');
+        return redirect()->route('affiliations.index');
     }
 
 }

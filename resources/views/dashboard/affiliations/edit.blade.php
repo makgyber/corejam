@@ -22,7 +22,8 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ url('/affiliations/'.$affiliation->id) }}" method="POST">
+                <form action="{{ route('affiliations.update' , $affiliation->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <table class="table table-striped table-bordered datatable">
                         <tbody>
@@ -44,7 +45,7 @@
                                     Name
                                 </th>
                                 <td>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"/>
+                                    <input type="text" class="form-control" name="name" value="{{ $affiliation->name }}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -52,7 +53,7 @@
                                     Brief Introduction or Description
                                 </th>
                                 <td>
-                                    <textarea class="form-control" name="description">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" name="description">{{ $affiliation->description }}</textarea>
                                 </td>
                             </tr>
 
@@ -107,7 +108,7 @@
                                     Address
                                 </th>
                                 <td>
-                                    <textarea class="form-control"  name="address" >{{ old('address') }}</textarea>
+                                    <textarea class="form-control"  name="address" >{{ $affiliation->address }}</textarea>
                                 </td>
                             </tr>
                             
@@ -117,14 +118,14 @@
                                 </th>
                                 <td>
                                     <select class="form-control" name="position" id="position">
-                                        <option value="Bishop">Bishop</option>
-                                        <option value="Pastor">Pastor</option>
-                                        <option value="Elder">Elder</option>
-                                        <option value="Board Member/Director">Board Member/Director</option>
-                                        <option value="Member">Member</option>
-                                        <option value="Other">Other</option>
+                                        @forelse($positionOptions as $positionOption)
+                                        <option value="{{$positionOption}}"
+                                        {{ $positionOption == $position_other ? 'selected' : ($showOther==1 && $positionOption == 'Other' ? 'selected' : '')}}
+                                        >{{$positionOption}}</option>
+                                        @empty
+                                        @endforelse
                                     </select>
-                                    <input type="text" class="form-control  d-none" placeholder="please specify position" name="position_other" id="position_other"/>
+                                    <input type="text" class="form-control  {{ $showOther==1 ? ''  : 'd-none'}}" placeholder="please specify position" name="position_other" id="position_other" value="{{$position_other}}"/>            
                                 </td>
                             </tr>
 
@@ -134,7 +135,9 @@
                                 </th>
                                 <td>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="true" id="is_primary" name="is_primary">
+                                    <input class="form-check-input" type="checkbox" value="true" id="is_primary" 
+                                    {{ $pivot->is_primary?'checked':''}}
+                                    name="is_primary">
                                     <label class="form-check-label" for="is_primary">
                                     This is my primary organisation
                                     </label>
