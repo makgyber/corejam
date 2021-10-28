@@ -39,7 +39,7 @@ class DashboardController extends Controller
         return view('dashboard.homepage', [
             'totals' => $totals,
             'regionCounts' => $regionCounts,
-            'coordinators' => User::where('menuroles', 'coordinator')->with('region')->paginate(40)
+            'coordinators' => User::where('menuroles', 'coordinator')->with('region')->paginate(20)
         ]);
     }
 }

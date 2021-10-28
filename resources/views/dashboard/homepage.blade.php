@@ -139,7 +139,7 @@
                           @forelse($coordinators as $coordinator)
                           <tr>
                             <td class="text-center">
-                              <div class="c-avatar bg-gradient-warning">{{substr($coordinator->first_name,0, 1)}}{{substr($coordinator->last_name,0, 1)}}<span class="c-avatar-status bg-success"></span></div>
+                              <div class="c-avatar bg-gradient-{{Arr::random(['warning','info','dark','light','primary','danger'])}}">{{substr($coordinator->first_name,0, 1)}}{{substr($coordinator->last_name,0, 1)}}<span class="c-avatar-status bg-success"></span></div>
                             </td>
                             <td>
                               <div>{{ $coordinator->name }}</div>
@@ -168,10 +168,13 @@
                           
                         </tbody>
                       </table>
-                      {{$coordinators->links()??''}}
-                    </div>
+                      
+                    </div><br>
+                    {{$coordinators->links()??''}}
                   </div>
+                  
                 </div>
+               
                 <!-- /.col-->
               </div>
               <!-- /.row-->
