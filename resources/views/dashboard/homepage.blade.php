@@ -139,7 +139,7 @@
                           @forelse($coordinators as $coordinator)
                           <tr>
                             <td class="text-center">
-                              <div class="c-avatar"><span class="c-avatar-status bg-success"></span></div>
+                              <div class="c-avatar bg-gradient-warning">{{substr($coordinator->first_name,0, 1)}}{{substr($coordinator->last_name,0, 1)}}<span class="c-avatar-status bg-success"></span></div>
                             </td>
                             <td>
                               <div>{{ $coordinator->name }}</div>
@@ -164,143 +164,11 @@
                           @empty
                           @endforelse
 
-                          <tr>
-                            <td class="text-center">
-                              <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/2.jpg" alt="user@email.com"><span class="c-avatar-status bg-danger"></span></div>
-                            </td>
-                            <td>
-                              <div>Avram Tarasios</div>
-                              <div class="small text-muted"><span>Recurring</span> | Registered: Jan 1, 2015</div>
-                            </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-br c-icon-xl" id="br" title="br"></i></td>
-                            <td>
-                              <div class="clearfix">
-                                <div class="float-left"><strong>10%</strong></div>
-                                <div class="float-right"><small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <svg class="c-icon c-icon-xl">
-                                <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#cc-visa"></use>
-                              </svg>
-                            </td>
-                            <td>
-                              <div class="small text-muted">Last login</div><strong>5 minutes ago</strong>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">
-                              <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/3.jpg" alt="user@email.com"><span class="c-avatar-status bg-warning"></span></div>
-                            </td>
-                            <td>
-                              <div>Quintin Ed</div>
-                              <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                            </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-in c-icon-xl" id="in" title="in"></i></td>
-                            <td>
-                              <div class="clearfix">
-                                <div class="float-left"><strong>74%</strong></div>
-                                <div class="float-right"><small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 74%" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <svg class="c-icon c-icon-xl">
-                                <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#cc-stripe"></use>
-                              </svg>
-                            </td>
-                            <td>
-                              <div class="small text-muted">Last login</div><strong>1 hour ago</strong>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">
-                              <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="c-avatar-status bg-secondary"></span></div>
-                            </td>
-                            <td>
-                              <div>Enéas Kwadwo</div>
-                              <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                            </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-fr c-icon-xl" id="fr" title="fr"></i></td>
-                            <td>
-                              <div class="clearfix">
-                                <div class="float-left"><strong>98%</strong></div>
-                                <div class="float-right"><small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <svg class="c-icon c-icon-xl">
-                                <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#cc-paypal"></use>
-                              </svg>
-                            </td>
-                            <td>
-                              <div class="small text-muted">Last login</div><strong>Last month</strong>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">
-                              <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="c-avatar-status bg-success"></span></div>
-                            </td>
-                            <td>
-                              <div>Agapetus Tadeáš</div>
-                              <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                            </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-es c-icon-xl" id="es" title="es"></i></td>
-                            <td>
-                              <div class="clearfix">
-                                <div class="float-left"><strong>22%</strong></div>
-                                <div class="float-right"><small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <svg class="c-icon c-icon-xl">
-                                <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#cc-apple-pay"></use>
-                              </svg>
-                            </td>
-                            <td>
-                              <div class="small text-muted">Last login</div><strong>Last week</strong>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">
-                              <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="c-avatar-status bg-danger"></span></div>
-                            </td>
-                            <td>
-                              <div>Friderik Dávid</div>
-                              <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                            </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-pl c-icon-xl" id="pl" title="pl"></i></td>
-                            <td>
-                              <div class="clearfix">
-                                <div class="float-left"><strong>43%</strong></div>
-                                <div class="float-right"><small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                              </div>
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <svg class="c-icon c-icon-xl">
-                                <use xlink:href="assets/icons/brands/brands-symbol-defs.svg#cc-amex"></use>
-                              </svg>
-                            </td>
-                            <td>
-                              <div class="small text-muted">Last login</div><strong>Yesterday</strong>
-                            </td>
-                          </tr>
+
+                          
                         </tbody>
                       </table>
+                      {{$coordinators->links()??''}}
                     </div>
                   </div>
                 </div>
