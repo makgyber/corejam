@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Affiliation;
+use App\Models\Configuration;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -14,15 +17,29 @@ class DashboardController extends Controller
         }
 
         $totals = [
-            'church' => mt_rand(1, 19999), 
+            'organizations' => Affiliation::count(), 
             'government' => mt_rand(1, 19999), 
-            'ngo' => mt_rand(1, 19999), 
-            'other' => mt_rand(1, 19999),
-            'coordinators' => mt_rand(1, 999), 
-            'voters' => mt_rand(1, 1999999),
+            'targetRegistrations' => Configuration::select('value')->where('key', 'target.registrations')->first()->value, 
+            'coordinators' => User::where('menuroles', 'coordinator')->count(), 
+            'registered_voters' => User::where('is_registered_voter', 1)->count(),
+            'total_users' => User::count(),
         ];
+
+
+        'SELECT  b.name, count(a.id)  FROM regions b left join users a on b.code = a.region_code
+        group by b.code';
+
+        $regionCounts = DB::table('regions')
+                        ->select(DB::raw('regions.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'regions.code', '=', 'users.region_code')
+                        ->groupBy('regions.name')
+                        ->orderBy('regions.code')
+                        ->get();
+
         return view('dashboard.homepage', [
-            'totals' => $totals
+            'totals' => $totals,
+            'regionCounts' => $regionCounts,
+            'coordinators' => User::where('menuroles', 'coordinator')->with('region')->paginate(40)
         ]);
     }
 }

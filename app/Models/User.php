@@ -75,7 +75,7 @@ class User extends Authenticatable
 
     public function region()
     {
-        return $this->belongsTo(Regions::class, 'region_code', 'code');
+        return $this->hasOne(Regions::class, 'code', 'region_code');
     }
 
     public function province()
