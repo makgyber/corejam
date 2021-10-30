@@ -30,7 +30,7 @@
 
                               </select>
                               <br>
-                              <button class="btn btn-primary col-auto">{{ __('Select Organisation') }}</button>
+                              <button class="btn btn-primary col-auto">{{ __('Select Region') }}</button>
                             </div>
                             
                               
