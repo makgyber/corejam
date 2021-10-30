@@ -138,7 +138,7 @@
 
                           @forelse($coordinators as $coordinator)
                           <tr>
-                            <td class="text-center">
+                            <td class="text-center text-white">
                               <div class="c-avatar bg-gradient-{{Arr::random(['warning','info','dark','light','primary','danger'])}}">{{substr($coordinator->first_name,0, 1)}}{{substr($coordinator->last_name,0, 1)}}<span class="c-avatar-status bg-success"></span></div>
                             </td>
                             <td>
