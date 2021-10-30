@@ -106,7 +106,8 @@ class MemberController extends Controller
             'name' =>  $request['first_name'] . ' ' . $request['middle_name'] . ' ' . $request['last_name'],
             'password' => 'sikreto',
             'skillsets' => $skillsets,
-            'position' => $request['position_other']
+            'position' => $request['position_other'],
+            'menuroles' => 'user'
         ]);
 
         UserAffiliation::create([

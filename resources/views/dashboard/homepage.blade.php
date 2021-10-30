@@ -145,20 +145,20 @@
                               <div>{{ $coordinator->name }}</div>
                               <div class="small text-muted"><span>New</span> | Registered: {{date('M d, Y', strtotime($coordinator->created_at))}}</div>
                             </td>
-                            <td class="text-center"><i class="flag-icon flag-icon-us c-icon-xl" id="us" title="us">{{$coordinator->region->name ?? ''}}</i></td>
+                            <td class="text-center"><i class="flag-icon flag-icon-us c-icon-xl" id="us" title="us">{{$coordinator->region_name ?? ''}}</i></td>
                             <td>
                               <div class="clearfix">
-                                <div class="float-left"><strong>50000</strong></div>
+                                <div class="float-left"><strong>{{number_format($coordinator->support_how_much,2) ?? ''}}</strong></div>
                               </div>
                               {{-- <div class="progress progress-xs">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div> --}}
                             </td>
                             <td class="text-center">
-                              <div class="float-right"><strong>50000</strong></div>
+                              <div class="float-right"><strong>{{number_format($coordinator->disbursed,2) ?? ''}}</strong></div>
                             </td>
                             <td>
-                            <strong>Recruitment and registration of voters</strong>
+                            <strong>{{$coordinator->title ?? ''}}</strong>
                             </td>
                           </tr>
                           @empty
