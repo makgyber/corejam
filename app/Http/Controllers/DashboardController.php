@@ -30,16 +30,24 @@ class DashboardController extends Controller
         group by b.code';
 
         $regionCounts = DB::table('regions')
-                        ->select(DB::raw('regions.name, count(users.id) as user_count'))
+                        ->select(DB::raw('regions.code, regions.name, count(users.id) as user_count'))
                         ->leftJoin('users', 'regions.code', '=', 'users.region_code')
-                        ->groupBy('regions.name')
+                        ->groupBy(['regions.code','regions.name'])
                         ->orderBy('regions.code')
                         ->get();
+
+        $regionTargets = Configuration::where('key', 'like', 'region.%')->get();
+
+        $regionStats = [];
+        foreach($regionTargets as $regionTarget) {
+            $regionStats[substr($regionTarget->key,-2)] = $regionTarget->value;
+        }
 
         return view('dashboard.homepage', [
             'totals' => $totals,
             'regionCounts' => $regionCounts,
-            'coordinators' => User::where('menuroles', 'coordinator')->with('region')->paginate(20)
+            'coordinators' => User::where('menuroles', 'coordinator')->with('region')->paginate(20),
+            'regionTargets'=> $regionStats
         ]);
     }
 }
