@@ -12,7 +12,29 @@
 
                       <div class="card-header">
                           <div> 
-                              <h1>M6:10 Strategic Action Planning Worksheet</h1>  
+                            <h3>Select Region</h3>
+                            <form method="GET" >
+                            <div class="col-sm-6">
+                            <select class="form-control" id="region_code" name="region_code">   
+
+                              @forelse ($regions ?? [] as $region)
+                                  @if ($regionCode == $region->code)
+                                      <option value="{{$region->code}}" selected>{{$region->name}}</option> 
+                                  @else
+                                      <option value="{{$region->code}}">{{$region->name}}</option>    
+                                  @endif
+
+                              @empty
+                              <option value="">No regions found</option>
+                              @endforelse
+
+                              </select>
+                              <br>
+                              <button class="btn btn-primary col-auto">{{ __('Select Organisation') }}</button>
+                            </div>
+                            
+                              
+                            </form>
                           </div> 
 
                     <div class="card-body">
