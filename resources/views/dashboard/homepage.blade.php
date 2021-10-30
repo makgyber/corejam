@@ -158,7 +158,7 @@
                               <div class="float-right"><strong>50000</strong></div>
                             </td>
                             <td>
-                              <div class="small text-muted">Last activity</div><strong>Recruitment and registration of voters</strong>
+                            <strong>Recruitment and registration of voters</strong>
                             </td>
                           </tr>
                           @empty

@@ -11,9 +11,6 @@
 |
 */
 
-
-
-
 Route::prefix('/cms')->group(function() {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/setpassword', 'SetPasswordController@create')->name('setpassword');
@@ -35,7 +32,6 @@ Route::prefix('/cms')->group(function() {
             Route::delete('/targets/{target}/activities/{activity}', 'ActivityController@destroy')->name('activities.delete');
             Route::get('/targets/{target}/activities/{activity}/edit', 'ActivityController@edit')->name('activities.edit');
             
-
             Route::prefix('notifications')->group(function () {  
                 Route::get('/alerts', function(){   return view('dashboard.notifications.alerts'); });
                 Route::get('/badge', function(){    return view('dashboard.notifications.badge'); });
@@ -73,7 +69,10 @@ Route::prefix('/cms')->group(function() {
             Route::resource('users',        'UsersController');
             Route::resource('roles',        'RolesController');
             Route::resource('mail',        'MailController');
-            Route::get('/objectives', 'ObjectivesController@index')->name('objectives');
+            Route::get('/objectives', 'ObjectivesController@index')->name('objectives.index');
+            Route::get('/objectives/activities/{id}/edit', 'ObjectivesController@edit')->name('objectives.edit');
+            Route::put('/objectives/activities/{id}', 'ObjectivesController@update')->name('objectives.update');
+
             Route::get('prepareSend/{id}',        'MailController@prepareSend')->name('prepareSend');
             Route::post('mailSend/{id}',        'MailController@send')->name('mailSend');
             Route::get('/roles/move/move-up',      'RolesController@moveUp')->name('roles.up');

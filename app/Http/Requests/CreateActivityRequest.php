@@ -29,7 +29,7 @@ class CreateActivityRequest extends FormRequest
             'title' => 'required',
             'success_indicator' => 'required',
             'location' => '',
-            'remarks' => '',
+            // 'remarks' => '',
             'plan_b' => '',
             'support_request' => '',
             'support_from_whom' => '',

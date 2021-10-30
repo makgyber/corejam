@@ -33,7 +33,7 @@
       <th rowspan="2" style="text-align:center">TIMELINE <br>Schedules <br>Start-Finish</th>
       <th rowspan="2" style="text-align:center">LOCATION <br>Address</th>
       <th rowspan="2" style="text-align:center">SUCCESS INDICATORS <br>Metrics</th>
-      <th colspan="6" style="text-align:center">SUPPORT REQUEST</th>
+      <th colspan="7" style="text-align:center">SUPPORT REQUEST</th>
       
       <th rowspan="2"></th>
     </tr>
@@ -42,6 +42,7 @@
       <th style="text-align:center">WHEN</th> 
       <th style="text-align:center">FROM WHOM</th>
       <th style="text-align:center">HOW MUCH</th>
+      <th style="text-align:center">DISBURSED</th>
       <th  style="text-align:center">REMARKS</th>
       <th  style="text-align:center">PLAN B <br>(For what if)</th>
     </tr>
@@ -60,10 +61,11 @@
                               <td>{{ $activity->support_when_needed }}</td>
                               <td>{{ $activity->support_from_whom }}</td>
                               <td>{{ $activity->support_how_much }}</td>
+                              <td>{{ $activity->disbursed }}</td>
                               <td>{{ $activity->remarks }}</td>
                               <td>{{ $activity->plan_b }}</td>
                               <td>
-                                <a href="{{ route('activities.edit', [$target->id,$activity->id]) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('objectives.edit', [$activity->id]) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>
                             </tr>
                         </tbody>

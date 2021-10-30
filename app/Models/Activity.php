@@ -25,6 +25,7 @@ class Activity extends Model
         'support_when_needed' ,
         'target_start' ,
         'target_end' ,
+        'disbursed'
     ];
 
     protected $attributes = [
