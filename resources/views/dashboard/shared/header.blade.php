@@ -9,6 +9,9 @@
             if(isset($appMenus['top menu'])){
                 FreelyPositionedMenus::render( $appMenus['top menu'] , 'c-header-', 'd-md-down-none');
             }
+            $messageCount = Auth::user()->newThreadsCount(); 
+            use Cmgmyr\Messenger\Models\Thread;
+            $popThreads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
         ?>  
         <ul class="c-header-nav ml-auto mr-4">
           <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
@@ -19,10 +22,17 @@
               <svg class="c-icon">
                 <use xlink:href="{{ url('/icons/sprites/free.svg#cil-list-rich') }}"></use>
               </svg></a></li>
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
+          <li class="c-header-nav-item d-md-down-none mx-2">
+            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <svg class="c-icon">
                 <use xlink:href="{{ url('/icons/sprites/free.svg#cil-envelope-open') }}"></use>
-              </svg></a></li>
+              </svg>
+              @if($messageCount)
+              <span class="badge badge-pill badge-info">{{$messageCount}}</span>
+              @endif
+            </a>
+            @include('dashboard.messenger.partials.pop-messages')   
+          </li>
           <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <!-- <div class="c-avatar"><img class="c-avatar-img" src="{{ url('/assets/img/avatars/6.jpg') }}" alt="{{ Auth::user()->email }}"></div> -->
             {{ Auth::user()->email }}
@@ -43,7 +53,11 @@
                 <a class="dropdown-item" href="{{ url('cms/messages') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-envelope-open') }}"></use>
-                </svg> Messages<span class="badge badge-success ml-auto">42</span></a>
+                </svg> Messages
+                @if($messageCount)
+                <span class="badge badge-info ml-auto">{{$messageCount}}</span>
+                @endif
+              </a>
                 
                 <a class="dropdown-item" href="{{ url('/notes') }}">
                 <svg class="c-icon mr-2">

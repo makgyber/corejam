@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.base')
 
 @section('content')
     <h1>Create a new message</h1>
@@ -33,4 +33,8 @@
             </div>
         </div>
     </form>
-@stop
+@endsection
+
+@section('javascript')
+
+@endsection

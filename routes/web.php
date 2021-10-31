@@ -11,23 +11,24 @@
 |
 */
 
-Route::prefix('/cms')->group(function() {
+Route::prefix('/cms')->group(function() {  
+
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/setpassword', 'SetPasswordController@create')->name('setpassword');
         Route::post('/setpassword','SetPasswordController@store')->name('setpassword.store');
-    });
+    }); 
 
-    Route::group(['prefix' => 'messages'], function () {
-        Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
-        Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
-        Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
-        Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
-        Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
-    });
-    
-    Route::group(['middleware' => ['get.menu','auth']], function () {
+    Route::group(['middleware' => ['get.menu']], function () {
         
         Route::get('/', 'DashboardController@index')->name('dashboard');
+
+        Route::group(['prefix' => 'messages'], function () {
+            Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+            Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+            Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+            Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+            Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+        });
 
         Route::group(['middleware' => ['role:coordinator']], function () {
             Route::resource('targets', 'TargetController');

@@ -1,10 +1,14 @@
-@extends('layouts.master')
+@extends('dashboard.base')
 
 @section('content')
     <div class="col-md-6">
         <h1>{{ $thread->subject }}</h1>
-        @each('messenger.partials.messages', $thread->messages, 'message')
+        @each('dashboard.messenger.partials.messages', $thread->messages, 'message')
 
-        @include('messenger.partials.form-message')
+        @include('dashboard.messenger.partials.form-message')
     </div>
-@stop
+@endsection
+
+@section('javascript')
+
+@endsection

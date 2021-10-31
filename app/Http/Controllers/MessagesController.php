@@ -21,16 +21,19 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
+        if(auth()->user()->hasRole('admin')) {
+            // All threads, ignore deleted/archived participants
+            $threads = Thread::getAllLatest()->get();
+        } else {
 
-        // All threads that user is participating in
-        // $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
+            // All threads that user is participating in
+            $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
+        }
 
         // All threads that user is participating in, with new messages
-        // $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
+        // $popThreads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
 
-        return view('messenger.index', compact('threads'));
+        return view('dashboard.messenger.index', compact('threads'));
     }
 
     /**
@@ -58,7 +61,7 @@ class MessagesController extends Controller
 
         $thread->markAsRead($userId);
 
-        return view('messenger.show', compact('thread', 'users'));
+        return view('dashboard.messenger.show', compact('thread', 'users'));
     }
 
     /**
@@ -70,7 +73,7 @@ class MessagesController extends Controller
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
-        return view('messenger.create', compact('users'));
+        return view('dashboard.messenger.create', compact('users'));
     }
 
     /**
