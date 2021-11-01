@@ -10,6 +10,6 @@
             <small class="text-muted float-right mt-1">{{ $thread->latestMessage->created_at->diffForHumans() }}</small>
         </div>  
         <div class="font-weight-bold">{{ $thread->subject }}</div>
-        <div class="small text-muted text-truncate" >{{ $thread->latestMessage->body }}</div>
+        <div class="small text-muted text-truncate" >{{ substr($thread->latestMessage->body, 0, 90) }}</div>
     </div>
 </a>

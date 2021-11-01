@@ -1,12 +1,23 @@
 @extends('dashboard.base')
 
 @section('content')
-    <div class="col-md-6">
-        <h1>{{ $thread->subject }}</h1>
-        @each('dashboard.messenger.partials.messages', $thread->messages, 'message')
+<div class="container-fluid">
+    <div class="fade-in">
+        <div class="row">
+            <div class="card col-12">
+                <div class="card-header">
+                    <h3>{{ $thread->subject }}</h3>
+                </div>
+                <div class="card-body">
+                    @each('dashboard.messenger.partials.messages', $thread->messages, 'message')
+                </div> 
+            </div> 
 
-        @include('dashboard.messenger.partials.form-message')
+            @include('dashboard.messenger.partials.form-message')
+
+        </div>
     </div>
+</div>
 @endsection
 
 @section('javascript')

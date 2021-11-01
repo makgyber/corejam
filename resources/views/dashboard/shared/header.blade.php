@@ -14,14 +14,14 @@
             $popThreads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
         ?>  
         <ul class="c-header-nav ml-auto mr-4">
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
-              <svg class="c-icon">
-                <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
-              </svg></a></li>
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
-              <svg class="c-icon">
-                <use xlink:href="{{ url('/icons/sprites/free.svg#cil-list-rich') }}"></use>
-              </svg></a></li>
+            {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
+                <svg class="c-icon">
+                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
+                </svg></a></li>
+            <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
+                <svg class="c-icon">
+                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-list-rich') }}"></use>
+                </svg></a></li> --}}
           <li class="c-header-nav-item d-md-down-none mx-2">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <svg class="c-icon">
@@ -45,10 +45,10 @@
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-user') }}"></use>
                 </svg> Profile</a>
 
-              <a class="dropdown-item" href="{{ url('cms/reminders') }}">
+              {{-- <a class="dropdown-item" href="{{ url('cms/reminders') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
-                </svg> Reminders<span class="badge badge-info ml-auto">42</span></a>
+                </svg> Reminders<span class="badge badge-info ml-auto">42</span></a> --}}
                 
                 <a class="dropdown-item" href="{{ url('cms/messages') }}">
                 <svg class="c-icon mr-2">
@@ -59,11 +59,11 @@
                 @endif
               </a>
                 
-                <a class="dropdown-item" href="{{ url('/notes') }}">
+               <!-- <a class="dropdown-item" href="{{ url('/notes') }}">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-task') }}"></use>
                 </svg> Notes<span class="badge badge-danger ml-auto">42</span></a>
-                <!-- 
+                 
                 <a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-comment-square') }}"></use>
