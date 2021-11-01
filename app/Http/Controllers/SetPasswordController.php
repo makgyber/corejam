@@ -28,6 +28,6 @@ class SetPasswordController extends Controller
         }
 
         auth()->login($user);
-        return redirect()->route('setpassword');
+        return view('dashboard.admin.setpassword');
     } 
 }
