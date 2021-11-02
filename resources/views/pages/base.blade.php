@@ -18,6 +18,19 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
+      .bg {
+        /* The image used */
+        background-image: url("{{ asset('assets/img/philippines-blank-map.png') }}");
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.9
+      }
         .bd-placeholder-img {
           font-size: 1.125rem;
           text-anchor: middle;
@@ -33,7 +46,7 @@
         }
       </style>
   </head>
-  <body class="c-app flex-row align-items-center">
+  <body class="c-app flex-row align-items-center bg">
     <div class="container-fluid">
         <header>
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gradient-primary">

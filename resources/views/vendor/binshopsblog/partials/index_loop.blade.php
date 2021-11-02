@@ -1,13 +1,16 @@
-<article class="blog-post card">
-    <div class="card-header">
-        <?=$post->image_tag("medium", true, ''); ?>
+<article class="blog-post card row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="card-header bg-gradient-light" >
+        <small class="float-right">{{date('d M Y ', strtotime($post->posted_at))}}</small>
+        <h1 class="blog-post-title text-black"><a href='{{$post->url()}}' class="text-decoration-none text-primary">{{$post->title}}</a>
+        </h1>
+        
     </div>
 
 
-    <div class="card-body">
-    <h2 class="blog-post-title"><a href='{{$post->url()}}'>{{$post->title}}</a></h2>
-    <h5 class=''>{{$post->subtitle}}</h5>
-    <p class="blog-post-meta">{{date('d M Y ', strtotime($post->posted_at))}} by {{$post->author->name}}</p>
+    <div class="card-body bg-white">
+        <div class="row">
+        <?=$post->image_tag("medium", false, 'img-fluid'); ?>
+        </div>
     
     <p>
         @if (config('binshopsblog.show_full_text_at_list'))
