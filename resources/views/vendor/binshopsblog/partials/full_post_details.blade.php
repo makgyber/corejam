@@ -3,18 +3,19 @@
         Post</a>
 @endif
 
-<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark shadow-lg" 
+style="background-image: url({{asset('assets/img/pacman.jpeg')}});background-size:contain;background-repeat:no-repeat;background-position:right; ">
+    <div class="col-md-12 px-0">
       <h1 class="display-4 fst-italic">{{$post->title}}</h1>
       <p class="lead my-3">{{$post->subtitle}}</p>
     </div>
   </div>
   <div class="row g-5">
       <div class="col-md-8">
-        <article class="card blog-post">
+        <article class="card blog-post  shadow-lg">
           <div class="card-header">
           <h2 class="blog-post-title">{{$post->subtitle}}</h2>
-           <p class="blog-post-meta">{{$post->posted_at->diffForHumans()}} @includeWhen($post->author,"binshopsblog::partials.author",['post'=>$post])</p>
+           <span class="blog-post-meta float-right">{{$post->posted_at->diffForHumans()}} </span>
           </div>
 
           <div class="card-body">
