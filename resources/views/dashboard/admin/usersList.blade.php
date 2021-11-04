@@ -34,10 +34,10 @@
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                <a href="{{ url('/coordinators/' . $user->id) }}" class="btn btn-block btn-primary">View</a>
+                                <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-block btn-primary">View</a>
                               </td>
                               <td>
-                                <a href="{{ url('/coordinators/' . $user->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ route('coordinators.edit', $user->id) }}" class="btn btn-block btn-primary">Edit</a>
                               </td>
                               <td>
                                 @if( $you->id !== $user->id )
