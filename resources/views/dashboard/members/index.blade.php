@@ -5,49 +5,63 @@
         <div class="container-fluid">
           <div class="animated fadeIn">
             <div class="row">
+              
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i>{{ __('Member Registry') }}
+                    
+                      <div class="float-right">
+                          <a href="{{ route('members.create') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary btn-sm">{{ __('Add  member') }}</a>
+                          <a href="{{ route('members.export') }}?affiliation_id={{$affiliation_id}}" class="btn btn-warning btn-sm">{{ __('Export template') }}</a>
+                      
+                          <span class="d-inline form-control bg-light text-muted">
+                            <form method="POST" class="d-inline" enctype="multipart/form-data">
+                              @csrf
+                                <input type="hidden" name="affiliation_id" value="{{$affiliation_id}}"/>
+                                <input type="file" name="membersheet" class="form form-file" />
+                                <button class="btn btn-info btn-sm">{{ __('Import excel file') }}</button>
+                            </form>
+                          </span>
+                        </div>
                     </div>
 
                       <div class="card-header">
                           @if($affiliations->count() )
-                          <div> 
-                              <form method="GET">
-                                <div class="form-inline">
-                                <select class="form-control col-10  mr-2" name="affiliation_id" id="affiliation_id">
-
-                                  @foreach($affiliations as $affiliation)
-                                        @if($affiliation->id == trim($affiliation_id))
-                                            <option value="{{ $affiliation->id }}" selected>{{ $affiliation->name }}</option>
-                                        @else
-                                            <option value="{{ $affiliation->id }}" >{{ $affiliation->name }}</option>
-                                        @endif
-                                  @endforeach
-                                </select>
-                                <button href="{{ route('members.create') }}" class="btn btn-primary col-auto">{{ __('Select Organisation') }}</button>
-                                </div>
-                              </form>
-                          </div> 
                           
-                          <a href="{{ route('members.create') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary m-2">{{ __('Add  member') }}</a>
-                          <a href="{{ route('members.export') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary m-2">{{ __('Export template') }}</a>
-                          <span class="d-inline">
-                            <form method="POST" class="d-inline" enctype="multipart/form-data">
-                              @csrf
-                                <input type="hidden" name="affiliation_id" value="{{$affiliation_id}}"/>
-                                <input type="file" name="membersheet" class="form"/>
-                                <button class="btn btn-primary m-2">{{ __('Import excel file') }}</button>
-                            </form>
-                          </span>
+                              
+                            <form method="GET" class="col-12">
+                              <div class="row">
+                                <div class="form-group col-8 form-inline ">
+                                   <select class="form-control col-8 mr-2" name="affiliation_id" id="affiliation_id">
+                                      @foreach($affiliations as $affiliation)
+                                            @if($affiliation->id == trim($affiliation_id))
+                                                <option value="{{ $affiliation->id }}" selected>{{ $affiliation->name }}</option>
+                                            @else
+                                                <option value="{{ $affiliation->id }}" >{{ $affiliation->name }}</option>
+                                            @endif
+                                      @endforeach
+                                    </select>
+                                    <button class="btn btn-dark  form-button">{{ __('Select Organisation') }}</button>
+                                </div>
+                                <div class="form-group form-inline">
+                                  <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control float-right ">
+                                       <button class="btn btn-dark float-right "><i class="cil-search" ></i> Search by Name</button>
+                                </div>
+
+                              </div>
+                              </form>  
+                          
+                        
+                          
+                          
                           @else
                               <div class="alert alert-info">
                                 Please register a Church or other affiliated organisation first. 
                                 <a href="{{ route('affiliations.create') }}"  class="btn btn-primary m-2">Add affiliation</a>
                               </div>
                           @endif
-                        
+                      </div>
                     <div class="card-body">
                       
                        
@@ -58,9 +72,11 @@
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Contact Number</th>
+                            <th>Location</th>
                             <th>Skillsets</th>
                             <th></th>
                             <th></th>
@@ -70,9 +86,11 @@
 
                           @forelse($members ?? '' as $member)
                             <tr>
+                              <td>{{ $member->id }}</td>
                               <td><strong>{{ $member->first_name }} {{ $member->last_name }}</strong></td>
                               <td>{{ $member->email }}</td>
                               <td>{{ $member->contact_number }}</td>
+                              <td>{{ $member->region->name ??'' }}</td>
                               <td>{{ $member->skillsets }}</td>
                               <td>
                                 <a href="{{ url('/cms/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
@@ -90,7 +108,7 @@
                             @endforelse
                         </tbody>
                       </table>
-
+                      {{$members->links()}}
                     </div>
                 </div>
               </div>

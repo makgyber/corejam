@@ -11,6 +11,7 @@ use App\Http\Requests\CreateMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -30,7 +31,10 @@ class MemberController extends Controller
     {
         $members = [];
         $user = auth()->user();
-        $affiliations = $user->affiliations()->get();
+
+        $affiliations = $user->affiliations;
+        $searchfilter = '';
+
 
         if($request->has('affiliation_id')) {
             $affiliation_id = $request['affiliation_id'];
@@ -38,15 +42,25 @@ class MemberController extends Controller
             $affiliation_id = empty($affiliations->first()) ? '' : $affiliations->first()->id;
         }
             
-        if($affiliation_id != '') {
-            $members = Affiliation::find($affiliation_id)->users;
+        $searchfilter = $request['searchfilter'];
+        $key = '%' . $searchfilter. '%';
+        
+        $membersQuery = User::where('created_by', $user->id);
+
+        if($searchfilter != '') {
+            $membersQuery->where('name', 'like', $key);
         }
+
+        $membersQuery->whereHas('affiliations', function($q) use ($affiliation_id){
+            $q->where('affiliation_id', '=', $affiliation_id);
+        });
 
         return view('dashboard.members.index', [
             'affiliations' => $affiliations,
             'user' => $user,
-            'members' => $members,
-            'affiliation_id' => $affiliation_id
+            'members' => $membersQuery->paginate(20),
+            'affiliation_id' => $affiliation_id,
+            'searchfilter' => $searchfilter
         ]);
     }
 
@@ -109,7 +123,8 @@ class MemberController extends Controller
             'password' => 'sikreto',
             'skillsets' => $skillsets,
             'position' => $request['position_other'],
-            'menuroles' => 'user'
+            'menuroles' => 'user',
+            'created_by' => auth()->user()->id
         ]);
 
         UserAffiliation::create([
