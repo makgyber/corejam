@@ -86,7 +86,9 @@
 
         <div class="row">
           @forelse($posts as $post)
+            @if($post->slug != 'about-us')
               @include("binshopsblog::partials.index_loop")
+            @endif
           @empty
               <div class="col-md-12">
                   <div class='alert alert-danger'>No posts!</div>
@@ -106,7 +108,13 @@
         <div class="position-sticky" style="top: 2rem;">
           <div class="p-4 mb-3 bg-light rounded">
             <h4 class="fst-italic">About</h4>
-            <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+            <p class="mb-0">
+              M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
+We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
+            </p>
+
+            <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
+
           </div>
   
           <div class="p-4">
