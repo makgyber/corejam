@@ -58,9 +58,9 @@
                             <td>
                                 {{ $user->street }}
                                 {{ $user->barangay }}
-                                {{ $user->city?->name }}
-                                {{ $user->province?->name }}
-                                {{ $user->region?->name }}
+                                {{ $user->city->name??'' }}
+                                {{ $user->province->name??'' }}
+                                {{ $user->region->name??'' }}
                             </td>
                         </tr>
                         <tr>
