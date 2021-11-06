@@ -11,7 +11,6 @@ use App\Http\Requests\CreateMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -239,10 +238,10 @@ class MemberController extends Controller
 
     public function import() 
     {
-        // Excel::import(new UsersImport, 'users.xlsx');
-        Excel::import(new UsersImport, request()->file('your_file'));
+
+        Excel::import(new UsersImport, request()->file('membersheet'));
         
-        return redirect('/')->with('success', 'All good!');
+        return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
     }
 
     public function export() 

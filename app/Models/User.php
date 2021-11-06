@@ -28,7 +28,7 @@ class User extends Authenticatable
         'name', 'email', 'first_name', 'middle_name', 'last_name', 'password', 'menuroles',
         'contact_number', 'skillsets', 'is_registered_voter', 'region_code', 'province_code', 
         'city_code', 'barangay', 'street', 'recommended_date', 'birthday',
-        'business_type', 'business_location', 'capitalization'
+        'business_type', 'business_location', 'capitalization', 'created_by'
     ];
 
     /**

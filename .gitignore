@@ -2,6 +2,7 @@
 /node_modules
 /database/database.sqlite
 /storage/*.key
+/storage/framework
 /vendor
 .env
 .env.backup
