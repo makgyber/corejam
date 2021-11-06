@@ -6,13 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\CoordinatorInviteNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreCoordinatorRequest;
+use App\Models\Regions;
 use Illuminate\Support\Facades\URL;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
+
+    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
+    var $skillOptions = [
+        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
+    ];
 
     use RegistersUsers;
     /**
@@ -31,11 +37,19 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $you = auth()->user();
-        $users = User::paginate(20);
-        return view('dashboard.admin.usersList', compact('users', 'you'));
+        if($request->has('searchfilter')) {
+            $key = '%'.$request['searchfilter'].'%';
+            $users = User::where('name', 'like', $key)->paginate(20);
+        } else {
+            $users = User::paginate(20);
+        }
+        
+        return view('dashboard.admin.usersList', [
+            'you' => auth()->user(),
+            'users' => $users
+        ]);
     }
 
     /**
@@ -46,8 +60,10 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('dashboard.admin.userShow', compact( 'user' ));
+        return view('dashboard.admin.userShow', [
+            'user' => User::findOrFail($id),
+            'skillOptions' => $this->skillOptions
+        ]);
     }
 
     /**
@@ -58,8 +74,28 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('dashboard.admin.userEditForm', compact('user'));
+        $user = User::findOrFail($id);
+        $skillsets = explode(',', $user->skillsets);
+        $other_skillsets = implode(',', array_diff($skillsets, $this->skillOptions));
+        $positionOther='';
+        $showOther = false;
+
+        $affiliation =$user->affiliations->first();
+        if($affiliation) {
+            $positionOther = $affiliation->pivot->position;
+            $showOther = !in_array($positionOther, $this->positionOptions);
+        }
+        
+        return view('dashboard.admin.userEditForm', [
+            'user' => $user,
+            'regions' => Regions::all(),
+            'skillsets' => $skillsets,
+            'other_skillsets' => $other_skillsets,
+            'skillOptions' => $this->skillOptions,
+            'positionOptions' => $this->positionOptions,
+            'position_other' => $positionOther,
+            'showOther'=>$showOther,
+        ]);
     }
 
     /**
@@ -130,5 +166,12 @@ class UsersController extends Controller
         
     }
 
+    public function import() 
+    {
+
+        Excel::import(new UsersImport, request()->file('membersheet'));
+        
+        return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
+    }
  
 }

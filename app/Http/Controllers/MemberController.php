@@ -9,8 +9,7 @@ use App\Models\UserAffiliation;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
-use App\Imports\UsersImport;
-use App\Exports\UsersExport;
+use App\Imports\MemberImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -160,8 +159,6 @@ class MemberController extends Controller
         $skillsets = explode(',', $member->skillsets);
         $other_skillsets = implode(',', array_diff($skillsets, $this->skillOptions));
 
-        
-
         $affiliation =$member->affiliations->find($request['affiliation_id']);
         $position = $affiliation->pivot->position;
         $showOther = !in_array($position, $this->positionOptions);
@@ -239,13 +236,9 @@ class MemberController extends Controller
     public function import() 
     {
 
-        Excel::import(new UsersImport, request()->file('membersheet'));
+        Excel::import(new MemberImport, request()->file('membersheet'));
         
         return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
     }
 
-    public function export() 
-    {
-        return Excel::download(new UsersExport, 'users.xlsx');
-    }
 }

@@ -5,19 +5,21 @@ namespace App\Imports;
 use App\Models\Affiliation;
 use App\Models\User;
 use App\Models\UserAffiliation;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Row;
+use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UsersImport implements OnEachRow, WithHeadingRow
+class MemberImport implements OnEachRow, WithHeadingRow
 {
-    /**
+/**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function onRow(Row $row)
     {
+        
+        $affiliation = Affiliation::find(request()->get('affiliation_id'));
         $rowIndex = $row->getIndex();
         $row      = $row->toArray();
         $birthday = date('Y-m-d', $row['birthday']);
@@ -33,9 +35,9 @@ class UsersImport implements OnEachRow, WithHeadingRow
             'contact_number' => $row['contactnumber'],
             'skillsets' => $row['skillsandcapabilities'],
             'is_registered_voter' => $row['isregisteredvoter'] == 'Y' ? 1 : 0,
-            'region_code' => '',
-            'province_code' => '',
-            'city_code' => '',
+            'region_code' => $affiliation->region_code,
+            'province_code' => $affiliation->province_code,
+            'city_code' => $affiliation->city_code,
             'barangay' => $row['barangay'],
             'street' => $row['street'],
             'birthday' => $this->transformDate($row['birthday']),
@@ -43,6 +45,14 @@ class UsersImport implements OnEachRow, WithHeadingRow
             'business_location' => $row['businesslocation'],
             'capitalization' => $row['capitalization'],
             'created_by' => auth()->user()->id,
+        ]);
+    
+       
+        UserAffiliation::create([
+            'user_id' => $user->id,
+            'affiliation_id' => $affiliation->id,
+            'position' => $row['positioninorganisation'],
+            'is_primary' => 0,
         ]);
 
     }

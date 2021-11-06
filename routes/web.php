@@ -55,7 +55,6 @@ Route::prefix('/cms')->group(function() {
                 Route::post('/', 'ProfileController@store')->name('profile.store');
             });
             
-            Route::get('members/export', 'MemberController@export')->name('members.export');
             Route::post('members/import', 'MemberController@import')->name('members.import');
             Route::resource('affiliations',  'AffiliationController');
             Route::resource('members',  'MemberController');
@@ -78,6 +77,7 @@ Route::prefix('/cms')->group(function() {
         Route::group(['middleware' => ['role:admin']], function () {
 
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
+            Route::post('coordinators/import', 'UsersController@import')->name('coordinators.import');
             Route::resource('coordinators',        'UsersController');
             Route::resource('users',        'UsersController');
             Route::resource('roles',        'RolesController');
