@@ -23,16 +23,16 @@
                                 <button class="btn btn-info btn-sm">{{ __('Import excel file') }}</button>
                             </form>
                           </span>
-                        </div>
+                      </div>
                     </div>
 
-                      <div class="card-header">
+                     
                           @if($affiliations->count() )
                           
                               
                             <form method="GET" class="col-12">
-                              <div class="row">
-                                <div class="form-group col-8 form-inline ">
+                              <div class="row mt-3 ">
+                                <div class="col-8 form-inline ">
                                    <select class="form-control col-8 mr-2" name="affiliation_id" id="affiliation_id">
                                       @foreach($affiliations as $affiliation)
                                             @if($affiliation->id == trim($affiliation_id))
@@ -44,13 +44,13 @@
                                     </select>
                                     <button class="btn btn-dark  form-button">{{ __('Select Organisation') }}</button>
                                 </div>
-                                <div class="form-group form-inline">
+                                <div class="col-4 form-inline">
                                   <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control float-right ">
                                        <button class="btn btn-dark float-right "><i class="cil-search" ></i> Search by Name</button>
                                 </div>
 
                               </div>
-                              </form>  
+                            </form>  
                           
                         
                           
@@ -61,14 +61,9 @@
                                 <a href="{{ route('affiliations.create') }}"  class="btn btn-primary m-2">Add affiliation</a>
                               </div>
                           @endif
-                      </div>
+                    
+
                     <div class="card-body">
-                      
-                       
-                          
-                        
-                        
-                        <br>
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
