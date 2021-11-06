@@ -114,7 +114,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Address</h4>
+                    <h4>Registered Voter of</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -176,6 +176,33 @@
                         </select>
                         <input type="text" class="form-control  d-none" placeholder="please specify position" name="position_other" id="position_other"/>
                     </div>
+                </div>
+
+                <hr/>
+                <div class="card-header">
+                    <h4>Are you a business owner?</h4>
+                    <div>
+                        <input type="radio" name="bizowner" id="bizowner_yes" class="m-2" value="yes">Yes
+                        <input type="radio" name="bizowner" id="bizowner_no" class="m-2" value="no">No
+                    </div>
+                </div>
+                <div class="card-body" id="biznes_card">
+                    <div class="mb-3">
+                        <label for="business_type" class="form-label">Type of business</label>
+                        <input type="text" class="form-control" placeholder="please specify type of business" name="business_type" id="business_type"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="capitalization" class="form-label">Estimated capitalization</label>
+                        <input type="text" class="form-control" placeholder="please specify estimated capitalization" name="capitalization" id="capitalization"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="business_location" class="form-label">Location of business</label>
+                        <input type="text" class="form-control" placeholder="please specify business location" name="business_location" id="business_location"/>
+                    </div>
+                    
+                </div>
+                
+                <div class="card-body" >
                     <button type="submit" class="btn btn-primary">Save Details</button>
                     <a href="{{ route('members.index') }}" class="btn btn-primary">Return</a>
                 </div>
@@ -206,9 +233,22 @@
             document.getElementById('position_other').classList.add('d-none')
         }
     }
+
+    this.toggleBusiness = function(){
+        let value = document.querySelector("input[name=bizowner]:checked")?.value
+        console.log(value)
+        if(value == 'yes'){
+            document.getElementById('biznes_card').classList.remove('d-none')
+        }else{
+            document.getElementById('biznes_card').classList.add('d-none')
+        }
+    }
     
     this.toggleOther()
     document.getElementById("position").onchange = function(){self.toggleOther()}
+    this.toggleBusiness()
+    document.getElementById("bizowner_yes").onchange = function(){self.toggleBusiness()}
+    document.getElementById("bizowner_no").onchange = function(){self.toggleBusiness()}
 </script>
 
 <script src="{{ asset('js/axios.min.js') }}"></script> 

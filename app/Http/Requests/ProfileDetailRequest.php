@@ -38,6 +38,9 @@ class ProfileDetailRequest extends FormRequest
             'is_registered_voter' => 'sometimes',
             'skillsets' => 'sometimes',
             'other_skillsets' => 'sometimes',
+            'business_type' => 'sometimes',
+            'business_location' => 'sometimes',
+            'capitalization' => 'sometimes',
         ];
     }
 }

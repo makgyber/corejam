@@ -40,6 +40,9 @@ class UpdateMemberRequest extends FormRequest
             'skillsets' => 'sometimes',
             'other_skillsets' => 'sometimes',
             'position_other' => 'sometimes',
+            'business_type' => 'sometimes',
+            'business_location' => 'sometimes',
+            'capitalization' => 'sometimes',
         ];
     }
 }

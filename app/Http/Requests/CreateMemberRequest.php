@@ -40,6 +40,9 @@ class CreateMemberRequest extends FormRequest
             'skillsets' => 'sometimes',
             'other_skillsets' => 'sometimes',
             'is_registered_voter' => 'sometimes',
+            'business_type' => 'sometimes',
+            'business_location' => 'sometimes',
+            'capitalization' => 'sometimes',
         ];
     }
 }

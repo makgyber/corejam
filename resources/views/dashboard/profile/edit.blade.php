@@ -118,7 +118,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Address</h4>
+                    <h4>Registered Voter Of</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -160,10 +160,42 @@
                         <label for="street" class="form-label">Street Address</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ $user->street }}">
                     </div>
+                </div>
+                <hr/>
+                <div class="card-header">
+                    <h4>Are you a business owner?</h4>
+                    <div>
+                        <input type="radio" name="bizowner" id="bizowner_yes" class="m-2" value="yes"
+                        {{ $user->business_type == '' ? '' : 'checked' }}>
+                        <label for="bizowner_yes">Yes</label>
+                        <input type="radio" name="bizowner" id="bizowner_no" class="m-2" value="no"
+                        {{ $user->business_type == '' ? 'checked' : ''}}>
+                        <label for="bizowner_no">No</label>
+                    </div>
+                </div>
+                <div class="card-body" id="biznes_card">
+                    <div class="mb-3">
+                        <label for="business_type" class="form-label">Type of business</label>
+                        <input type="text" class="form-control" placeholder="please specify type of business" name="business_type" 
+                        id="business_type" value="{{ $user->business_type }}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="capitalization" class="form-label">Estimated capitalization</label>
+                        <input type="text" class="form-control" placeholder="please specify estimated capitalization" name="capitalization" 
+                        id="capitalization" value="{{ $user->capitalization }}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="business_location" class="form-label">Location of business</label>
+                        <input type="text" class="form-control" placeholder="please specify business location" name="business_location" 
+                        value="{{ $user->business_location }}" id="business_location"/>
+                    </div>
+                    
+                </div>
+                
+                <div class="card-body" >
                     <button type="submit" class="btn btn-primary">Save Details</button>
                     <a href="{{ route('profile.index') }}" class="btn btn-primary">Return</a>
                 </div>
-                
             </div>
 
             
@@ -177,7 +209,24 @@
 @endsection
 
 @section('javascript')
+<script>
+    let self = this;
 
+    this.toggleBusiness = function(){
+        let value = document.querySelector("input[name=bizowner]:checked")?.value
+        console.log(value)
+        if(value == 'yes'){
+            document.getElementById('biznes_card').classList.remove('d-none')
+        }else{
+            document.getElementById('biznes_card').classList.add('d-none')
+        }
+    }
+
+    this.toggleBusiness()
+    document.getElementById("bizowner_yes").onchange = function(){self.toggleBusiness()}
+    document.getElementById("bizowner_no").onchange = function(){self.toggleBusiness()}
+
+</script>
 <script src="{{ asset('js/axios.min.js') }}"></script> 
 <script src="{{ asset('js/locations.js') }}"></script>
 

@@ -54,6 +54,9 @@ Route::prefix('/cms')->group(function() {
                 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
                 Route::post('/', 'ProfileController@store')->name('profile.store');
             });
+            
+            Route::get('members/export', 'MemberController@export')->name('members.export');
+            Route::post('members/import', 'MemberController@import')->name('members.import');
             Route::resource('affiliations',  'AffiliationController');
             Route::resource('members',  'MemberController');
 

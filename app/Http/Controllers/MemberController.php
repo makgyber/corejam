@@ -8,8 +8,10 @@ use App\Models\Affiliation;
 use App\Models\UserAffiliation;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
-
 use App\Http\Requests\UpdateMemberRequest;
+use App\Imports\UsersImport;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class MemberController extends Controller
@@ -218,5 +220,18 @@ class MemberController extends Controller
     public function destroy(User $member)
     {
         //
+    }
+
+    public function import() 
+    {
+        // Excel::import(new UsersImport, 'users.xlsx');
+        Excel::import(new UsersImport, request()->file('your_file'));
+        
+        return redirect('/')->with('success', 'All good!');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

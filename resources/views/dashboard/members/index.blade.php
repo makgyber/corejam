@@ -8,7 +8,8 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Member Registry') }}</div>
+                      <i class="fa fa-align-justify"></i>{{ __('Member Registry') }}
+                    </div>
 
                       <div class="card-header">
                           @if($affiliations->count() )
@@ -29,7 +30,17 @@
                                 </div>
                               </form>
                           </div> 
+                          
                           <a href="{{ route('members.create') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary m-2">{{ __('Add  member') }}</a>
+                          <a href="{{ route('members.export') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary m-2">{{ __('Export template') }}</a>
+                          <span class="d-inline">
+                            <form method="POST" class="d-inline" enctype="multipart/form-data">
+                              @csrf
+                                <input type="hidden" name="affiliation_id" value="{{$affiliation_id}}"/>
+                                <input type="file" name="membersheet" class="form"/>
+                                <button class="btn btn-primary m-2">{{ __('Import excel file') }}</button>
+                            </form>
+                          </span>
                           @else
                               <div class="alert alert-info">
                                 Please register a Church or other affiliated organisation first. 
