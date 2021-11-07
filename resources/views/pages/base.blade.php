@@ -9,12 +9,12 @@
     <meta name="author" content="Jon Mereria">
     <meta name="keyword" content="Quantum Tech, Campaign Management System, Dashboard">
     <title>QuantumTech CMS</title>
-    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/favicon/about-us-uhwis-150x150.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/favicon/about-us-uhwis-150x150.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('assets/favicon/about-us-uhwis-150x150.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/favicon/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/favicon/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('assets/favicon/favicon.png')}}">
     <link rel="manifest" href="assets/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{asset('assets/favicon/about-us-uhwis-150x150.png')}}">
+    <meta name="msapplication-TileImage" content="{{asset('assets/favicon/favicon.png')}}">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Main styles for this application-->
