@@ -39,7 +39,7 @@ class MemberImport implements OnEachRow, WithHeadingRow
             'province_code' => $affiliation->province_code,
             'city_code' => $affiliation->city_code,
             'barangay' => $row['barangay'],
-            'street' => $row['street'],
+            'street' => $row['votersid'],
             'birthday' => $this->transformDate($row['birthday']),
             'business_type' => $row['businesstype'],
             'business_location' => $row['businesslocation'],
@@ -59,7 +59,7 @@ class MemberImport implements OnEachRow, WithHeadingRow
 
     public function headingRow(): int
     {
-        return 1;
+        return 2;
     }
 
     public function rules(): array

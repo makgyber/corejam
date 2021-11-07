@@ -114,7 +114,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Registered Voter In Address</h4>
+                    <h4>Registered Voter's Address</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -153,7 +153,7 @@
                         <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $user->barangay }}">
                     </div>
                     <div class="mb-3">
-                        <label for="street" class="form-label">Street Address</label>
+                        <label for="street" class="form-label">Voter's ID</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ $user->street}}">
                     </div>
                 </div>

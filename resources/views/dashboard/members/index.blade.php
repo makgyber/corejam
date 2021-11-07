@@ -112,7 +112,8 @@
                                 <form action="{{ route('members.destroy', $member->id ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-block btn-danger btn-sm">Delete</button>
+                                    <button class="btn btn-block btn-danger btn-sm" 
+                                    onclick="return confirm('Are you sure you want to delete this member?')">Delete</button>
                                 </form>
                               </td>
                             </tr>

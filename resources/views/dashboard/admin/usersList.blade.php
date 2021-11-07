@@ -28,11 +28,11 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i><h4 class="d-inline-block">{{ __('Users') }}</h4>
                       <div class="float-right">
-                        <a href="{{ route('coordinators.create') }}" class="btn btn-primary btn-sm">{{ __('Add user') }}</a>
+                        <a href="{{ route('coordinators.create') }}" class="btn btn-primary btn-sm">{{ __('Invite Coordinator') }}</a>
                         <a href="{{ asset('assets/downloads/Member_import_template.xlsx') }}" class="btn btn-warning btn-sm">{{ __('Download Excel template') }}</a>
                     
                         <span class="d-inline form-control bg-light text-muted">
-                          <form method="POST" class="d-inline" enctype="multipart/form-data" action="{{route('members.import')}}">
+                          <form method="POST" class="d-inline" enctype="multipart/form-data" action="{{route('coordinators.import')}}">
                             @csrf
                               <input type="file" name="membersheet" class="form form-file" />
                               <button class="btn btn-info btn-sm">{{ __('Import excel file') }}</button>

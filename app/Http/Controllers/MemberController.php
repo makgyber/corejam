@@ -230,7 +230,19 @@ class MemberController extends Controller
      */
     public function destroy(User $member)
     {
-        //
+        $affiliation_id=$member->affiliations->first()->id;
+
+        if(auth()->user()->id == $member->created_by) {
+            $result = User::destroy($member->id);
+            if($result) {
+                request()->session()->flash('message', 'Successfully deleted user');
+            } else {
+                request()->session()->flash('error', 'Failed to delete user');
+            }
+            
+        }
+        
+        return redirect()->route('members.index', 'affiliation_id='.$affiliation_id);
     }
 
     public function import() 

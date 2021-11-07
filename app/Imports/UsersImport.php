@@ -37,7 +37,7 @@ class UsersImport implements OnEachRow, WithHeadingRow
             'province_code' => '',
             'city_code' => '',
             'barangay' => $row['barangay'],
-            'street' => $row['street'],
+            'street' => $row['votersid'],
             'birthday' => $this->transformDate($row['birthday']),
             'business_type' => $row['businesstype'],
             'business_location' => $row['businesslocation'],
@@ -49,7 +49,7 @@ class UsersImport implements OnEachRow, WithHeadingRow
 
     public function headingRow(): int
     {
-        return 1;
+        return 2;
     }
 
     public function rules(): array

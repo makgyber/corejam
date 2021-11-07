@@ -171,7 +171,7 @@ class UsersController extends Controller
 
         Excel::import(new UsersImport, request()->file('membersheet'));
         
-        return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
+        return redirect()->route('coordinators.index')->with('success', 'All good!');
     }
  
 }
