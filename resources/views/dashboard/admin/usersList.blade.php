@@ -80,7 +80,8 @@
                                 <form action="{{ route('coordinators.destroy', $user->id ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-block btn-danger">Delete Coordinator</button>
+                                    <button class="btn btn-block btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this member?')">Delete Coordinator</button>
                                 </form>
                                 @endif
                               </td>
