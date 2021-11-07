@@ -49,8 +49,8 @@
                   <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="220em"/>
                 </div>
                 <div>
-                  <h3>"thy kingdom come,
-                    thy will be done,
+                  <h3>"Thy kingdom come,
+                    Thy will be done,
                     on earth as it is in heaven."</h3>
                     <h4>Matthew 6:10</h4>
                 </div>
