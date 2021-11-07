@@ -50,7 +50,7 @@
                       </div>
                     </form>  
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-striped">
+                        <table class="table table-responsive-sm table-striped table-sm">
                         <thead>
                           <tr>
                             <th>Name</th>
@@ -70,20 +70,25 @@
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-block btn-primary">View</a>
-                              </td>
-                              <td>
-                                <a href="{{ route('coordinators.edit', $user->id) }}" class="btn btn-block btn-primary">Edit</a>
-                              </td>
-                              <td>
-                                @if( $you->id !== $user->id )
                                 <form action="{{ route('coordinators.destroy', $user->id ) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-block btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this member?')">Delete Coordinator</button>
+                                  @method('DELETE')
+                                  @csrf
+
+                                <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-sm btn-primary">View</a>
+                                
+                                <a href="{{ route('coordinators.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                                @if( $you->id !== $user->id )
+                                
+                                    <button class="btn btn-danger btn-sm "
+                                    onclick="return confirm('Are you sure you want to delete this member?')">Delete</button>
+                                    @endif
+
+                                    @if( 'user' == $user->menuroles )
+                                    <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
+                                    @endif
                                 </form>
-                                @endif
+                               
                               </td>
                             </tr>
                           @endforeach

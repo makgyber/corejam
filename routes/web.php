@@ -77,6 +77,8 @@ Route::prefix('/cms')->group(function() {
         Route::group(['middleware' => ['role:admin']], function () {
 
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
+            Route::get('coordinators/show-invite/{id}', 'UsersController@showInvite')->name('coordinators.show-invite');
+            Route::post('coordinators/send-invite', 'UsersController@sendInvite')->name('coordinators.send-invite');
             Route::post('coordinators/import', 'UsersController@import')->name('coordinators.import');
             Route::resource('coordinators',        'UsersController');
             Route::resource('users',        'UsersController');

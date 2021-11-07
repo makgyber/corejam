@@ -158,20 +158,39 @@ class UsersController extends Controller
             $user->save();
         }
         $user->assignRole('coordinator');
-
         $url = URL::signedRoute('invitation', $user);
-        
         $user->notify(new CoordinatorInviteNotification($url));
+
         return redirect()->route('coordinators.create')->with('message', 'Successfully created coordinator');
-        
     }
 
     public function import() 
     {
-
         Excel::import(new UsersImport, request()->file('membersheet'));
-        
         return redirect()->route('coordinators.index')->with('success', 'All good!');
     }
+
+    public function showInvite($id)
+    {
+        $user = User::findOrFail($id);
+        return view('dashboard.admin.userShowInvite', compact('user'));
+    }
  
+    public function sendInvite(Request $request)
+    {
+        $user = User::findOrFail($request['user_id']);
+        $user->password = 'secret';
+        $user->menuroles = 'coordinator';
+        if(isset($request['as_admin']) && $request['as_admin'] == 'true') {
+            $user->menuroles .= ',admin';
+            $user->assignRole('admin');
+        } 
+        $user->save();
+        $user->assignRole('coordinator');
+        $url = URL::signedRoute('invitation', $user);
+        $user->notify(new CoordinatorInviteNotification($url));
+
+        $request->session()->flash('message', 'Invitation sent to ' . $user->name);
+        return redirect()->route('users.index');
+    }
 }
