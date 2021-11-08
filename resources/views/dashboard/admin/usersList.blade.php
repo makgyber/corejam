@@ -41,59 +41,67 @@
                     </div>
                     </div>
                     <form method="GET" class="col-12">
-                      <div class="row mt-3 ">
-                        <div class="col-4 form-inline">
-                          <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control float-right ">
-                               <button class="btn btn-dark float-right "><i class="cil-search" ></i> Search by Name</button>
+                      <div class="row">
+                        <div class="mt-3 col-12">
+                          <button class="btn btn-dark col-2 d-inline-block  float-right"><i class="cil-search" ></i> Search by Name</button>
+                          <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control col-4 d-inline-block  float-right">
                         </div>
-
                       </div>
                     </form>  
                     <div class="card-body">
+                      <form action="{{ route('coordinators.destroy', $you->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger btn-sm "
+                              onclick="return confirm('Are you sure you want to delete selected members?')">
+                              <i class="cil-trash"></i>
+                        </button>
                         <table class="table table-responsive-sm table-striped table-sm">
-                        <thead>
+                          <thead>
                           <tr>
+                            <th><input type="checkbox" name="delAll" id="delAll"></th>
                             <th>Name</th>
                             <th>E-mail</th>
+                            <th>Level</th>
                             <th>Roles</th>
                             <th>Email verified at</th>
                             <th></th>
-                            <th></th>
-                            <th></th>
                           </tr>
                         </thead>
+                        
                         <tbody>
                           @foreach($users as $user)
                             <tr>
+                              <td>
+                                @if($you->id != $user->id)
+                                <input type="checkbox" name="item[]" class="form-control-checkbox cbitem" value="{{$user->id}}">
+                                @endif
+                              </td>
                               <td>{{ $user->name }}</td>
                               <td>{{ $user->email }}</td>
+                              <td>{{ $user->coordinator_level }}</td>
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                <form action="{{ route('coordinators.destroy', $user->id ) }}" method="POST">
-                                  @method('DELETE')
-                                  @csrf
+                                
 
                                 <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-sm btn-primary">View</a>
                                 
                                 <a href="{{ route('coordinators.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                                @if( $you->id !== $user->id )
                                 
-                                    <button class="btn btn-danger btn-sm "
-                                    onclick="return confirm('Are you sure you want to delete this member?')">Delete</button>
-                                    @endif
 
                                     @if( 'user' == $user->menuroles )
                                     <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
                                     @endif
-                                </form>
+                               
                                
                               </td>
                             </tr>
                           @endforeach
                         </tbody>
-                      </table>
+                      
+                      </table></form>
                     </div>
                 </div>
               </div>
@@ -106,6 +114,14 @@
 
 
 @section('javascript')
+<script>
+  document.getElementById('delAll').onclick = function() {
+    var checkboxes = document.getElementsByName('item[]');
+    for (var checkbox of checkboxes) {
+        checkbox.checked = this.checked;
+    }
+}
+</script>
 
 @endsection
 
