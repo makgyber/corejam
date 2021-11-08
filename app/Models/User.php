@@ -27,8 +27,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'first_name', 'middle_name', 'last_name', 'password', 'menuroles',
         'contact_number', 'skillsets', 'is_registered_voter', 'region_code', 'province_code', 
-        'city_code', 'barangay', 'street', 'recommended_date', 'birthday',
-        'business_type', 'business_location', 'capitalization', 'created_by'
+        'city_code', 'barangay', 'voterid', 'recommended_date', 'birthday',
+        'business_type', 'business_location', 'capitalization', 'created_by', 'gender', 'address',
+        'coordinator_level', 'coordinator_scope'
     ];
 
     /**
@@ -62,7 +63,7 @@ class User extends Authenticatable
         'province_code'=> '',
         'city_code'=> '',
         'barangay'=> '',
-        'street'=> '',
+        'voterid'=> '',
         'recommended_date'=> '',
     ];
 
@@ -88,6 +89,11 @@ class User extends Authenticatable
     public function city()
     {
         return $this->belongsTo(Cities::class, 'city_code', 'code');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Notes::class);
     }
 
     public function canManageBinshopsBlogPosts()

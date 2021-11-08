@@ -184,18 +184,20 @@ class MemberController extends Controller
      */
     public function update(UpdateMemberRequest $request, User $member)
     {
+        
         $checkUserExists = User::where('first_name', $request['first_name'])
                             ->where('last_name', $request['last_name'])
                             ->where('middle_name', $request['middle_name'])
                             ->where('id','!=', $member->id)
                             ->first();
+                             
         if($checkUserExists) {
-            return back()->withError('A user with the same name already exists in the database.')
-                        ->withInput();
+            $name =  $request['first_name'] . ' '.  $request['middle_name'] . ' '. $request['last_name'];
+            return back()->withErrors(['error'=>'A user with the name ' . $name . ' already exists in the database.']);
         }
-        
+      
         $validated = $request->safe()->except(['skillsets', 'other_skillsets','position_other', 'position']);
-
+ 
         $skillsets = '';
         if(!empty($request['skillsets'])) {
             if(is_array($request['skillsets'])) {
@@ -249,7 +251,7 @@ class MemberController extends Controller
     {
 
         Excel::import(new MemberImport, request()->file('membersheet'));
-        
+        request()->session()->flash('message', 'Successfully imported members');
         return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
     }
 

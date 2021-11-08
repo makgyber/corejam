@@ -52,7 +52,7 @@ Route::prefix('/cms')->group(function() {
                 Route::get('/', 'ProfileController@index')->name('profile.index');
                 Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
                 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
-                Route::post('/', 'ProfileController@store')->name('profile.store');
+                Route::put('/', 'ProfileController@store')->name('profile.store');
             });
             
             Route::post('members/import', 'MemberController@import')->name('members.import');

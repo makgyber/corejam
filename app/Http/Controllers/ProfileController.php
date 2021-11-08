@@ -21,14 +21,15 @@ class ProfileController extends Controller
     public function store(ProfileDetailRequest $request)
     {
         $user = auth()->user();
-        $checkUser = User::where('first_name', $request['first_name'])
+        $checkUserExists = User::where('first_name', $request['first_name'])
                             ->where('last_name', $request['last_name'])
                             ->where('middle_name', $request['middle_name'])
                             ->where('id', '!=', $user->id)
                             ->first();
-        if($checkUser) {
-            return back()->withError('A user with the same name already exists in the database.')
-                        ->withInput();
+
+        if($checkUserExists) {
+            $name =  $request['first_name'] . ' '.  $request['middle_name'] . ' '. $request['last_name'];
+            return back()->withErrors(['error'=>'A user with the name ' . $name . ' already exists in the database.']);
         }
         
         $validated = $request->safe()->except(['skillsets', 'other_skillsets']);
@@ -52,7 +53,7 @@ class ProfileController extends Controller
             'skillsets' =>  $skillsets
         ]);
 
-        $request->session()->flash('message', 'Successfully updated user');
+        request()->session()->flash('message', 'Successfully updated user');
         return redirect()->route('profile.index');
     }
 
@@ -66,7 +67,7 @@ class ProfileController extends Controller
         $other_skillsets = implode(',', array_diff($skillsets, $skillOptions));
 
         return view('dashboard.profile.edit', [
-            'user'=> $user,
+            'member'=> $user,
             'regions' => Regions::all(),
             'skillsets' => $skillsets,
             'other_skillsets' => $other_skillsets,
@@ -79,7 +80,7 @@ class ProfileController extends Controller
         auth()->user()->update([
             'password' => bcrypt($request->password)
         ]);
-        $request->session()->flash('message', 'Successfully updated user');
+        request()->session()->flash('message', 'Successfully updated user');
         return redirect()->route('profile.index');
     }
 }

@@ -57,6 +57,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <th class="text-muted">Gender</th>
+                        <td class="h4">
+                        {{ $user->gender=='M'?'Male': ($user->gender=='F'?'Female':'')}}
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="text-muted">Email</th>
                         <td class="h4">
                         {{ $user->email }}
@@ -66,6 +72,12 @@
                         <th class="text-muted">Contact Number</th>
                         <td class="h4">
                         {{ $user->contact_number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">Residential Address</th>
+                        <td class="h4">
+                        {{ $user->address }}
                         </td>
                     </tr>
                     <tr>
@@ -92,16 +104,17 @@
                         {{ $user->city->name ??'' }}
                         </td>
                     </tr>
+                    
                     <tr>
-                        <th class="text-muted">Barangay</th>
+                        <th class="text-muted">Voter's ID</th>
                         <td class="h4">
-                        {{ $user->barangay  }}
+                        {{ $user->voterid  }}
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-muted">Street Address</th>
+                        <th class="text-muted">Barangay Polling Center</th>
                         <td class="h4">
-                        {{ $user->street  }}
+                        {{ $user->barangay  }}
                         </td>
                     </tr>
                     <tr>

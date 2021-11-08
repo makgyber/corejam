@@ -33,7 +33,7 @@ class UpdateMemberRequest extends FormRequest
             'region_code' => 'required|string',
             'province_code' => 'required|string',
             'city_code' => 'required|string',
-            'street' => 'sometimes|string',
+            'voterid' => 'sometimes|string',
             'barangay' => 'sometimes|string',
             'birthday' => 'sometimes|date',
             'is_registered_voter' => 'sometimes',
@@ -43,6 +43,8 @@ class UpdateMemberRequest extends FormRequest
             'business_type' => 'sometimes',
             'business_location' => 'sometimes',
             'capitalization' => 'sometimes',
+            'gender' => 'sometimes',
+            'address'=>'sometimes'
         ];
     }
 }

@@ -12,12 +12,14 @@ class Notes extends Model
 
     protected $table = 'notes';
 
+    protected $fillable = ['title', 'content', 'note_type', 'applies_to_date', 'users_id', 'status_id'];
+
     /**
      * Get the User that owns the Notes.
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'users_id')->withTrashed();
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     /**
@@ -25,6 +27,6 @@ class Notes extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status', 'status_id');
+        return $this->belongsTo(Status::class, 'status_id');
     }
 }

@@ -48,6 +48,7 @@
                         <label for="birthday" class="form-label">Birthday</label>
                         <input type="date" class="form-control" id="birthday"   name="birthday" value="{{ $member->birthday }}" />
                     </div>
+                       
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="email"   name="email" value="{{ $member->email }}" />
@@ -57,23 +58,28 @@
                         <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $member->contact_number }}" />
                     </div>       
                     <div class="mb-3">
+                        <label for="birthday" class="form-label">Residential address</label>
+                        <textarea name="address" class="form-control">{{ $member->address }}</textarea>
+                    </div>
+                    <div class="mb-3">
                         <div class="row">
-                        <div class="col-4">Is Registered Voter?</div>
+                        <div class="col-4">Gender</div>
                         <div class="col-2">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
-                        {{ $member->is_registered_voter ? 'checked' : ''}}/>
-                        <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                            <input type="radio" class="form-check-input" id="genderM"   name="gender" value="M" 
+                        {{ $member->gender == 'M' ? 'checked' : ''}}/>
+                        <label for="genderM" class="form-check-label">Male</label>
                           </div>
                         </div>
                         <div class="col-2">
                           <div class="form-check">
-                            <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
-                            {{ $member->is_registered_voter ? '' : 'checked'}}/>
-                            <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                            <input type="radio" class="form-check-input" id="genderF"   name="gender" value="F" 
+                            {{ $member->gender  == 'F'? 'checked' : ''}}/>
+                            <label for="genderF" class="form-check-label">Female</label>
                           </div>
                         </div>
-                    </div>     
+                    </div>  
+                        
             </div>
 
             <hr class=""/>
@@ -119,6 +125,26 @@
                     <h4>Registered Voter's Address</h4>
                 </div>
                 <div class="card-body">
+
+                    <div class="mb-3 row">
+
+                        <div class="col-4">Is Registered Voter?</div>
+                        <div class="col-2">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
+                        {{ $member->is_registered_voter ? 'checked' : ''}}/>
+                        <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
+                            {{ $member->is_registered_voter ? '' : 'checked'}}/>
+                            <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                          </div>
+                        </div>
+                    </div> 
+                    <hr>
                     <div class="mb-3">
                         <label for="region_code" class="form-label">Region</label>
                         <select class="form-control" id="region_code" name="region_code">   
@@ -151,13 +177,15 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="street" class="form-label">Barangay</label>
+                        <label for="voterid" class="form-label">Voter's ID</label>
+                        <input type="text" class="form-control" id="voterid" name="voterid" value="{{ $member->voterid}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Barangay Polling Center</label>
                         <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $member->barangay }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="street" class="form-label">Voter's ID</label>
-                        <input type="text" class="form-control" id="street" name="street" value="{{ $member->street}}">
-                    </div>
+                    
                 </div>
                 
                 <hr/>

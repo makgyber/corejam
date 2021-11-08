@@ -34,7 +34,7 @@ class CreateMemberRequest extends FormRequest
             'region_code' => 'required|string',
             'province_code' => 'required|string',
             'city_code' => 'required|string',
-            'street' => 'string',
+            'voterid' => 'string',
             'barangay' => 'string',
             'position_other' => 'required|string',
             'skillsets' => 'sometimes',
@@ -43,6 +43,8 @@ class CreateMemberRequest extends FormRequest
             'business_type' => 'sometimes',
             'business_location' => 'sometimes',
             'capitalization' => 'sometimes',
+            'gender' => 'sometimes',
+            'address'=>'sometimes'
         ];
     }
 }

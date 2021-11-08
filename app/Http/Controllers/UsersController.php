@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileDetailRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\CoordinatorInviteNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\StoreCoordinatorRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Regions;
 use Illuminate\Support\Facades\URL;
 use App\Imports\UsersImport;
@@ -105,17 +107,41 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfileDetailRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'name'       => 'required|min:1|max:256',
-            'email'      => 'required|email|max:256'
-        ]);
         $user = User::find($id);
-        $user->name       = $request->input('name');
-        $user->email      = $request->input('email');
-        $user->save();
-        $request->session()->flash('message', 'Successfully updated user');
+        $checkUserExists = User::where('first_name', $request['first_name'])
+                            ->where('last_name', $request['last_name'])
+                            ->where('middle_name', $request['middle_name'])
+                            ->where('id', '!=', $user->id)
+                            ->first();
+
+        if($checkUserExists) {
+            $name =  $request['first_name'] . ' '.  $request['middle_name'] . ' '. $request['last_name'];
+            return back()->withErrors(['error'=>'A user with the name ' . $name . ' already exists in the database.']);
+        }
+
+        $validated = $request->safe()->except(['skillsets', 'other_skillsets']);
+
+        $skillsets = '';
+        if(!empty($request['skillsets'])) {
+            if(is_array($request['skillsets'])) {
+                $skillsets = implode( ',', $request['skillsets'] );
+            } else {
+                $skillsets = $request['skillsets'];
+            }
+        }
+
+        if(!empty($request['other_skillsets'])) {
+            $skillsets .= ',' . $request['other_skillsets'];
+        }
+
+        $user->update($validated + [
+            'skillsets' =>  $skillsets,
+            'name' => $request['first_name'] . ' '.  $request['middle_name'] . ' '. $request['last_name']
+        ]);
+
+        request()->session()->flash('message', 'Successfully updated user');
         return redirect()->route('users.index');
     }
 
@@ -167,6 +193,7 @@ class UsersController extends Controller
     public function import() 
     {
         Excel::import(new UsersImport, request()->file('membersheet'));
+        request()->session()->flash('message', 'Successfully imported users');
         return redirect()->route('coordinators.index')->with('success', 'All good!');
     }
 

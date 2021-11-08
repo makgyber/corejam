@@ -25,7 +25,7 @@
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>Edit User</h4></div>
+          <div class="card-header"><h4>Edit User Profile</h4></div>
             <div class="card-body">
                 <form action="{{ route('coordinators.update', $user->id ) }}" method="POST">
                     @method('PUT')
@@ -42,10 +42,12 @@
                         <label for="lastName" class="form-label">Last Name</label>
                         <input type="text" class="form-control" id="lastName"   name="last_name" value="{{ $user->last_name }}" />
                     </div>
+                    
                     <div class="mb-3">
                         <label for="birthday" class="form-label">Birthday</label>
                         <input type="date" class="form-control" id="birthday"   name="birthday" value="{{ $user->birthday }}" />
                     </div>
+                       
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="email"   name="email" value="{{ $user->email }}" />
@@ -55,23 +57,28 @@
                         <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $user->contact_number }}" />
                     </div>       
                     <div class="mb-3">
+                        <label for="birthday" class="form-label">Residential address</label>
+                        <textarea name="address" class="form-control">{{ $user->address }}</textarea>
+                    </div>
+                    <div class="mb-3">
                         <div class="row">
-                        <div class="col-4">Is Registered Voter?</div>
+                        <div class="col-4">Gender</div>
                         <div class="col-2">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
-                        {{ $user->is_registered_voter ? 'checked' : ''}}/>
-                        <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                            <input type="radio" class="form-check-input" id="genderM"   name="gender" value="M" 
+                        {{ $user->gender == 'M' ? 'checked' : ''}}/>
+                        <label for="genderM" class="form-check-label">Male</label>
                           </div>
                         </div>
                         <div class="col-2">
                           <div class="form-check">
-                            <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
-                            {{ $user->is_registered_voter ? '' : 'checked'}}/>
-                            <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                            <input type="radio" class="form-check-input" id="genderF"   name="gender" value="F" 
+                            {{ $user->gender  == 'F'? 'checked' : ''}}/>
+                            <label for="genderF" class="form-check-label">Female</label>
                           </div>
                         </div>
-                    </div>     
+                    </div>  
+                        
             </div>
 
             <hr class=""/>
@@ -117,6 +124,26 @@
                     <h4>Registered Voter's Address</h4>
                 </div>
                 <div class="card-body">
+
+                    <div class="mb-3 row">
+
+                        <div class="col-4">Is Registered Voter?</div>
+                        <div class="col-2">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterYes"   name="is_registered_voter" value="1" 
+                        {{ $user->is_registered_voter ? 'checked' : ''}}/>
+                        <label for="isRegisteredVoterYes" class="form-check-label">Yes</label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="isRegisteredVoterNo"   name="is_registered_voter" value="0" 
+                            {{ $user->is_registered_voter ? '' : 'checked'}}/>
+                            <label for="isRegisteredVoterNo" class="form-check-label">No</label>
+                          </div>
+                        </div>
+                    </div> 
+                    <hr>
                     <div class="mb-3">
                         <label for="region_code" class="form-label">Region</label>
                         <select class="form-control" id="region_code" name="region_code">   
@@ -149,38 +176,20 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="street" class="form-label">Barangay</label>
-                        <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $user->barangay }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="street" class="form-label">Voter's ID</label>
-                        <input type="text" class="form-control" id="street" name="street" value="{{ $user->street}}">
-                    </div>
-                </div>
-                
-                <hr/>
-                <div class="card-header">
-                    <h4>Position in Organisation</h4>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="region_code" class="form-label">Position</label>
-                        <select class="form-control" name="position" id="position">
-                            @forelse($positionOptions as $positionOption)
-                            <option value="{{$positionOption}}"
-                            {{ $positionOption == $position_other ? 'selected' : ($showOther==1 && $positionOption == 'Other' ? 'selected' : '')}}
-                            >{{$positionOption}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                        <input type="text" class="form-control  {{ $showOther==1 ? ''  : 'd-none'}}" placeholder="please specify position" name="position_other" id="position_other" value="{{$position_other}}"/>
+                        <label for="voterid" class="form-label">Voter's ID</label>
+                        <input type="text" class="form-control" id="voterid" name="voterid" value="{{ $user->voterid}}">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="barangay" class="form-label">Barangay Polling Center</label>
+                        <input type="text" class="form-control" id="barangay" name="barangay"  value="{{ $user->barangay }}">
+                    </div>
+                    
                 </div>
                 
                 <hr/>
                 <div class="card-header">
-                    <h4>Is business owner?</h4>
+                    <h4>Is a business owner?</h4>
                     <div>
                         <input type="radio" name="bizowner" id="bizowner_yes" class="m-2" value="yes"
                         {{ $user->business_type == '' ? '' : 'checked' }}>

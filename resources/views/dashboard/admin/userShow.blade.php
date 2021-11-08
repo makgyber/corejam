@@ -46,8 +46,20 @@
                             <td>{{ $user->birthday }}</td>
                         </tr>
                         <tr>
+                            <th>Gender</th>
+                            <td>{{ $user->gender=='M'?'Male': ($user->gender=='F'?'Female':'')}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>{{ $user->address }}</td>
+                        </tr>
+                        <tr>
                             <th>Is Registered Voter?</th>
                             <td>{{ $user->is_registered_voter ? 'Yes' : 'No'}}</td>
+                        </tr>
+                        <tr>
+                            <th>Voter's ID</th>
+                            <td>{{ $user->voterid }}</td>
                         </tr>
                         <tr>
                             <th>Skills And Capabilities</th>
