@@ -50,7 +50,8 @@ class ProfileController extends Controller
 
    
         $user->update($validated + [
-            'skillsets' =>  $skillsets
+            'skillsets' =>  $skillsets,
+            'name' => $name =  $request['first_name'] . ' '.  $request['middle_name'] . ' '. $request['last_name']
         ]);
 
         request()->session()->flash('message', 'Successfully updated user');

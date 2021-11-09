@@ -8,7 +8,9 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i><h4>{{ __('Target Outcomes (Very Important Priorities - VIP)') }}</h4></div>
+                      <i class="fa fa-align-justify"></i><h4>{{ __('Target Outcomes (Very Important Priorities - VIP)') }}</h4>
+                    <small>Number of committed registered voters supporting SMP for president</small>
+                    </div>
                     <div class="card-body">
                         <div class="row"> 
                           <a href="{{ route('targets.create') }}" class="btn btn-primary m-2">{{ __('Add Target Outcome') }}</a>

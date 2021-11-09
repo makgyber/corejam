@@ -27,21 +27,23 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i><h4 class="d-inline-block">{{ __('Member Registry') }}</h4>
-                    
+                      <h4 class="d-block">{{ __('Member Registry') }}</h4>
+                      <small>You can now add  your registered-voter members who will vote for Sen. Manny Pacquiao for President.</small>  
+                    </div>
+                    <div class="card-header">
                       <div class="float-right">
-                          <a href="{{ route('members.create') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary btn-sm">{{ __('Add  member') }}</a>
-                          <a href="{{ asset('assets/downloads/Member_import_template.xlsx') }}" class="btn btn-warning btn-sm">{{ __('Download Excel template') }}</a>
-                      
-                          <span class="d-inline form-control bg-light text-muted">
-                            <form method="POST" class="d-inline" enctype="multipart/form-data" action="{{route('members.import')}}">
-                              @csrf
-                                <input type="hidden" name="affiliation_id" value="{{$affiliation_id}}"/>
-                                <input type="file" name="membersheet" class="form form-file" />
-                                <button class="btn btn-info btn-sm">{{ __('Import excel file') }}</button>
-                            </form>
-                          </span>
-                      </div>
+                        <a href="{{ route('members.create') }}?affiliation_id={{$affiliation_id}}" class="btn btn-primary btn-sm">{{ __('Add  member') }}</a>
+                        <a href="{{ asset('assets/downloads/Member_import_template.xlsx') }}" class="btn btn-warning btn-sm">{{ __('Download Excel template') }}</a>
+                    
+                        <span class="d-inline form-control bg-light text-muted">
+                          <form method="POST" class="d-inline" enctype="multipart/form-data" action="{{route('members.import')}}">
+                            @csrf
+                              <input type="hidden" name="affiliation_id" value="{{$affiliation_id}}"/>
+                              <input type="file" name="membersheet" class="form form-file" />
+                              <button class="btn btn-info btn-sm">{{ __('Import excel file') }}</button>
+                          </form>
+                        </span>
+                    </div>
                     </div>
 
                      
