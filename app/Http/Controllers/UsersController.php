@@ -162,13 +162,25 @@ class UsersController extends Controller
 
     public function create() 
     {
-        return view('dashboard.admin.userCreate');
+        return view('dashboard.admin.userCreate',[
+            'regions' => Regions::all(),
+            'coordinatorLevels' => ['regional', 'provincial', 'city', 'municipal']
+        ]);
     }
 
     public function store(StoreCoordinatorRequest $request)
     {
 
         $validated = $request->validated();
+        $coordinatorScope = '';
+        
+        if ($validated['coordinator_level'] == 'regional') {
+            $coordinatorScope = $validated['region_code'];
+        } else if ($validated['coordinator_level'] == 'provincial') {
+            $coordinatorScope = $validated['province_code'];
+        } else {
+            $coordinatorScope = $validated['city_code'];
+        }
 
         $user =  User::create([
             'name' => $validated['first_name'].' '.$validated['last_name'],
@@ -176,7 +188,9 @@ class UsersController extends Controller
             'first_name' => $validated['first_name'],
             'email' => $validated['email'],
             'password' => 'secret',
-            'created_by' => auth()->user()->id
+            'created_by' => auth()->user()->id,
+            'coordinator_level' => $validated['coordinator_level'],
+            'coordinator_scope' => $coordinatorScope
         ]);
 
         if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {
@@ -187,6 +201,8 @@ class UsersController extends Controller
         $user->assignRole('coordinator');
         $url = URL::signedRoute('invitation', $user);
         $user->notify(new CoordinatorInviteNotification($url));
+
+
 
         return redirect()->route('coordinators.create')->with('message', 'Successfully created coordinator');
     }

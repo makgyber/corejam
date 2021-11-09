@@ -27,7 +27,11 @@ class StoreCoordinatorRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'as_admin' => ['string']
+            'as_admin' => ['string'],
+            'coordinator_level' => 'sometimes',
+            'region_code' => 'sometimes',
+            'province_code' => 'sometimes',
+            'city_code' => 'sometimes',
         ];
     }
 }
