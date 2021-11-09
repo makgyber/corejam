@@ -175,7 +175,8 @@ class UsersController extends Controller
             'last_name' => $validated['last_name'],
             'first_name' => $validated['first_name'],
             'email' => $validated['email'],
-            'password' => 'secret'
+            'password' => 'secret',
+            'created_by' => auth()->user()->id
         ]);
 
         if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {

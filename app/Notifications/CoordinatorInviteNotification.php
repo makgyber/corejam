@@ -42,9 +42,14 @@ class CoordinatorInviteNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You have been invited as a Coordinator.')
+                    ->greeting("Dear Co-Worker in God’s Kingdom, ")
+                    ->line('You have been invited as a Coordinator. Please click the Accept Invitation.')
+                    ->line('Fill out the form with correct current information and submit it.')
+                    ->line('After which, you can login using your registered email and password to www.m610.ph to view your Dashboard.')
                     ->action('Accept invitation', $this->url)
-                    ->line('Thank you for using our application!');
+                    ->salutation("Blessings, ")
+                    ->from('info.m610@m610.com', 'Admin M6:10');
+                    
     }
 
     /**
