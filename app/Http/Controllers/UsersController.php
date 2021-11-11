@@ -13,6 +13,7 @@ use App\Models\Regions;
 use Illuminate\Support\Facades\URL;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -21,6 +22,7 @@ class UsersController extends Controller
     var $skillOptions = [
         'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
     ];
+    var $coordinatorLevels = ['regional', 'provincial', 'city', 'municipal'];
 
     use RegistersUsers;
     /**
@@ -164,7 +166,7 @@ class UsersController extends Controller
     {
         return view('dashboard.admin.userCreate',[
             'regions' => Regions::all(),
-            'coordinatorLevels' => ['regional', 'provincial', 'city', 'municipal']
+            'coordinatorLevels' => $this->coordinatorLevels
         ]);
     }
 
@@ -236,5 +238,41 @@ class UsersController extends Controller
 
         $request->session()->flash('message', 'Invitation sent to ' . $user->name);
         return redirect()->route('users.index');
+    }
+
+    public function showRole($id)
+    {
+        $user = User::findOrFail($id);
+        return view('dashboard.admin.userShowRole', [
+            'user'=>$user,
+            'regions'=>Regions::all(),
+            'roles'=>Role::all(),
+            'coordinatorLevels'=> $this->coordinatorLevels
+        ]); 
+    }
+
+    public function assignRole(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach($request['roles'] as $role) {
+            $user->assignRole($role);
+        }
+
+        if ($request['coordinator_level'] == 'regional') {
+            $coordinatorScope = $request['region_code'];
+        } else if ($request['coordinator_level'] == 'provincial') {
+            $coordinatorScope = $request['province_code'];
+        } else {
+            $coordinatorScope = $request['city_code'];
+        }
+
+        $user->menuroles = implode(',', $request['roles']);
+        $user->coordinator_level = $request['coordinator_level'];
+        $user->coordinator_scope = $coordinatorScope;
+        $user->save();
+
+        request()->session()->flash('message', 'Role assignment completed');
+        return redirect()->route('coordinators.index');
     }
 }

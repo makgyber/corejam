@@ -83,19 +83,18 @@
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                
 
                                 <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-sm btn-primary">View</a>
                                 
                                 <a href="{{ route('coordinators.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                                
-
-                                    @if( 'user' == $user->menuroles )
-                                    <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
-                                    @endif
-                               
-                               
+                                @if($you->id != $user->id)
+                                <a href="{{ route('coordinators.show-role', $user->id) }}" class="btn btn-sm btn-success">Role</a>
+                                @endif
+                                @if( 'user' == $user->menuroles )
+                                  <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
+                                @endif
+ 
                               </td>
                             </tr>
                           @endforeach

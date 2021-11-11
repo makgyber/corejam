@@ -80,6 +80,8 @@ Route::prefix('/cms')->group(function() {
             Route::get('coordinators/show-invite/{id}', 'UsersController@showInvite')->name('coordinators.show-invite');
             Route::post('coordinators/send-invite', 'UsersController@sendInvite')->name('coordinators.send-invite');
             Route::post('coordinators/import', 'UsersController@import')->name('coordinators.import');
+            Route::get('coordinators/show-role/{id}', 'UsersController@showRole')->name('coordinators.show-role');
+            Route::put('coordinators/assign-role/{id}', 'UsersController@assignRole')->name('coordinators.assign-role');
             Route::resource('coordinators',        'UsersController');
             Route::resource('users',        'UsersController');
             Route::resource('roles',        'RolesController');
