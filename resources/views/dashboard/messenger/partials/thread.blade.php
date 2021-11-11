@@ -8,10 +8,11 @@ $unreadMessagesCount = $thread->userUnreadMessagesCount(Auth::id())
         {{ substr($thread->creator()->first_name, 0, 1) }}{{ substr($thread->creator()->last_name, 0, 1) }}
         <span class="c-avatar-status bg-success"></span></div></td>
     <td class="col-md-2">
-        <a href="{{ route('messages.show', $thread->id)}}"><strong>{{ $thread->creator()->name }}</strong></a></td>
+        <a href="{{ route('messages.show', $thread->id)}}" class="text-dark">{{ $thread->creator()->name }}</a></td>
     <td class="col-md-7">
         <a href="{{ route('messages.show', $thread->id)}}">
-        <strong>{{ $thread->subject }}</strong> <span class="small text-muted text-truncate">{{ $thread->latestMessage->body }}</span>
+        <div class="text-bold">{{ $thread->subject }}</div>
+        <span class="small text-muted text-truncate">{{ substr($thread->latestMessage->body, 0, 200) }}...</span>
         </a>
     </td>
     <td class="col-md-2"><small class="text-muted">{{ $thread->latestMessage->created_at->diffForHumans() }}<small></td>
