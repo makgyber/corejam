@@ -62,9 +62,9 @@
                             <th><input type="checkbox" name="delAll" id="delAll"></th>
                             <th>Name</th>
                             <th>E-mail</th>
-                            <th>Level</th>
                             <th>Roles</th>
-                            <th>Email verified at</th>
+                            <th>Coordinator Level</th>
+                            <th>Area</th>
                             <th></th>
                           </tr>
                         </thead>
@@ -79,9 +79,19 @@
                               </td>
                               <td>{{ $user->name }}</td>
                               <td>{{ $user->email }}</td>
-                              <td>{{ $user->coordinator_level }}</td>
                               <td>{{ $user->menuroles }}</td>
-                              <td>{{ $user->email_verified_at }}</td>
+                              <td>{{ $user->coordinator_level }}</td>
+                              <td>
+                                @php
+                                  if(strlen($user->coordinator_scope) == 2) {
+                                    echo App\Models\Regions::where('code', $user->coordinator_scope)->first()->name;
+                                  } else  if(strlen($user->coordinator_scope) == 4) {
+                                    echo App\Models\Provinces::where('code', $user->coordinator_scope)->first()->name;
+                                  } else  if(strlen($user->coordinator_scope) > 4){
+                                    echo App\Models\Cities::where('code', $user->coordinator_scope)->first()->name;
+                                  }
+                                @endphp
+                              </td>
                               <td>
 
                                 <a href="{{ route('coordinators.show',  $user->id) }}" class="btn btn-sm btn-primary">View</a>
