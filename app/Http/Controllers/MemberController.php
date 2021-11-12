@@ -250,9 +250,14 @@ class MemberController extends Controller
     public function import() 
     {
 
+        if(!request()->file('membersheet')) {
+            request()->session()->flash('message', 'Please select a file to import first');
+            return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'));
+        }
+
         Excel::import(new MemberImport, request()->file('membersheet'));
         request()->session()->flash('message', 'Successfully imported members');
-        return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'))->with('success', 'All good!');
+        return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'));
     }
 
 }

@@ -214,6 +214,10 @@ class UsersController extends Controller
 
     public function import() 
     {
+        if(!request()->file('membersheet')) {
+            request()->session()->flash('message', 'Please select a file to import first');
+            return redirect()->route('coordinators.index')->with('success', 'All good!');
+        }
         Excel::import(new UsersImport, request()->file('membersheet'));
         request()->session()->flash('message', 'Successfully imported users');
         return redirect()->route('coordinators.index')->with('success', 'All good!');

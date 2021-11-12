@@ -8,8 +8,10 @@ use App\Models\UserAffiliation;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Throwable;
 
-class MemberImport implements OnEachRow, WithHeadingRow
+class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
 {
 /**
     * @param array $row
@@ -18,11 +20,22 @@ class MemberImport implements OnEachRow, WithHeadingRow
     */
     public function onRow(Row $row)
     {
+        $exists = User::where('email', $row['email'])->first();
+        if ($exists) {
+            return null;
+        }
         
         $affiliation = Affiliation::find(request()->get('affiliation_id'));
         $rowIndex = $row->getIndex();
         $row      = $row->toArray();
-        $birthday = date('Y-m-d', $row['birthday']);
+
+        if (is_string($row['birthday'])) {
+            $birthday = date('Y-m-d', strtotime($row['birthday']));
+        } else {
+            $birthday = $this->transformDate($row['birthday']);
+        }
+
+        
 
         $user = User::firstOrCreate([
             'name' => $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'],
@@ -40,9 +53,9 @@ class MemberImport implements OnEachRow, WithHeadingRow
             'region_code' => $affiliation->region_code,
             'province_code' => $affiliation->province_code,
             'city_code' => $affiliation->city_code,
-            'barangay' => $row['barangaypollingcenter'],
-            'voterid' => $row['votersid'],
-            'birthday' => $this->transformDate($row['birthday']),
+            'barangay' => $row['barangaypollingcenter']?$row['barangaypollingcenter']:'',
+            'voterid' => $row['votersid']?$row['votersid']:'',
+            'birthday' => $birthday,
             'business_type' => $row['businesstype'],
             'business_location' => $row['businesslocation'],
             'capitalization' => $row['capitalization'],
@@ -84,5 +97,11 @@ class MemberImport implements OnEachRow, WithHeadingRow
         } catch (\ErrorException $e) {
             return \Carbon\Carbon::createFromFormat($format, $value);
         }
+    }
+
+    public function onError(Throwable $e)
+    {
+        logger('Import error', [$e]);
+        return null;
     }
 }
