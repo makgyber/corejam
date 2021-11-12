@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Regions;
 use Illuminate\Support\Facades\URL;
 use App\Imports\UsersImport;
+use App\Models\Target;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -64,9 +65,11 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        $targets = Target::where('owner', $id)->with('activities')->paginate(5);
         return view('dashboard.admin.userShow', [
             'user' => User::findOrFail($id),
-            'skillOptions' => $this->skillOptions
+            'skillOptions' => $this->skillOptions,
+            'targets'=>$targets
         ]);
     }
 
