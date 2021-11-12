@@ -44,8 +44,8 @@
                         
 @forelse($targets as $target)
 <br>
-                        <table class="table table-responsive-sm table-bordered table-condensed table-sm">
-
+<small>{{$target->objective}}</small>
+<table class="table table-responsive-sm table-bordered table-condensed table-sm">
 <thead class="thead-dark">
     <tr>
       <th rowspan="2">#</th> 
