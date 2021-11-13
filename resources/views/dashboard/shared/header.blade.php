@@ -78,11 +78,11 @@
                 </svg> Settings</a><a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-credit-card') }}"></use>
-                </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a>
-                <a class="dropdown-item" href="#">
+                </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a>-->
+                <a class="dropdown-item" href="{{route('profile.show-change-password')}}">
                 <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-file') }}"></use>
-                </svg> Projects<span class="badge badge-primary ml-auto">42</span></a> -->
+                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-lock-locked') }}"></use>
+                </svg> Change Password</a> 
               <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-account-logout') }}"></use>
