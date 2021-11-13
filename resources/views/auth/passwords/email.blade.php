@@ -1,12 +1,22 @@
-@extends('layouts.app')
+@extends('dashboard.authBase')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
+                <div class="card-header text-center">
+                    <div class="row justify-content-center">
+                        <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="220em"/>
+                      </div>
+                      <div>
+                        <h3>"Thy kingdom come,
+                          Thy will be done,
+                          on earth as it is in heaven."</h3>
+                          <h4>Matthew 6:10</h4>
+                      </div>
+                    </div>
+                    <div class="card-header text-warning"><h3>{{ __('Reset Password') }}</h3></div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
