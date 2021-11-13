@@ -51,6 +51,7 @@ Route::prefix('/cms')->group(function() {
             Route::prefix('/profile')->group(function(){
                 Route::get('/', 'ProfileController@index')->name('profile.index');
                 Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
+                Route::get('/show-change-password', 'ProfileController@showChangePassword')->name('profile.show-change-password');
                 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
                 Route::put('/', 'ProfileController@store')->name('profile.store');
             });

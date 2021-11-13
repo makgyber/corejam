@@ -7,14 +7,17 @@ use App\Models\User;
 use App\Models\Regions;
 use App\Http\Requests\ProfileDetailRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Models\Target;
 
 class ProfileController extends Controller
 {
-    public function index(User $user) 
+    public function index() 
     {
+        $targets = Target::where('owner', auth()->user()->id)->with('activities')->paginate(5);
         return view('dashboard.profile.index', [
             'user'=> auth()->user(),
-            'regions' => Regions::all()
+            'regions' => Regions::all(),
+            'targets' => $targets
         ]);
     }
 
@@ -84,4 +87,10 @@ class ProfileController extends Controller
         request()->session()->flash('message', 'Successfully updated user');
         return redirect()->route('profile.index');
     }
+
+    public function showChangePassword()
+    {
+        return view('dashboard.profile.changepassword');
+    }
+
 }

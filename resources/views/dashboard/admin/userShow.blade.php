@@ -26,8 +26,8 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-header"><h4>User Details</h4></div>
-            <div class="card-body">
-                <table class="table  table-hover table-responsive table-sm">
+            <div class="card-body   col-12 d-flexz">
+                <table class="table  table-hover table-borderless table-responsive table-sm  col-12 d-flex">
                     <tbody>
                         <tr>
                             <th>Name</th>
@@ -124,8 +124,8 @@
     </div>
 
     <div class="row">
-<div class="card">
-    <div class="card-header"><h5>Target Objectives</h5></div>
+<div class="card col-12">
+    <div class="card-header"><h5>Target Outcomes</h5></div>
     <div class="card-body">
         @forelse($targets as $target)
 
