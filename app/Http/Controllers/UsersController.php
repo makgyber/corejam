@@ -183,9 +183,12 @@ class UsersController extends Controller
             $coordinatorScope = $validated['region_code'];
         } else if ($validated['coordinator_level'] == 'provincial') {
             $coordinatorScope = $validated['province_code'];
-        } else {
-            $coordinatorScope = $validated['city_code'];
+        } else if ($request['coordinator_level'] == 'city') {
+            $coordinatorScope = $request['city_code'];
+        } else if ($request['coordinator_level'] == 'municipal') {
+            $coordinatorScope = $request['city_code'];
         }
+
 
         $user =  User::create([
             'name' => $validated['first_name'].' '.$validated['last_name'],
@@ -270,7 +273,9 @@ class UsersController extends Controller
             $coordinatorScope = $request['region_code'];
         } else if ($request['coordinator_level'] == 'provincial') {
             $coordinatorScope = $request['province_code'];
-        } else {
+        } else if ($request['coordinator_level'] == 'city') {
+            $coordinatorScope = $request['city_code'];
+        } else if ($request['coordinator_level'] == 'municipal') {
             $coordinatorScope = $request['city_code'];
         }
 
