@@ -74,7 +74,7 @@
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
                       <div class="text-value-lg">{{ $totals['targetRegistrations'] }}</div>
-                      <div>Target Registered Voters</div>
+                      <div>Minimum Target Registered Voters</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                       <canvas class="chart" id="card-chart4" height="70"></canvas>
