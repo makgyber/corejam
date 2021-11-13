@@ -18,15 +18,20 @@
             <div class="card-body">
                 <h5>Select Recipient</h5>
                 <div class="d-grid">
-                    @forelse($users as $user)
-                    <span class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ $user->id }}" id="skills{{ $loop->index}}" name="recipients[]"/>
-                        <label class="form-check-label" for="skills{{ $loop->index}}">
-                            {{ $user->name }}
-                        </label>
-                    </span>
-                    @empty
-                    @endforelse
+
+                    <label>
+                        <input type="checkbox" id="selectAll"
+                        class="m-1 d-inline-block " >Select All</label>
+                    <div class="top-0 start-0 ">
+                    @foreach($users as $user)
+                    
+                    <div class="form-check d-inline-block col-2 mt-1 position-relative">
+                        <label title="{{ $user->name }}" for="rec{{ $user->id }}"><input type="checkbox" name="recipients[]"
+                        class="m-1 d-inline-block "   value="{{ $user->id }}" id="rec{{ $user->id }}">
+                        {!!$user->name!!}</label>
+                    </div>
+                    @endforeach
+
                 </div>
                 <button type="submit" class="btn-block btn btn-primary ">Submit</button>
             </div>

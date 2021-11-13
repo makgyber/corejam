@@ -28,16 +28,18 @@
 
             @if($users->count() > 0)
             <div class="form-group">
-                <label class="control-label">Recipients</label>
-                <div>
+                <label class="control-label" for="selectAll">Recipients</label>
+<br>
+                <label>
+                    <input type="checkbox" id="selectAll"
+                    class="m-1 d-inline-block " >Select All</label>
+                <div class="top-0 start-0 ">
                 @foreach($users as $user)
                 
-                <div class="form-check d-inline-block col-2">
-                    
-                        <label title="{{ $user->name }}">
-                            <input type="checkbox" name="recipients[]"
-                            class="m-1 d-inline-block "   value="{{ $user->id }}">{!!$user->name!!}</label>
-                    
+                <div class="form-check d-inline-block col-2 mt-1 position-relative">
+                    <label title="{{ $user->name }}" for="rec{{ $user->id }}"><input type="checkbox" name="recipients[]"
+                    class="m-1 d-inline-block "   value="{{ $user->id }}" id="rec{{ $user->id }}">
+                    {!!$user->name!!}</label>
                 </div>
                 @endforeach
             </div>
@@ -56,5 +58,12 @@
 @endsection
 
 @section('javascript')
-
+<script>
+    document.getElementById('selectAll').onclick = function() {
+      var checkboxes = document.getElementsByName('recipients[]');
+      for (var checkbox of checkboxes) {
+          checkbox.checked = this.checked;
+      }
+  }
+  </script>
 @endsection
