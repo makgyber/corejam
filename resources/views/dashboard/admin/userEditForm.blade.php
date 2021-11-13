@@ -57,7 +57,7 @@
                         <input type="text" class="form-control" id="contact_number"  name="contact_number" value="{{ $user->contact_number }}" />
                     </div>       
                     <div class="mb-3">
-                        <label for="birthday" class="form-label">Residential address</label>
+                        <label for="birthday" class="form-label">Residential Address</label>
                         <textarea name="address" class="form-control">{{ $user->address }}</textarea>
                     </div>
                     <div class="mb-3">
