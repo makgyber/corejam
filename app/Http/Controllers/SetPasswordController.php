@@ -18,7 +18,7 @@ class SetPasswordController extends Controller
         auth()->user()->update([
             'password' => bcrypt($request->password)
         ]);
-        return redirect()->route('faq', 'index');
+        return redirect()->route('faq', 'start');
     }
 
     public function invitation(User $user)
