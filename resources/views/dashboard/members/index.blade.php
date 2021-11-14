@@ -27,7 +27,9 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <h4 class="d-block">{{ __('Member Registry') }}</h4>
+                      <h5 class="d-block">{{ __('Member Registry') }}
+                        <a href="{{route('faq', 'members')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+                      </h5>
                       <small>You can now add  your registered-voter members who will vote for Sen. Manny Pacquiao for President.</small>  
                     </div>
                     <div class="card-header">

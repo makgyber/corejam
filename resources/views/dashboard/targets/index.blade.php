@@ -8,7 +8,9 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i><h4>{{ __('Target Outcomes (Very Important Priorities - VIP)') }}</h4>
+                      <i class="fa fa-align-justify"></i><h5>{{ __('Target Outcomes (Very Important Priorities - VIP)') }}
+                        <a href="{{route('faq', 'targets')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+                      </h5>
                     <small>Number of committed registered voters supporting SMP for president</small>
                     </div>
                     <div class="card-body">

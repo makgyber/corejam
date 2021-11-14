@@ -8,7 +8,11 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Activities') }}</div>
+                      <i class="fa fa-align-justify"></i><h5>
+                      {{ __('Activities') }}
+                      <a href="{{route('faq', 'targets')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+                    </h5>
+                    </div>
 
                       <div class="card-header">
                           <div> 

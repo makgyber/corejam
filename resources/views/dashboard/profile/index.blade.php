@@ -27,7 +27,7 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-header">
-              <h5 class="d-inline-block">Personal Information</h5>
+              <h5 class="d-inline-block">Personal Information <a href="{{route('faq', 'profile')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5>
                <a href="{{ route('profile.edit') }}" class="btn btn-primary btn-sm float-right">Edit Profile</a>
           </div>
           <div class="card-body">
@@ -140,7 +140,7 @@
       <div class="col-sm-6">
             <div class="card ">
                 <div class="card-header">
-                    <h5 class="d-inline-block">Church or Other Affiliations</h5>
+                    <h5 class="d-inline-block">Church or Other Affiliations <a href="{{route('faq', 'affiliations')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5>
                     <a href="{{route('affiliations.index')}}" class="btn btn-primary btn-sm float-right">Manage Affiliations</a>
                 </div>
             <div class="card-body">
@@ -177,7 +177,8 @@
 
     <div class="row">
         <div class="card col-12">
-            <div class="card-header"><h5 class="d-inline-block">Target Outcomes</h5>
+            <div class="card-header"><h5 class="d-inline-block">Target Outcomes 
+                <a href="{{route('faq', 'targets')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5>
                 <a href="{{route('targets.index')}}" class="btn btn-primary btn-sm float-right">Manage Target Outcomes</a></div>
             <div class="card-body">
                 @forelse($targets as $target)
