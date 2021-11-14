@@ -22,7 +22,7 @@
                     <li class="list-group-item"><a href="{{route('faq', 'targets')}}"><h5>Setting up Target Outcomes</h5> </a>
                         <p>Define your personal target outcomes</p>
                     </li>
-                    <li class="list-group-item"><a href="{{route('faq', 'members')}}"><h5>Specifying your VIP - Critical Activities</h5> </a>
+                    <li class="list-group-item"><a href="{{route('faq', 'activities')}}"><h5>Specifying your VIP - Critical Activities</h5> </a>
                         <p>Input specific critical activities, and request for support to achieve your target objectives</p>
                     </li>
                 </ul>
