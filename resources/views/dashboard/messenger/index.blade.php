@@ -7,7 +7,10 @@
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="card">
-              <div class="card-header"><i class="fa fa-align-justify"></i>{{ __('Conversations') }}
+              <div class="card-header"><i class="fa fa-align-justify"></i>
+                <h5 class="d-inline-block ">
+                  {{ __('Conversations') }} <a href="{{route('faq', 'messages')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+                </h5>
                     <a href="{{ route('messages.create') }}" class="float float-right btn btn-light btn-sm">
                         <span class="cil-chat-bubble"></span> {{ __('New conversation') }}</a>
                      

@@ -8,7 +8,12 @@
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('M610 Strategic Action Planning Worksheet') }}</div>
+                      <h5>
+                      {{ __('M610 Strategic Action Planning Worksheet') }}
+                      <a href="{{route('faq', 'sapw')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+                    </h5>
+                    
+                    </div>
 
                       <div class="card-header">
                           <div> 
