@@ -108,7 +108,7 @@
                   <div class="card mb-4" style="--cui-card-cap-bg: #00aced">
                     <div class="card-header position-relative d-flex justify-content-center align-items-center bg-gradient-success text-white">
                       <h4>
-                        <i class="cil-wc"></i><span class="ml-3">Age</span> </h4>
+                        <i class="cil-people"></i><span class="ml-3">Age</span> </h4>
                     </div>
                     <div class="card-body row text-center">
                       <div class="col">

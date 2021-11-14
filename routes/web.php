@@ -32,6 +32,7 @@ Route::prefix('/cms')->group(function() {
         });
 
         Route::group(['middleware' => ['role:coordinator']], function () {
+            Route::get('/faq/{slug}', 'FaqController@show')->name('faq');
             Route::resource('targets', 'TargetController');
             Route::get('/targets/{target}/activities', 'ActivityController@index')->name('activities.index');
             Route::get('/targets/{target}/activities/create', 'ActivityController@index')->name('activities.create');
