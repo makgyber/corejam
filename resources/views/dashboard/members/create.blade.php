@@ -25,7 +25,8 @@
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>Create Member</h4></div>
+          <div class="card-header"><h5>Create Member
+            <a href="{{route('faq', 'members')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5></div>
           <div class="card-header"><h5>{{$affiliation->name}}</h5></div>
             <div class="card-body">
                 <form action="{{ route('members.store')  }}" method="POST">
@@ -80,7 +81,7 @@
                 
             
             <div class="card-header">
-                <h4>Skills And Capabilities</h4>
+                <h5>Skills And Capabilities</h5>
                 <p>Please describe your professional skills, capabilities and recognized spiritual gifts</p>
             </div>
             <div class="card-body">
@@ -114,7 +115,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Registered Voter's Address</h4>
+                    <h5>Registered Voter's Address</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -160,7 +161,7 @@
                 
                 <hr/>
                 <div class="card-header">
-                    <h4>Position in Organisation</h4>
+                    <h5>Position in Organisation</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -180,7 +181,7 @@
 
                 <hr/>
                 <div class="card-header">
-                    <h4>Are you a business owner?</h4>
+                    <h5>Are you a business owner?</h5>
                     <div>
                         <input type="radio" name="bizowner" id="bizowner_yes" class="m-2" value="yes">Yes
                         <input type="radio" name="bizowner" id="bizowner_no" class="m-2" value="no">No

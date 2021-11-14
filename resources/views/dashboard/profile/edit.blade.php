@@ -25,7 +25,9 @@
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>Edit Profile</h4></div>
+          <div class="card-header"><h5>Edit Profile
+            <a href="{{route('faq', 'profile')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+        </h5></div>
             <div class="card-body">
                 <form action="{{ route('profile.store', $member->id ) }}" method="POST">
                     @method('PUT')
@@ -85,7 +87,7 @@
                 
             
             <div class="card-header">
-                <h4>Skills And Capabilities</h4>
+                <h5>Skills And Capabilities</h5>
                 <p>Please describe your professional skills, capabilities and recognized spiritual gifts</p>
             </div>
             <div class="card-body">
@@ -121,7 +123,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Registered Voter's Address</h4>
+                    <h5>Registered Voter's Address</h5>
                 </div>
                 <div class="card-body">
 
@@ -189,7 +191,7 @@
                 
                 <hr/>
                 <div class="card-header">
-                    <h4>Are you a business owner?</h4>
+                    <h5>Are you a business owner?</h5>
                     <div>
                         <input type="radio" name="bizowner" id="bizowner_yes" class="m-2" value="yes"
                         {{ $member->business_type == '' ? '' : 'checked' }}>

@@ -8,7 +8,9 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Create Affiliation</h4></div>
+          <div class="card-header"><h5>{{ __('Add Affiliation') }}
+            <a href="{{route('faq', 'affiliations')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a>
+          </h5></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>

@@ -69,6 +69,11 @@ class MemberController extends Controller
      */
     public function create(Request $request)
     {
+        if(!$request['affiliation_id']) {
+            request()->session()->flash('message', 'Missing affiliation. Do you need to add it firsf?');
+            return back();
+        }
+
         $user = auth()->user();
         $affiliation = Affiliation::find($request['affiliation_id']);
         return view('dashboard.members.create', [

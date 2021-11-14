@@ -25,7 +25,8 @@
     
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-header"><h4>Edit Member</h4></div>
+          <div class="card-header"><h5>Edit Member
+            <a href="{{route('faq', 'members')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5></div>
           <div class="card-header"><h5>{{$affiliation->name}}</h5></div>
             <div class="card-body">
                 <form action="{{ route('members.update', $member->id ) }}" method="POST">
