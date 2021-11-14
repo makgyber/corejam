@@ -25,7 +25,7 @@
                 <div class="col-6">
                     <h5>Create Affiliation</h5>  
 
-                    <table>
+                    <table class="table table-sm table-condensed table-hover">
                         <tbody>
                             <tr>
                                 <th>Field</th>
