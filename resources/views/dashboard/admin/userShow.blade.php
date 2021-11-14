@@ -21,8 +21,17 @@
             </ul>
         </div>
     @endif   
+    <div class="row mb-3">
+        <div class="col-12">
+            <form action="{{route('coordinators.re-invite')}}" method="POST">
+                @csrf
+                <input type="hidden" name="user_id" value="{{$user->id}}">
+                <button class="btn btn-warning btn-sm float-right">Re-send Coordinator Invitation</button>
+            </form>
+        </div>
+    </div>
     <div class="row">
-    
+
       <div class="col-sm-6">
         <div class="card">
           <div class="card-header"><h4>User Details</h4></div>

@@ -250,6 +250,18 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function reInvite(Request $request)
+    {
+        $user = User::findOrFail($request['user_id']);
+        $user->password = 'secret';
+        $user->save();
+        $url = URL::signedRoute('invitation', $user);
+        $user->notify(new CoordinatorInviteNotification($url));
+
+        $request->session()->flash('message', 'Invitation sent to ' . $user->name);
+        return redirect()->route('users.index');
+    }
+
     public function showRole($id)
     {
         $user = User::findOrFail($id);
