@@ -10,7 +10,7 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> {{ __('Edit') }}: {{ $note->title }}</div>
                     <div class="card-body">
-                        <form method="POST" action="/notes/{{ $note->id }}">
+                        <form method="POST" action="{{ route('notes.update', $note->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">

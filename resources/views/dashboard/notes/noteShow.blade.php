@@ -10,23 +10,22 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> Note: {{ $note->title }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('logout') }}"> @csrf<button class="btn btn-primary">{{ __('Logout') }}</button></form> 
-                        <br>
-                        <h4>Author:</h4>
+
+                        <strong>Author:</strong>
                         <p> {{ $note->user->name }}</p>
-                        <h4>Title:</h4>
+                        <strong>Title:</strong>
                         <p> {{ $note->title }}</p>
-                        <h4>Content:</h4> 
+                        <strong>Content:</strong> 
                         <p>{{ $note->content }}</p>
-                        <h4>Applies to date:</h4> 
+                        <strong>Applies to date:</strong> 
                         <p>{{ $note->applies_to_date }}</p>
-                        <h4> Status: </h4>
+                        <strong> Status: </strong>
                         <p>
                             <span class="{{ $note->status->class }}">
                               {{ $note->status->name }}
                             </span>
                         </p>
-                        <h4>Note type:</h4>
+                        <strong>Note type:</strong>
                         <p>{{ $note->note_type }}</p>
                         <a href="{{ route('notes.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a>
                     </div>
