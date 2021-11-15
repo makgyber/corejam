@@ -91,7 +91,7 @@
           </li>
         </ul>
         <div class="c-subheader px-3">
-          <ol class="breadcrumb border-0 m-0">
+          {{-- <ol class="breadcrumb border-0 m-0">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <?php $segments = ''; ?>
             @for($i = 1; $i <= count(Request::segments()); $i++)
@@ -102,6 +102,20 @@
                     <li class="breadcrumb-item active">{{ Request::segment($i) }}</li>
                 @endif
             @endfor
-          </ol>
+          </ol> --}}
+
+          <div class="mt-3 d-flex col-12 text-center">
+            <h5 class="text-uppercase text-right text-dark col-5 mt-1"><i class="cil-clock"></i> @php $date = new DateTime('now'); echo $date->format('l, F d, Y ');@endphp</h5>
+            <h2 class=" text-center text-danger  col-auto">
+              @php 
+                $election = new DateTime('2022-05-09'); 
+                $today = new DateTime('today'); 
+                $interval = date_diff($today, $election, true);
+                echo $interval->format('%r%a days');
+              @endphp 
+            </h2>
+            <p class=" text-left  col-5 mt-1">before the <span class="text-info">May 9, 2022 National and Local Elections</span></p>
+          </div>
         </div>
+        
     </header>
