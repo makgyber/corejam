@@ -107,6 +107,19 @@
       <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem;">
           <div class="p-4 mb-3 bg-light rounded">
+            <h5 class="text-uppercase text-center text-dark border-bottom pb-2"><i class="cil-clock"></i> @php $date = new DateTime('now'); echo $date->format('l, F d, Y ');@endphp</h5>
+            <h1 class="m-4 text-center text-danger">
+              @php 
+                $election = new DateTime('2022-05-09'); 
+                $today = new DateTime('today'); 
+                $interval = date_diff($today, $election, true);
+                echo $interval->format('%r%a days');
+              @endphp 
+            </h1>
+            <p class=" text-center">before the <span class="text-info">May 9, 2022 National and Local Elections</span></p>
+
+          </div>
+          <div class="p-4 mb-3 bg-light rounded">
             <h4 class="fst-italic">About</h4>
             <p class="mb-0">
               M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.

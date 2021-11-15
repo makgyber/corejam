@@ -20,6 +20,7 @@
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/free.min.css') }}" rel="stylesheet">
     <style>
       .bg {
         /* The image used */
