@@ -66,7 +66,10 @@
                             <th>Coordinator Level</th>
                             <th>Area</th>
                             <th>Registered</th>
-                            <th></th>
+                            <td class="text-muted small text-right text-uppercase">({{$users->total()}} records found)
+                            
+                            
+                            </td>
                           </tr>
                         </thead>
                         
