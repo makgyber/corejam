@@ -65,6 +65,7 @@
                             <th>Roles</th>
                             <th>Coordinator Level</th>
                             <th>Area</th>
+                            <th>Registered</th>
                             <th></th>
                           </tr>
                         </thead>
@@ -91,6 +92,13 @@
                                     echo App\Models\Cities::where('code', $user->coordinator_scope)->first()->name;
                                   }
                                 @endphp
+                              </td>
+                              <td>
+                                @if($user->hasAcceptedInvitation())
+                                <i class="cil-check text-primary"></i>
+                                @else
+                                <i class="cil-x text-danger"></i>
+                                @endif
                               </td>
                               <td>
 

@@ -115,4 +115,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function hasAcceptedInvitation()
+    {
+        return ($this->hasRole('coordinator') && $this->password != 'secret');
+    }
 }
