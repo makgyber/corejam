@@ -197,14 +197,14 @@
                             <td class="text-center"><i class="flag-icon flag-icon-us c-icon-xl" id="us" title="us">{{$coordinator->region_name ?? ''}}</i></td>
                             <td>
                               <div class="clearfix">
-                                <div class="float-left"><strong>{{number_format((float)$coordinator->support_how_much,2) ?? ''}}</strong></div>
+                                <div class="float-left"><strong>{{$coordinator->support_how_much ?? ''}}</strong></div>
                               </div>
                               {{-- <div class="progress progress-xs">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div> --}}
                             </td>
                             <td class="text-center">
-                              <div class="float-right"><strong>{{number_format((float)$coordinator->disbursed,2) ?? ''}}</strong></div>
+                              <div class="float-right"><strong>{{$coordinator->disbursed ?? ''}}</strong></div>
                             </td>
                             <td>
                             <strong>{{$coordinator->title ?? ''}}</strong>
