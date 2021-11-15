@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'adults' => $demographics->adults,
             'seniors' => $demographics->seniors,
             'male'=>$gender->male,
-            'femail'=>$gender->female
+            'female'=>$gender->female
         ];
 
         
