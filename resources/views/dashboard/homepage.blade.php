@@ -92,12 +92,12 @@
                     </div>
                     <div class="card-body row text-center">
                       <div class="col">
-                        <div class="fs-5 fw-semibold">{{$totals['male'] ?? 0}}</div>
+                        <div class="fs-5 fw-semibold"><h3>{{$totals['male'] ?? 0}}</h3></div>
                         <div class="text-uppercase text-medium-emphasis small">male</div>
                       </div>
                       <div class="vr"></div>
                       <div class="col">
-                        <div class="fs-5 fw-semibold">{{$totals['female'] ?? 0}}</div>
+                        <div class="fs-5 fw-semibold"><h3>{{$totals['female'] ?? 0}}</h3></div>
                         <div class="text-uppercase text-medium-emphasis small">female</div>
                       </div>
                     </div>
@@ -112,17 +112,17 @@
                     </div>
                     <div class="card-body row text-center">
                       <div class="col">
-                        <div class="fs-5 fw-semibold">{{$totals['youth']??0}}</div>
+                        <div class="fs-5 fw-semibold"><h3>{{$totals['youth']??0}}</h3></div>
                         <div class="text-uppercase text-medium-emphasis small">youth  (18-29)</div>
                       </div>
                       <div class="vr"></div>
                       <div class="col">
-                        <div class="fs-5 fw-semibold">{{$totals['adults']??0}}</div>
+                        <div class="fs-5 fw-semibold"><h3>{{$totals['adults']??0}}</h3></div>
                         <div class="text-uppercase text-medium-emphasis small">adults (30-59)</div>
                       </div>
                       <div class="vr"></div>
                       <div class="col">
-                        <div class="fs-5 fw-semibold">{{$totals['seniors']??0}}</div>
+                        <div class="fs-5 fw-semibold"><h3>{{$totals['seniors']??0}}</h3></div>
                         <div class="text-uppercase text-medium-emphasis small">seniors (60 and up)</div>
                       </div>
                     </div>
