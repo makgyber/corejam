@@ -105,11 +105,11 @@
           </ol> --}}
 
           <div class="mt-3 d-flex col-12 text-center">
-            <h5 class="text-uppercase text-right text-dark col-5 mt-1"><i class="cil-clock"></i> @php $date = new DateTime('now'); echo $date->format('l, F d, Y ');@endphp</h5>
+            <h5 class="text-uppercase text-right text-dark col-5 mt-1"><i class="cil-clock"></i> @php $date = new DateTime('today', new DateTimeZone('Asia/Manila')); echo $date->format('l, F d, Y ');@endphp</h5>
             <h2 class=" text-center text-danger  col-auto">
               @php 
-                $election = new DateTime('2022-05-09'); 
-                $today = new DateTime('today'); 
+                $election = new DateTime('2022-05-09', new DateTimeZone('Asia/Manila')); 
+                $today = new DateTime('today', new DateTimeZone('Asia/Manila')); 
                 $interval = date_diff($today, $election, true);
                 echo $interval->format('%r%a days');
               @endphp 

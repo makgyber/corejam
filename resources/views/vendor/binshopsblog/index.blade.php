@@ -107,11 +107,11 @@
       <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem;">
           <div class="p-4 mb-3 bg-light rounded">
-            <h5 class="text-uppercase text-center text-dark border-bottom pb-2"><i class="cil-clock"></i> @php $date = new DateTime('now'); echo $date->format('l, F d, Y ');@endphp</h5>
+            <h5 class="text-uppercase text-center text-dark border-bottom pb-2"><i class="cil-clock"></i> @php $date = new DateTime('today', new DateTimeZone('Asia/Manila')); echo $date->format('l, F d, Y ');@endphp</h5>
             <h1 class="m-4 text-center text-danger">
               @php 
-                $election = new DateTime('2022-05-09'); 
-                $today = new DateTime('today'); 
+                $election = new DateTime('2022-05-09', new DateTimeZone('Asia/Manila')); 
+                $today = new DateTime('today', new DateTimeZone('Asia/Manila')); 
                 $interval = date_diff($today, $election, true);
                 echo $interval->format('%r%a days');
               @endphp 
