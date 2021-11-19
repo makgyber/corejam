@@ -143,6 +143,11 @@ class="btn btn-sm btn-info">Click here</a>
         <a target="_blank" href="https://drive.google.com/file/d/15fqgR-B9eohyzsVazj6Y1Hw23L9HrWOq/view?usp=sharing"
         class="btn btn-sm btn-info">Click here</a>
     </li>	
+    <li class="mt-4">
+        <h5>Mga programang ipatutupad ni Manny Pacquiao at Lito Atienza</h5>
+        <a target="_blank" href="{{asset('assets/faq/toolkit/smp_programa.jpg')}}"
+        class="btn btn-sm btn-info">Click here</a>
+    </li>
 </ol>
 
 </div>
