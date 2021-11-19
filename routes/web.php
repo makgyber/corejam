@@ -16,6 +16,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/setpassword','SetPasswordController@store')->name('setpassword.store');
 }); 
 
+Route::get('/registration', 'MemberController@selfRegister')->name('member.selfregister');
+Route::post('/registration', 'MemberController@selfStore')->name('member.selfStore');
+
 Route::prefix('/cms')->group(function() {  
 
 
@@ -56,6 +59,7 @@ Route::prefix('/cms')->group(function() {
                 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
                 Route::put('/', 'ProfileController@store')->name('profile.store');
             });
+            
             
             Route::post('members/import', 'MemberController@import')->name('members.import');
             Route::resource('affiliations',  'AffiliationController');

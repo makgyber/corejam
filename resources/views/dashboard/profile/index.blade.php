@@ -150,6 +150,8 @@
                             <th>Name</th>
                             <th>Position in Organisation</th>
                             <th>No. of Members</th>
+                            <th>QR Code</th>
+                            <th>URL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -158,6 +160,15 @@
                             <td>{{ $affiliation->name }} </td>
                             <td>{{ $affiliation->pivot->position }}</td>
                             <td>{{ $affiliation->users->count() }}</td>
+                            <td>{!! 
+                            
+                            QrCode::size(100)->generate(route('member.selfregister', ['p' => Crypt::encrypt(['c'=>auth()->user()->id, 'a'=>$affiliation->id])]
+                        
+                        )); !!}
+                        </td>
+                        <td>
+                            <a href="{{route('member.selfregister', ['p' => Crypt::encrypt(['c'=>auth()->user()->id, 'a'=>$affiliation->id])])}}" target="_blank" rel="noopener noreferrer">Link</a>
+                        </td>
                             <td><a href="{{ route('members.index', ['affiliation_id'=> $affiliation->id]) }}" class="btn btn-light btn-sm">View Members</a></td>
                         </tr>
                     @empty

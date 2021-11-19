@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Imports\MemberImport;
+use App\Services\MemberService;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -93,52 +94,11 @@ class MemberController extends Controller
      */
     public function store(CreateMemberRequest $request)
     {
-        $checkUserExists = User::where('first_name', $request['first_name'])
-                            ->where('last_name', $request['last_name'])
-                            ->where('middle_name', $request['middle_name'])
-                            ->first();
-        if($checkUserExists) {
-            return back()->withError('A user with the same name already exists in the database.')
-                        ->withInput();
-        }
-        
-        $validated = $request->safe()->except(['skillsets', 'other_skillsets']);
+        $memberService = new MemberService();
+        $memberService->store($request);
 
-        $skillsets = '';
-        if(!empty($request['skillsets'])) {
-            if(is_array($request['skillsets'])) {
-                $skillsets = implode( ',', $request['skillsets'] );
-            } else {
-                $skillsets = $request['skillsets'];
-            }
-        }
-
-
-        if(!empty($request['other_skillsets'])) {
-            $skillsets .= ',' . $request['other_skillsets'];
-        }
-
-        $validatedData = $request->safe()->except(['position_other', 'skillsets', 'other_skillsets']);
-
-        $member = User::create(
-            $validatedData + [
-            'name' =>  $request['first_name'] . ' ' . $request['middle_name'] . ' ' . $request['last_name'],
-            'password' => 'sikreto',
-            'skillsets' => $skillsets,
-            'position' => $request['position_other'],
-            'menuroles' => 'user',
-            'created_by' => auth()->user()->id
-        ]);
-
-        UserAffiliation::create([
-            'user_id' => $member->id,
-            'affiliation_id'=> $request['affiliation_id'],
-            'position'=> $request['position_other'],
-            'is_primary' => 0
-        ]);
-
-        $request->session()->flash('message', 'Successfully created member');
-        return redirect()->route('members.create', ['affiliation_id' => $validatedData['affiliation_id']]);
+        $request->session()->flash('message', 'Successfully created member'); 
+        return redirect()->route('members.create', ['affiliation_id' => $request['affiliation_id']]);
     }
 
     /**
@@ -263,6 +223,40 @@ class MemberController extends Controller
         Excel::import(new MemberImport, request()->file('membersheet'));
         request()->session()->flash('message', 'Successfully imported members');
         return redirect()->route('members.index', 'affiliation_id='.request()->get('affiliation_id'));
+    }
+
+
+    public function selfRegister(Request $request)
+    {
+        if(!$request['p']) {
+            abort(404);
+        }
+
+        $params = decrypt($request['p']);
+        $coordinator = User::findOrFail($params['c']);
+        $affiliation = Affiliation::findOrFail($params['a']);
+
+        return view('auth.register', [
+            'affiliation' => $affiliation,  
+            'user' => $coordinator,
+            'regions' => Regions::all(),
+            'skillOptions' => $this->skillOptions,
+            'positionOptions' => $this->positionOptions
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function selfStore(CreateMemberRequest $request)
+    {
+        $memberService = new MemberService();
+        $memberService->store($request);
+
+        return view('auth.self-saved');
     }
 
 }
