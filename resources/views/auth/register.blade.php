@@ -20,12 +20,10 @@
             </ul>
         </div>
     @endif   
+    <div class="row justify-content-center bg-white shadow mb-3">
+        <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="180em"/>  
+    </div>
     <div class="row">
-       <div class="col-md-12   bg-white shadow mb-3">
-        <div class="row justify-content-center">
-              <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="220em"/>
-        </div>   
-       </div>
       <div class="col-sm-6">
         <div class="card shadow">
           <div class="card-header"><h5>Registration for {{$affiliation->name}}</h5></div>
