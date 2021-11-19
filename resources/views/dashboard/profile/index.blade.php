@@ -160,11 +160,13 @@
                             <td>{{ $affiliation->name }} </td>
                             <td>{{ $affiliation->pivot->position }}</td>
                             <td>{{ $affiliation->users->count() }}</td>
-                            <td>{!! 
+                            <td>
+                                <a href="{{route('member.qrcode', ['p' => Crypt::encrypt(['c'=>auth()->user()->id, 'a'=>$affiliation->id])])}}" target="_blank">
+                                {!! 
                             
                             QrCode::size(100)->generate(route('member.selfregister', ['p' => Crypt::encrypt(['c'=>auth()->user()->id, 'a'=>$affiliation->id])]
                         
-                        )); !!}
+                        )); !!} </a>
                         </td>
                         <td>
                             <a href="{{route('member.selfregister', ['p' => Crypt::encrypt(['c'=>auth()->user()->id, 'a'=>$affiliation->id])])}}" target="_blank" rel="noopener noreferrer">Link</a>

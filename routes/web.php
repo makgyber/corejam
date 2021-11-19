@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/setpassword','SetPasswordController@store')->name('setpassword.store');
 }); 
 
+Route::get('/qrcode', 'MemberController@qrCode')->name('member.qrcode');
 Route::get('/registration', 'MemberController@selfRegister')->name('member.selfregister');
 Route::post('/registration', 'MemberController@selfStore')->name('member.selfStore');
 

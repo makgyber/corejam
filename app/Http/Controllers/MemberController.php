@@ -259,4 +259,8 @@ class MemberController extends Controller
         return view('auth.self-saved');
     }
 
+    public function qrCode(Request $request)
+    {
+        return view('auth.qrcode', ['encoded' => $request['p']]);
+    }
 }
