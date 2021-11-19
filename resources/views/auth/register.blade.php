@@ -21,8 +21,7 @@
         </div>
     @endif   
     <div class="row justify-content-center bg-white shadow mb-3">
-        <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="180em"/>  
-    </div>
+        <img src="{{ URL::to('/assets/img/m610.jpg') }}" width="200em" height="170em"/> </div>
     <div class="row">
       <div class="col-sm-6">
         <div class="card shadow">
