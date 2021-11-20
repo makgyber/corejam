@@ -120,7 +120,7 @@
 
 
           <div class="rounded card shadow ">
-            <div class="card-header content-center "><h5>About</h5></div>
+            <div class="card-header content-center "><h5>About Us</h5></div>
             <div class="card-body  justify-content-center">
               M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
 We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
