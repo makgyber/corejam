@@ -149,8 +149,8 @@ We are the official communications and coordination channel of Senator Manny Pac
             <div class="card-header content-center"><h5>Links to Social Media</h5></div>
             <div class="card-body">
               <ol class="list-unstyled">
-                <li><a href="#"  class="btn btn-sm btn-light mb-2">Twitter</a></li>
-                <li><i class="fa  fa-facebook"></i><a href="https://www.facebook.com/M610forMP/"   class="btn btn-sm btn-light">Facebook</a></li>
+                <li><a href="#"  class="btn btn-sm btn-light mb-2 shadow-sm">Twitter</a></li>
+                <li><i class="fa  fa-facebook"></i><a href="https://www.facebook.com/M610forMP/"   class="btn btn-sm btn-light  shadow-sm">Facebook</a></li>
               </ol>
             </div>
           </div>
@@ -159,7 +159,7 @@ We are the official communications and coordination channel of Senator Manny Pac
             <div class="card-header content-center"><h5>Blog Categories</h5></div>
             <div class="card-body">
                 @forelse($categories as $category)
-                    <a href="{{$category->url()}}" class="btn btn-sm btn-light">
+                    <a href="{{$category->url()}}" class="btn btn-sm btn-light shadow-sm">
                         <h6>{{$category->category_name}}</h6>
                     </a>
                 @empty
