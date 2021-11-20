@@ -108,7 +108,7 @@
                               <td>{{ $member->email }}</td>
                               <td>{{ $member->contact_number }}</td>
                               <td>{{ $member->region->name ??'' }}</td>
-                              <td>{{ $member->skillsets }}</td>
+                              <td>{{ str_replace(',', ', ', $member->skillsets) }}</td>
                               <td>
                                 <a href="{{ url('/cms/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary btn-sm">Edit</a>
                               </td>

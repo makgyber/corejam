@@ -33,6 +33,23 @@ this.updateSelectCities = function($province=null){
     axios.get( '/cms/cities?province=' + provinceCode)
     .then(function (response) {
         document.getElementById("city_code").innerHTML = self.buildSelectOptions(response.data, 'city')
+        self.updateSelectBarangays(document.getElementById("city_code").value)
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error)
+    })
+}
+
+this.updateSelectBarangays = function($city=null){
+    let cityCode =  document.getElementById("city").value 
+    if($city){
+        cityCode =  $city
+    }
+
+    axios.get( '/cms/barangays?city=' + cityCode)
+    .then(function (response) {
+        document.getElementById("barangay_code").innerHTML = self.buildSelectOptions(response.data, 'barangay')
     })
     .catch(function (error) {
         // handle error
@@ -42,5 +59,7 @@ this.updateSelectCities = function($province=null){
 
 this.updateSelectProvince()
 this.updateSelectCities()
+this.updateSelectBarangays()
 document.getElementById("region_code").onchange = function(){self.updateSelectProvince()}
 document.getElementById("province_code").onchange = function(){self.updateSelectCities()}
+document.getElementById("city_code").onchange = function(){self.updateSelectBarangays()}

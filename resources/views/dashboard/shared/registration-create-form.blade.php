@@ -1,0 +1,24 @@
+@include('dashboard.shared.member-create-form-personal')
+
+<hr class=""/>
+
+@include('dashboard.shared.member-create-form-skills')
+
+</div>
+</div>
+<div class="col-sm-6">
+
+@include('dashboard.shared.member-create-form-voter')
+
+<hr/>
+@include('dashboard.shared.member-create-form-position')
+
+<hr/>
+
+@include('dashboard.shared.member-create-form-business')
+
+<div class="card-body" >
+    <button type="submit" class="btn btn-primary">Save Details</button>
+</div>
+
+</div>

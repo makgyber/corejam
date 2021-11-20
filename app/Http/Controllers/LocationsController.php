@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barangay;
 use Illuminate\Http\Request;
 use App\Models\Provinces;
 use App\Models\Cities;
@@ -25,5 +26,11 @@ class LocationsController extends Controller
 
         
         return $cities;
+    }
+
+    public function barangays(Request $request)
+    {
+        $barangays = Barangay::where('city_code', $request['city'])->get();
+        return $barangays;
     }
 }
