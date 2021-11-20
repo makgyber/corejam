@@ -144,7 +144,7 @@ class="btn btn-sm btn-info">Click here</a>
         class="btn btn-sm btn-info">Click here</a>
     </li>	
     <li class="mt-4">
-        <h5>Mga programang ipatutupad ni Manny Pacquiao at Lito Atienza</h5>
+        <h5>22 Rounds Plataporma ni Manny Pacquiao</h5>
         <a target="_blank" href="{{asset('assets/faq/toolkit/smp_programa.jpg')}}"
         class="btn btn-sm btn-info">Click here</a>
     </li>

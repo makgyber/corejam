@@ -52,9 +52,9 @@
   </head>
   <body class="c-app flex-row align-items-center bg">
     <div class="container-fluid">
-        <header>
-          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gradient-primary">
-            <div class="container-fluid">
+        <header class="">
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gradient-primary shadow">
+            <div class="container-fluid ">
               <a class="navbar-brand" href="#">M6:10</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

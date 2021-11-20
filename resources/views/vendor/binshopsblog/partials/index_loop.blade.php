@@ -1,8 +1,8 @@
-<article class="blog-post card row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+<article class="blog-post card row g-0 border rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative shadow">
     <div class="card-header bg-gradient-light" >
         <small class="float-right">{{date('d M Y ', strtotime($post->posted_at))}}</small>
-        <h1 class="blog-post-title text-black"><a href='{{$post->url()}}' class="text-decoration-none text-primary">{{$post->title}}</a>
-        </h1>
+        <h3 class="blog-post-title text-black"><a href='{{$post->url()}}' class="text-decoration-none text-primary">{{$post->title}}</a>
+        </h3>
         
     </div>
 

@@ -56,9 +56,6 @@
   
     <div class="row g-5">
       <div class="col-md-8">
-        <h3 class="pb-4 mb-4 fst-italic border-bottom">
-          Our Activities
-        </h3>
         <div class="row">
         @if($category_chain)
             <div class="container">
@@ -106,7 +103,7 @@
   
       <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem;">
-          <div class="p-4 mb-3 bg-light rounded">
+          <div class="p-4 mb-3 bg-light rounded card shadow ">
             <h5 class="text-uppercase text-center text-dark border-bottom pb-2"><i class="cil-clock"></i> @php $date = new DateTime('today', new DateTimeZone('Asia/Manila')); echo $date->format('l, F d, Y ');@endphp</h5>
             <h1 class="m-4 text-center text-danger">
               @php 
@@ -119,29 +116,50 @@
             <p class=" text-center">before the <span class="text-info">May 9, 2022 National and Local Elections</span></p>
 
           </div>
-          <div class="p-4 mb-3 bg-light rounded">
-            <h4 class="fst-italic">About</h4>
-            <p class="mb-0">
+
+
+
+          <div class="rounded card shadow ">
+            <div class="card-header content-center "><h5>About</h5></div>
+            <div class="card-body  justify-content-center">
               M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
 We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
-            </p>
-
+</div>
             <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
-
-          </div>
-  
-          <div class="mt-4 p-4 bg-light rounded">
-            <h4 class="fst-italic">Links to Social Media</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">Twitter</a></li>
-              <li><i class="fa  fa-facebook"></i><a href="https://www.facebook.com/M610forMP/">Facebook</a></li>
-            </ol>
           </div>
 
-          <div class="mt-4 p-4 bg-light rounded">
-            <h4>Blog Categories</h4>
+          <div class="rounded card shadow ">
+            <div class="card-header content-center"><h5>Register via QR Code</h5></div>
+            <div class="card-body text-center">
+              <img src="{{asset('assets/img/qrhq.png')}}" alt="QR Code for Registration" width="220em" height="220em">
+            </div>
+            <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
+          </div>
+
+          <div class="rounded card shadow ">
+            <div class="card-header content-center "><h5>Plataporma ni Manny Pacquiao</h5></div>
+            <div class="mb-0 card-body text-center">
+              <a href="{{asset('assets/img/smp_programa.jpg')}}">
+              <img src="{{asset('assets/img/smp_programa.jpg')}}" alt="SMP Platform" width="220em" height="220em">
+            </a>
+            </div>
+          </div>
+
+          <div class="rounded card shadow ">
+            <div class="card-header content-center"><h5>Links to Social Media</h5></div>
+            <div class="card-body">
+              <ol class="list-unstyled">
+                <li><a href="#"  class="btn btn-sm btn-light mb-2">Twitter</a></li>
+                <li><i class="fa  fa-facebook"></i><a href="https://www.facebook.com/M610forMP/"   class="btn btn-sm btn-light">Facebook</a></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="rounded card shadow ">
+            <div class="card-header content-center"><h5>Blog Categories</h5></div>
+            <div class="card-body">
                 @forelse($categories as $category)
-                    <a href="{{$category->url()}}">
+                    <a href="{{$category->url()}}" class="btn btn-sm btn-light">
                         <h6>{{$category->category_name}}</h6>
                     </a>
                 @empty
@@ -149,6 +167,7 @@ We are the official communications and coordination channel of Senator Manny Pac
                         <h4>No Categories</h4>
                     </a>
                 @endforelse
+              </div>
           </div>
   
           
