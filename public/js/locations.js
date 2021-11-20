@@ -51,7 +51,7 @@ this.updateSelectCities = function () {
 
 this.updateSelectBarangays = function () {
   var $city = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var cityCode = document.getElementById("city").value;
+  var cityCode = document.getElementById("city_code").value;
 
   if ($city) {
     cityCode = $city;

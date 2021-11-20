@@ -42,7 +42,7 @@ this.updateSelectCities = function($province=null){
 }
 
 this.updateSelectBarangays = function($city=null){
-    let cityCode =  document.getElementById("city").value 
+    let cityCode =  document.getElementById("city_code").value 
     if($city){
         cityCode =  $city
     }
