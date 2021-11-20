@@ -16,9 +16,15 @@ class Admin
     public function handle($request, Closure $next)
     {
         $roles = explode(',', $request->user()->menuroles);
-        if ( ! in_array('admin', $roles) ) {
-            return abort( 401 );
+
+        foreach($roles as $role) {
+            if(in_array(trim($role), ['admin','site_admin'])) {
+                return $next($request);
+            }
         }
-        return $next($request);
+
+
+        return abort( 401 );
+        
     }
 }

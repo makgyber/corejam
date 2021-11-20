@@ -35,7 +35,7 @@ Route::prefix('/cms')->group(function() {
             Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
         });
 
-        Route::group(['middleware' => ['role:coordinator']], function () {
+        // Route::group(['middleware' => ['role:coordinator']], function () {
             Route::get('/faq/{slug}', 'FaqController@show')->name('faq');
             Route::resource('targets', 'TargetController');
             Route::get('/targets/{target}/activities', 'ActivityController@index')->name('activities.index');
@@ -69,7 +69,7 @@ Route::prefix('/cms')->group(function() {
             Route::get('/provinces', 'LocationsController@provinces');
             Route::get('/cities', 'LocationsController@cities');
             Route::get('/barangays', 'LocationsController@barangays');
-        });
+        // });
         Auth::routes();
 
         Route::resource('resource/{table}/resource', 'ResourceController')->names([
@@ -82,7 +82,7 @@ Route::prefix('/cms')->group(function() {
             'destroy'   => 'resource.destroy'
         ]);
 
-        Route::group(['middleware' => ['role:admin']], function () {
+        // Route::group(['middleware' => ['role:admin']], function () {
 
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
             Route::get('coordinators/show-invite/{id}', 'UsersController@showInvite')->name('coordinators.show-invite');
@@ -139,7 +139,7 @@ Route::prefix('/cms')->group(function() {
                 Route::post('/file/cropp',      'MediaController@cropp');
                 Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
             });
-        });
+        // });
     });
 });
 

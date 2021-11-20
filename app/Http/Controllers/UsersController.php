@@ -178,17 +178,17 @@ class UsersController extends Controller
 
         $validated = $request->validated();
         $coordinatorScope = '';
-        
-        if ($validated['coordinator_level'] == 'regional') {
-            $coordinatorScope = $validated['region_code'];
-        } else if ($validated['coordinator_level'] == 'provincial') {
-            $coordinatorScope = $validated['province_code'];
-        } else if ($request['coordinator_level'] == 'city') {
-            $coordinatorScope = $request['city_code'];
-        } else if ($request['coordinator_level'] == 'municipal') {
-            $coordinatorScope = $request['city_code'];
+        if(isset($validated['coordinator_level']))  {
+            if ($validated['coordinator_level'] == 'regional') {
+                $coordinatorScope = $validated['region_code'];
+            } else if ($validated['coordinator_level'] == 'provincial') {
+                $coordinatorScope = $validated['province_code'];
+            } else if ($request['coordinator_level'] == 'city') {
+                $coordinatorScope = $request['city_code'];
+            } else if ($request['coordinator_level'] == 'municipal') {
+                $coordinatorScope = $request['city_code'];
+            }
         }
-
 
         $user =  User::create([
             'name' => $validated['first_name'].' '.$validated['last_name'],
@@ -209,8 +209,6 @@ class UsersController extends Controller
         $user->assignRole('coordinator');
         $url = URL::signedRoute('invitation', $user);
         $user->notify(new CoordinatorInviteNotification($url));
-
-
 
         return redirect()->route('coordinators.create')->with('message', 'Successfully created coordinator');
     }
@@ -276,25 +274,27 @@ class UsersController extends Controller
     public function assignRole(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $user->syncRoles($request['roles']);
+        // foreach($request['roles'] as $role) {
+        //     $user->assignRole($role);
+        // }
 
-        foreach($request['roles'] as $role) {
-            $user->assignRole($role);
+        if(isset($request['coordinator_level'])){
+            if ($request['coordinator_level'] == 'regional') {
+                $coordinatorScope = $request['region_code'];
+            } else if ($request['coordinator_level'] == 'provincial') {
+                $coordinatorScope = $request['province_code'];
+            } else if ($request['coordinator_level'] == 'city') {
+                $coordinatorScope = $request['city_code'];
+            } else if ($request['coordinator_level'] == 'municipal') {
+                $coordinatorScope = $request['city_code'];
+            }
+
+            $user->menuroles = implode(',', $request['roles']);
+            $user->coordinator_level = $request['coordinator_level'];
+            $user->coordinator_scope = $coordinatorScope;
+            $user->save();
         }
-
-        if ($request['coordinator_level'] == 'regional') {
-            $coordinatorScope = $request['region_code'];
-        } else if ($request['coordinator_level'] == 'provincial') {
-            $coordinatorScope = $request['province_code'];
-        } else if ($request['coordinator_level'] == 'city') {
-            $coordinatorScope = $request['city_code'];
-        } else if ($request['coordinator_level'] == 'municipal') {
-            $coordinatorScope = $request['city_code'];
-        }
-
-        $user->menuroles = implode(',', $request['roles']);
-        $user->coordinator_level = $request['coordinator_level'];
-        $user->coordinator_scope = $coordinatorScope;
-        $user->save();
 
         request()->session()->flash('message', 'Role assignment completed');
         return redirect()->route('coordinators.index');
