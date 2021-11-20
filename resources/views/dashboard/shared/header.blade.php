@@ -4,15 +4,20 @@
       <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
         <button class="c-header-toggler c-class-toggler d-lg-none mr-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show"><span class="c-header-toggler-icon"></span></button><a class="c-header-brand d-sm-none" href="#"><img class="c-header-brand" src="{{ url('/assets/brand/m610.svg')  }}" width="60" height="36" alt="CoreUI Logo"></a>
         <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true"><span class="c-header-toggler-icon"></span></button>
+        
+        <a href="{{route('index')}}" class="c-header-brand btn btn-light btn-check">Blog Home</a>
+        
         <?php
-            use App\MenuBuilder\FreelyPositionedMenus;
-            if(isset($appMenus['top menu'])){
-                FreelyPositionedMenus::render( $appMenus['top menu'] , 'c-header-', 'd-md-down-none');
-            }
+            // use App\MenuBuilder\FreelyPositionedMenus;
+            // if(isset($appMenus['top menu'])){
+            //     FreelyPositionedMenus::render( $appMenus['top menu'] , 'c-header-', 'd-md-down-none');
+            // }
             $messageCount = Auth::user()->newThreadsCount(); 
             use Cmgmyr\Messenger\Models\Thread;
             $popThreads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
         ?>  
+        
+        
         <ul class="c-header-nav ml-auto mr-4">
             {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
                 <svg class="c-icon">
