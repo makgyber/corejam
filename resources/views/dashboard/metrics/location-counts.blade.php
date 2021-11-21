@@ -3,8 +3,9 @@
     @php
         $drillDown = $params ?? [];
         if(!isset($params['region_code'])) $drillDown['region_code'] = $locationCount->code;
-        if(!isset($params['province_code'])) $drillDown['province_code'] = $locationCount->code;
-        if(!isset($params['city_code'])) $drillDown['city_code'] = $locationCount->code;
+        if(isset($params['region_code']) && !isset($params['province_code'])) $drillDown['province_code'] = $locationCount->code;
+        if(isset($params['region_code']) && isset($params['province_code']) && !isset($params['city_code'])) $drillDown['city_code'] = $locationCount->code;
+        if(isset($params['region_code']) && isset($params['province_code']) && isset($params['city_code']) && !isset($params['barangay'])) $drillDown['barangay'] = $locationCount->code;
     @endphp
     <div class="col-sm-6">
         <div class="progress-group">
