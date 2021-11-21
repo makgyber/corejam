@@ -20,28 +20,6 @@
 </main>
 
 
-
-    <div class='container'>
-    <div class='row'>
-        <div class='col-sm-12 col-md-12 col-lg-12'>
-
-            
-
-
-            @if(config("binshopsblog.comments.type_of_comments_to_show","built_in") !== 'disabled')
-                <div class="" id='maincommentscontainer'>
-                    <h2 class='text-center' id='BinshopsBlogcomments'>Comments</h2>
-                    @include("binshopsblog::partials.show_comments")
-                </div>
-            @else
-                {{--Comments are disabled--}}
-            @endif
-
-
-        </div>
-    </div>
-    </div>
-
 @endsection
 
 @section('blog-custom-js')

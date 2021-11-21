@@ -2,8 +2,8 @@
     <a href="{{$post->edit_url()}}" class="btn btn-outline-secondary btn-sm pull-right float-right">Edit
         Post</a>
 @endif
-
-<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark shadow-lg" 
+<br>
+  <div class="p-4 mb-4 text-white rounded bg-dark shadow-lg" 
 style="background-image: url({{asset('assets/img/pacman.jpeg')}});background-size:contain;background-repeat:no-repeat;background-position:right; ">
     <div class="col-md-12 px-0">
       <h1 class="display-4 fst-italic">{{$post->title}}</h1>
@@ -31,21 +31,43 @@ style="background-image: url({{asset('assets/img/pacman.jpeg')}});background-siz
       </div>
   
       <div class="col-md-4">
-        <div class="position-sticky" style="top: 2rem;">
-          <div class="p-4 mb-3 bg-light rounded">
-            <h4 class="fst-italic">About</h4>
-            
-            <p class="mb-0">
-              M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
+        <div class="rounded card shadow ">
+          <div class="card-header content-center "><h5>About Us</h5></div>
+          <div class="card-body  justify-content-center">
+            M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
 We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
-            </p>
-
-            <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
-            </div>
-          @includeWhen($post->categories,"binshopsblog::partials.categories",['post'=>$post])
-
-
+</div>
+          <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
         </div>
+
+
+
+        <div class="rounded card shadow ">
+          <div class="card-header content-center "><h5>Plataporma ni Manny Pacquiao</h5></div>
+          <div class="mb-0 card-body text-center">
+            <a href="{{asset('assets/img/smp_programa.jpg')}}">
+            <img src="{{asset('assets/img/smp_programa.jpg')}}" alt="SMP Platform" width="220em" height="220em">
+          </a>
+          </div>
+        </div>
+        <div class="rounded card shadow ">
+          <div class="card-header content-center"><h5>Register via QR Code</h5></div>
+          <div class="card-body text-center">
+            <img src="{{asset('assets/img/qrhq.png')}}" alt="QR Code for Registration" width="220em" height="220em">
+          </div>
+          <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
+        </div>
+        <div class="rounded card shadow ">
+          <div class="card-header content-center"><h5>Links to Social Media</h5></div>
+          <div class="card-body">
+            <ol class="list-unstyled">
+              <li><a href="#"  class="btn btn-sm btn-light mb-2 shadow-sm">Twitter</a></li>
+              <li><i class="fa  fa-facebook"></i><a href="https://www.facebook.com/M610forMP/"   class="btn btn-sm btn-light  shadow-sm">Facebook</a></li>
+            </ol>
+          </div>
+        </div>
+
+  
       </div>
     </div>
 
