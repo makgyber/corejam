@@ -138,6 +138,8 @@
           </div>
       </div>
       <div class="col-sm-6">
+            @include('dashboard.profile.avatar')
+
             <div class="card ">
                 <div class="card-header">
                     <h5 class="d-inline-block">Church or Other Affiliations <a href="{{route('faq', 'affiliations')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5>
@@ -174,7 +176,7 @@
                             <td><a href="{{ route('members.index', ['affiliation_id'=> $affiliation->id]) }}" class="btn btn-light btn-sm">View Members</a></td>
                         </tr>
                     @empty
-                    <tr><td colspan="3">
+                    <tr><td colspan="5">
                         <div class="alert alert-warning">Please click here to add your Church or other affiliation 
                             <a href="{{route('affiliations.create')}}" class="btn btn-success btn-sm">Add Church / Affiliation</a>
                         </div>
