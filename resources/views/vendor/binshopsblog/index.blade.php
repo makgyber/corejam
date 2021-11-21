@@ -6,8 +6,50 @@
 
 @section("content")
 
-<main class="container mt-5">
-    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="background-image: url('{{asset('assets/img/m610.png')}}'); background-size: contain; background-repeat: no-repeat; background-position:center ">
+<main class="container mt-5 p-md-3">
+  <div id="myCarousel" class="carousel slide bg-dark mb-3 shadow" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D">
+        <img src="{{asset('assets/img/qrpacman.jpg')}}" alt="" width="100%" height="600em">
+        </a>
+        <div class="container">
+          <div class="carousel-caption text-start align-content-start d-none">
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item bg-gradient-dark">
+       <img src="{{asset('assets/img/m610.png')}}" alt="" width="100%" height="600em">
+        <div class="container">
+          <div class="carousel-caption text-start">
+           <h1 class="display-4 fst-italic ">
+                "Thy kingdom come,<br>
+                Thy will be done,<br>
+                on earth as it is in heaven."
+            </h1>
+            <p class="lead my-3 d-flex flex-row-reverse">Matthew 6:10</p>
+
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+    {{-- <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="background-image: url('{{asset('assets/img/m610.png')}}'); background-size: contain; background-repeat: no-repeat; background-position:center ">
       
       <div class="px-0 d-flex flex-row-reverse">
         
@@ -19,7 +61,7 @@
         </h1>
       </div>
       <p class="lead my-3 d-flex flex-row-reverse">Matthew 6:10</p>
-    </div>
+    </div> --}}
   
     {{-- <div class="row mb-2">
       <div class="col-md-6">
