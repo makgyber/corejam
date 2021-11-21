@@ -11,6 +11,7 @@ class AvatarController extends Controller
         $request->validate([
             'avatar' => 'required',
         ]);
+        
         $path = $request->file('avatar')->store('avatars');
 
         try {

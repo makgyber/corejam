@@ -39,10 +39,16 @@
             @include('dashboard.messenger.partials.pop-messages')   
           </li>
           <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              <!-- <div class="c-avatar"><img class="c-avatar-img" src="{{ url('/assets/img/avatars/6.jpg') }}" alt="{{ Auth::user()->email }}"></div> -->
-            {{ Auth::user()->email }}
+            @if(auth()->user()->image!='')
+            <div class="c-avatar"><img class="c-avatar-img rounded-pill" style="width: 2.5em;height:2.5em"
+              src="{{ url('/storage/'.auth()->user()->image) }}" alt="{{ Auth::user()->email }}"></div>
+            @else
+              {{ Auth::user()->email }}
+            @endif
+            
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
+              <div class="dropdown-header text-success py-3"><strong>{{ Auth::user()->email }}</strong></div>
               <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
               
               <a class="dropdown-item" href="{{ url('cms/profile') }}">

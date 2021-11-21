@@ -222,10 +222,10 @@ class AnalyticsService
     public function getCoordinatorActivities()
     {
         $coordinators = DB::table('activities')
-                        ->select(DB::raw('activities.title, users.name, users.first_name,users.last_name, users.created_at,regions.name as region_name, activities.support_how_much, activities.disbursed, max(activities.updated_at)'))
+                        ->select(DB::raw('activities.title, users.name, users.first_name,users.last_name, users.image, users.created_at,regions.name as region_name, activities.support_how_much, activities.disbursed, max(activities.updated_at)'))
                         ->leftJoin('users', 'activities.owner', '=', 'users.id')
                         ->leftJoin('regions', 'regions.code', '=', 'users.region_code')
-                        ->groupBy(['activities.title','users.name', 'users.first_name','users.last_name','users.created_at','regions.name','activities.support_how_much', 'activities.disbursed',])
+                        ->groupBy(['activities.title','users.name', 'users.first_name','users.last_name','users.image','users.created_at','regions.name','activities.support_how_much', 'activities.disbursed',])
                         ->orderBy('activities.updated_at')
                         ->paginate(20);
         return $coordinators;
