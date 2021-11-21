@@ -10,7 +10,7 @@
 var self = this;
 
 this.buildSelectOptions = function (data, selectedId) {
-  var result = '';
+  var result = '<option></option>';
   var selectedValue = document.getElementById(selectedId).value;
 
   for (var i = 0; i < data.length; i++) {

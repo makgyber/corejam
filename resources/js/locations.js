@@ -2,7 +2,7 @@
 let self = this;
 
 this.buildSelectOptions = function( data , selectedId){
-    let result = ''
+    let result = '<option></option>'
     let selectedValue = document.getElementById(selectedId).value;
     for(let i = 0; i<data.length; i++){
         result += '<option value="' + data[i].code+ '"'

@@ -26,6 +26,7 @@ Route::prefix('/cms')->group(function() {
     Route::group(['middleware' => ['get.menu']], function () {
         
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/stats', 'DashboardController@stats')->name('stats');
 
         Route::group(['prefix' => 'messages'], function () {
             Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
