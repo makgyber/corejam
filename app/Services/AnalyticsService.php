@@ -78,7 +78,7 @@ class AnalyticsService
     public function getLocationCounts($params)
     {
 
-        if(!isset($params['region_code'])) {
+        if(!isset($params)) {
             return $locationCounts = [];
         } else if(!isset($params['province_code'])) {
 
