@@ -3,10 +3,10 @@
         Post</a>
 @endif
 <br>
-  <div class="p-4 mb-4 text-white rounded bg-dark shadow-lg" 
+  <div class="p-4 mb-4 text-bold text-dark rounded bg-transparent shadow-lg" 
 style="background-image: url({{asset('assets/img/pacman.jpeg')}});background-size:contain;background-repeat:no-repeat;background-position:right; ">
     <div class="col-md-12 px-0">
-      <h1 class="display-4 fst-italic">{{$post->title}}</h1>
+      <h1 class="display-3 " style="text-shadow: 2px 2px #eeeeee;">{{$post->title}}</h1>
       <p class="lead my-3">{{$post->subtitle}}</p>
     </div>
   </div>
