@@ -6,7 +6,7 @@
     </div>
     <div class="card-body row">
        <div class="col-4">
-            <img src="{{url(auth()->user()->image ? auth()->user()->image : 'assets/img/m610.png')}}" alt="" 
+            <img src="{{url(auth()->user()->image ? 'storage/'.auth()->user()->image : 'assets/img/m610.png')}}" alt="" 
             class="avatar rounded-pill img-thumbnail col-3 d-inline" style="width:10em;height:10em" />
         </div>
         <div class="col-8  align-middle text-center">
