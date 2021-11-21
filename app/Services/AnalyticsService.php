@@ -80,7 +80,7 @@ class AnalyticsService
 
         if(!isset($params)) {
             return $locationCounts = [];
-        } else if(!isset($params['province_code'])) {
+        } else if(isset($params['region_code']) && !isset($params['province_code'])) {
 
             return $locationCounts = DB::table('provinces')
                         ->select(DB::raw('provinces.code, provinces.name, count(users.id) as user_count'))
@@ -90,7 +90,7 @@ class AnalyticsService
                         ->orderBy('provinces.code')
                         ->get();
 
-        } else if(!isset($params['city_code'])) {
+        } else if(isset($params['region_code']) && isset($params['province_code']) && !isset($params['city_code'])) {
 
             $locationCounts = DB::table('cities')
                         ->select(DB::raw('cities.code, cities.name, count(users.id) as user_count'))
@@ -106,7 +106,7 @@ class AnalyticsService
                         ->orderBy('cities.code')
                         ->get();
 
-        } else if(!isset($params['barangay'])) {
+        } else if(isset($params['region_code']) && isset($params['province_code']) && isset($params['city_code']) &&  !isset($params['barangay'])) {
             return $locationCounts = DB::table('barangays')
                         ->select(DB::raw('barangays.code, barangays.name, count(users.id) as user_count'))
                         ->leftJoin('users', 'barangays.code', '=', 'users.barangay')
