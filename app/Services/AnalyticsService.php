@@ -78,7 +78,9 @@ class AnalyticsService
     public function getLocationCounts($params)
     {
 
-        if(!isset($params['province_code'])) {
+        if(!isset($params['region_code'])) {
+            return $locationCounts = [];
+        } else if(!isset($params['province_code'])) {
 
             return $locationCounts = DB::table('provinces')
                         ->select(DB::raw('provinces.code, provinces.name, count(users.id) as user_count'))
