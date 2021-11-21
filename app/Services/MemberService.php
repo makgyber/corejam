@@ -44,7 +44,7 @@ class MemberService
             'skillsets' => $skillsets,
             'position' => $request['position_other'],
             'menuroles' => 'user',
-            'created_by' => auth()->user()->id
+            'created_by' => (auth()->check()) ? auth()->user()->id : 17
         ]);
 
         UserAffiliation::create([
