@@ -170,13 +170,7 @@ We are the official communications and coordination channel of Senator Manny Pac
             <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
           </div>
 
-          <div class="rounded card shadow ">
-            <div class="card-header content-center"><h5>Register via QR Code</h5></div>
-            <div class="card-body text-center">
-              <img src="{{asset('assets/img/qrhq.png')}}" alt="QR Code for Registration" width="220em" height="220em">
-            </div>
-            <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
-          </div>
+
 
           <div class="rounded card shadow ">
             <div class="card-header content-center "><h5>Plataporma ni Manny Pacquiao</h5></div>
@@ -186,7 +180,13 @@ We are the official communications and coordination channel of Senator Manny Pac
             </a>
             </div>
           </div>
-
+          <div class="rounded card shadow ">
+            <div class="card-header content-center"><h5>Register via QR Code</h5></div>
+            <div class="card-body text-center">
+              <img src="{{asset('assets/img/qrhq.png')}}" alt="QR Code for Registration" width="220em" height="220em">
+            </div>
+            <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
+          </div>
           <div class="rounded card shadow ">
             <div class="card-header content-center"><h5>Links to Social Media</h5></div>
             <div class="card-body">
@@ -211,7 +211,7 @@ We are the official communications and coordination channel of Senator Manny Pac
                 @endforelse
               </div>
           </div>
-  
+
           
         </div>
       </div>
