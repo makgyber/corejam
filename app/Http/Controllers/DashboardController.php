@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
         return view('dashboard.homepage', [
             'drillTo' => '',
-            'totals' => $this->analytics->getTotals(),
+            'totals' => $this->analytics->getTotals(null),
             'regionCounts' => $this->analytics->getRegionCounts(),
             'coordinators' => $this->analytics->getCoordinatorActivities(),
             'regionTargets'=> $this->analytics->getRegionTargets()
@@ -53,9 +53,7 @@ class DashboardController extends Controller
             'params' => $params,
             'regions' => Regions::all(),
             'totals' => $this->analytics->getTotals($params),
-            'regionCounts' => $this->analytics->getRegionCounts(),
-            'coordinators' => $this->analytics->getCoordinatorActivities(),
-            'regionTargets'=> $this->analytics->getRegionTargets()
+            'locationCounts' => $this->analytics->getLocationCounts($params)
         ]);
     }
 

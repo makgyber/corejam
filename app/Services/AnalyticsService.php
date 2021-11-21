@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class AnalyticsService
 {
-    public function getAges()
+    public function getAges($params=null)
     {
         $demoSql = 'count( *) as totalUsers,  
                     sum(if(timestampdiff( YEAR, birthday, now() ) <= 29, 1, 0)) as youth, 
@@ -16,24 +16,52 @@ class AnalyticsService
                     sum(if(timestampdiff( YEAR, birthday, now() ) >59, 1, 0)) as seniors
         ';
 
-        $demographics = DB::table('users')
-                            ->select(DB::raw($demoSql))
-                            ->first();
+        $demographics = DB::table('users')->select(DB::raw($demoSql));
 
-        return $demographics;
+        if (isset($params['barangay'])) {
+            $demographics->where('barangay', $params['barangay']);
+        } else if (isset($params['city_code'])) {
+            $demographics->where('city_code', $params['city_code']);
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $demographics->where('province_code', 'like', '13%');
+            } else {
+                $demographics->where('province_code', $params['province_code']);
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $demographics->where('region_code', $params['region_code']);
+        }
+
+        return $demographics->first();
     }
 
-    public function getGenders()
+    public function getGenders($params=null)
     {
         $genderSql = 'count( *) as totalUsers,  
                 sum(if(gender = "M", 1, 0)) as male, 
                 sum(if(gender = "F", 1, 0)) as female
         ';                   
         $gender =  DB::table('users')
-                    ->select(DB::raw($genderSql))
-                    ->first();     
+                    ->select(DB::raw($genderSql));
 
-        return $gender;            
+        if (isset($params['barangay'])) {
+            $gender->where('barangay', $params['barangay']);
+        } else if (isset($params['city_code'])) {
+            $gender->where('city_code', $params['city_code']);
+        } else if (isset($params['province_code'])) {
+            if($params['province_code'] == '1300') {
+                $gender->where('province_code', 'like', '13%');
+            } else {
+                $gender->where('province_code', $params['province_code']);
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $gender->where('region_code', $params['region_code']);
+        }
+                    
+        return $gender->first();               
     }
 
     public function getRegionCounts()
@@ -47,17 +75,58 @@ class AnalyticsService
         return $regionCounts;
     }
 
-    public function getTotals()
+    public function getLocationCounts($params)
     {
-        $ages = $this->getAges();
-        $genders = $this->getGenders();
+
+        if(!isset($params['province_code'])) {
+
+            return $locationCounts = DB::table('provinces')
+                        ->select(DB::raw('provinces.code, provinces.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'provinces.code', '=', 'users.province_code')
+                        ->where('provinces.region_code', $params['region_code'])
+                        ->groupBy(['provinces.code','provinces.name'])
+                        ->orderBy('provinces.code')
+                        ->get();
+
+        } else if(!isset($params['city_code'])) {
+
+            $locationCounts = DB::table('cities')
+                        ->select(DB::raw('cities.code, cities.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'cities.code', '=', 'users.city_code');
+
+            if($params['province_code']=='1300') {
+                $locationCounts->where('cities.code', 'like', '13%');
+            } else {
+                $locationCounts->where('cities.province_code', $params['province_code']);
+            }
+        
+            return $locationCounts->groupBy(['cities.code','cities.name'])
+                        ->orderBy('cities.code')
+                        ->get();
+
+        } else if(!isset($params['barangay'])) {
+            return $locationCounts = DB::table('barangays')
+                        ->select(DB::raw('barangays.code, barangays.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'barangays.code', '=', 'users.barangay')
+                        ->where('barangays.city_code', $params['city_code'])
+                        ->groupBy(['barangays.code','barangays.name'])
+                        ->orderBy('barangays.code')
+                        ->get();
+        } 
+
+        return $locationCounts = [];
+    }
+
+    public function getTotals($params=null)
+    {
+        $ages = $this->getAges($params);
+        $genders = $this->getGenders($params);
                     
         $totals = [
-            'organizations' => Affiliation::count(), 
-            'targetRegistrations' => Configuration::select('value')->where('key', 'target.registrations')->first()->value, 
-            'coordinators' => User::where('menuroles', 'coordinator')->count(), 
-            'registered_voters' => User::where('is_registered_voter', 1)->count(),
-            'total_users' => User::count(),
+            'targetRegistrations' => $this->getTargetRegistrations($params), 
+            'coordinators' => $this->getCoordinatorCount($params), 
+            'registered_voters' => $this->getRegisteredVoters($params),
+            'total_users' => $this->getUserCount($params),
             'youth' => $ages->youth,
             'adults' => $ages->adults,
             'seniors' => $ages->seniors,
@@ -65,6 +134,87 @@ class AnalyticsService
             'female'=>$genders->female
         ];
         return $totals;
+    }
+
+    public function getCoordinatorCount($params=null)
+    {
+        $users = User::where('menuroles', 'coordinator');
+
+        if (isset($params['barangay'])) {
+            $users->where('barangay', $params['barangay'])->count();
+        } else if (isset($params['city_code'])) {
+            $users->where('city_code', $params['city_code'])->count();
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $users->where('province_code', 'like', '13%')->count();
+            } else {
+                $users->where('province_code', $params['province_code'])->count();
+            }
+
+        } else if (isset($params['region_code'])) {
+            $users->where('region_code', $params['region_code'])->count();
+        } 
+ 
+        return $users->count();
+    }
+
+    public function getTargetRegistrations($params=null)
+    {
+        $target = Configuration::select('value');
+
+        if (isset($params['region_code'])) {
+            $target->where('key', 'region.' . $params['region_code']);
+        } else {
+            $target->where('key', 'target.registrations');
+        }
+
+        return $target->first()->value;
+    }
+
+    public function getRegisteredVoters($params=null)
+    {
+        $users = User::where('is_registered_voter', 1);
+
+        if (isset($params['barangay'])) {
+            $users->where('barangay', $params['barangay']);
+        } else if (isset($params['city_code'])) {
+            $users->where('city_code', $params['city_code']);
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $users->where('province_code', 'like', '13%');
+            } else {
+                $users->where('province_code', $params['province_code']);
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $users->where('region_code', $params['region_code']);
+        } 
+
+        return $users->count();
+    }
+
+    public function getUserCount($params=null) 
+    {
+
+        if (isset($params['barangay'])) {
+            return User::where('barangay', $params['barangay'])->count();
+        } else if (isset($params['city_code'])) {
+            return User::where('city_code', $params['city_code'])->count();
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                return User::where('province_code', 'like', '13%')->count();
+            } else {
+                return User::where('province_code', $params['province_code'])->count();
+            }
+
+        } else if (isset($params['region_code'])) {
+            return User::where('region_code', $params['region_code'])->count();
+        } 
+
+        return User::count();
     }
 
     public function getCoordinatorActivities()
