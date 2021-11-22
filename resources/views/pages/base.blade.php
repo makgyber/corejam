@@ -52,7 +52,7 @@
   <body class="c-app flex-row align-items-center bg">
     <div class="container-fluid">
         <header class="">
-          <nav class="navbar navbar-expand-md navbar-light fixed-top shadow">
+          <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow">
             <div class="container-fluid ">
               <a class="navbar-brand" href="#">M6:10</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
