@@ -21,9 +21,9 @@ Route::get('/registration', 'MemberController@selfRegister')->name('member.selfr
 Route::post('/registration', 'MemberController@selfStore')->name('member.selfStore');
 
 Route::prefix('/cms')->group(function() {  
+    Auth::routes();
 
-
-    Route::group(['middleware' => ['get.menu']], function () {
+    Route::group(['middleware' => ['get.menu', 'auth']], function () {
         
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/stats', 'DashboardController@stats')->name('stats');
@@ -38,7 +38,7 @@ Route::prefix('/cms')->group(function() {
             Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
         });
 
-        // Route::group(['middleware' => ['role:coordinator']], function () {
+        //  Route::group(['middleware' => ['role:coordinator', 'auth']], function () {
             Route::get('/faq/{slug}', 'FaqController@show')->name('faq');
             Route::resource('targets', 'TargetController');
             Route::get('/targets/{target}/activities', 'ActivityController@index')->name('activities.index');
@@ -73,7 +73,7 @@ Route::prefix('/cms')->group(function() {
             Route::get('/cities', 'LocationsController@cities');
             Route::get('/barangays', 'LocationsController@barangays');
         // });
-        Auth::routes();
+
 
         Route::resource('resource/{table}/resource', 'ResourceController')->names([
             'index'     => 'resource.index',
@@ -85,7 +85,7 @@ Route::prefix('/cms')->group(function() {
             'destroy'   => 'resource.destroy'
         ]);
 
-        // Route::group(['middleware' => ['role:admin']], function () {
+
 
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
             Route::get('coordinators/show-invite/{id}', 'UsersController@showInvite')->name('coordinators.show-invite');
