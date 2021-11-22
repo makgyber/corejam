@@ -15,9 +15,9 @@ $unreadMessagesCount = $thread->userUnreadMessagesCount(Auth::id())
         <span class="c-avatar-status bg-success"></span></div>
     </td>
     <td class="col-md-2">
-        <a href="{{ route('messages.show', $thread->id)}}" class="text-dark">{{ $thread->creator()->name }}</a></td>
+        <a href="{{ route('messages.show', $thread->id)}}" class="text-dark text-decoration-none">{{ $thread->creator()->name }}</a></td>
     <td class="col-md-7">
-        <a href="{{ route('messages.show', $thread->id)}}">
+        <a href="{{ route('messages.show', $thread->id)}}" class="text-decoration-none">
         <div class="text-bold">{{ $thread->subject }}</div>
         <span class="small text-muted text-truncate">{{ substr($thread->latestMessage->body, 0, 200) }}...</span>
         </a>

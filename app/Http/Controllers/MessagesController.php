@@ -71,7 +71,7 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        $users = User::where('id', '!=', Auth::id())->orderBy('name')->get();
+        $users = User::where('id', '!=', Auth::id())->orderBy('last_name')->get();
 
         return view('dashboard.messenger.create', compact('users'));
     }
@@ -81,9 +81,14 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function store()
-    {
-        $input = Request::all();
+    public function store(Request $request)
+    { 
+
+        $input = request()->validate([
+            'subject'=>'required',
+            'message'=>'required',
+            'recipients'=>'required'
+        ]);
 
         $thread = Thread::create([
             'subject' => $input['subject'],
