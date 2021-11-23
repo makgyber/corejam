@@ -28,6 +28,7 @@
                             <th>Region</th>
                             <th>Province</th>
                             <th>City</th>
+                            <th>Barangay</th>
                             <th>Is Primary</th>
                             <th></th>
                             <th></th>
@@ -46,6 +47,7 @@
                               <td>{{ $affiliation->region->name }}</td>
                               <td>{{ $affiliation->province->name }}</td>
                               <td>{{ $affiliation->city->name }}</td>
+                              <td>{{ $affiliation->barangay->name }}</td>
                               <td>{{ $affiliation->pivot->is_primary  ? 'Yes' : 'No'}}</td>
                               <td>
                                 <a href="{{ url('/cms/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>

@@ -67,7 +67,7 @@
                                     <select class="form-control" id="region_code" name="region_code">   
 
                                     @forelse ($regions ?? [] as $region)
-                                        @if ($user->region_code == $region->code)
+                                        @if ($affiliation->region_code == $region->code)
                                             <option value="{{$region->code}}" selected>{{$region->name}}</option> 
                                         @else
                                             <option value="{{$region->code}}">{{$region->name}}</option>    
@@ -86,7 +86,7 @@
                                     Province
                                 </th>
                                 <td>
-                                    <input type="hidden" id="province" value="{{$user->province_code ?? ''}}" />
+                                    <input type="hidden" id="province" value="{{$affiliation->province_code ?? ''}}" />
                                     <select class="form-control" id="province_code" name="province_code">
 
                                     </select>
@@ -98,8 +98,19 @@
                                     City/Municipality
                                 </th>
                                 <td>
-                                <input type="hidden" id="city" value="{{$user->city_code ?? ''}}" />
+                                <input type="hidden" id="city" value="{{$affiliation->city_code ?? ''}}" />
                                     <select class="form-control" id="city_code" name="city_code">   
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Barangay
+                                </th>
+                                <td>
+                                <input type="hidden" id="barangay" value="{{$user->barangay ?? ''}}" />
+                                    <select class="form-control" id="barangay_code" name="barangay">   
 
                                     </select>
                                 </td>

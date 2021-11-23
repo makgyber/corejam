@@ -59,7 +59,7 @@
                                                 <div class="card form-check col-12 border-0 pt-2 bg-light">
                                                     <label title="{{ $user->name }}" for="rec{{ $user->id }}"><input type="checkbox" name="recipients[]"
                                                     class="m-1 d-inline-block "   value="{{ $user->id }}" id="rec{{ $user->id }}">
-                                                    {!!$user->last_name!!}, {{$user->first_name}} {{$user->middle_name}}</label>
+                                                    {!!$user->last_name!!}, {{$user->first_name}} {{$user->menuroles}}</label>
                                                 </div>
                                             @endforeach
                                         </div>

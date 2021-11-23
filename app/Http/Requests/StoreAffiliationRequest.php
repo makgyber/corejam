@@ -31,6 +31,7 @@ class StoreAffiliationRequest extends FormRequest
             'region_code' => 'required',
             'province_code' => 'required',
             'city_code' => 'required',
+            'barangay' => 'barangay',
             'position' => 'required',
             'position_other' => '',
             'is_primary' => '',

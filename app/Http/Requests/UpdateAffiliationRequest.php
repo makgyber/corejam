@@ -31,6 +31,7 @@ class UpdateAffiliationRequest extends FormRequest
             'region_code' => 'required',
             'province_code' => 'required',
             'city_code' => 'required',
+            'barangay' => 'required',
             'position' => 'required',
             'position_other' => '',
             'is_primary' => '',

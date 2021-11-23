@@ -60,6 +60,7 @@ class AffiliationController extends Controller
             'region_code' => $validatedData['region_code'],
             'province_code' => $validatedData['province_code'],
             'city_code' => $validatedData['city_code'],
+            'barangay' => $validatedData['barangay'],
         ]);
 
         UserAffiliation::create([

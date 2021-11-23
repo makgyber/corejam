@@ -12,7 +12,7 @@ class Affiliation extends Model
     protected $table = 'affiliations';
 
     protected $fillable = [
-        'name', 'description', 'region_code', 'organisation_type', 'address',   'province_code', 'city_code'
+        'name', 'description', 'region_code', 'organisation_type', 'address',   'province_code', 'city_code', 'barangay'
     ];
 
     /**
@@ -36,5 +36,10 @@ class Affiliation extends Model
     public function city()
     {
         return $this->belongsTo(Cities::class, 'city_code', 'code');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay', 'code');
     }
 }

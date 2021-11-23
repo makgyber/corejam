@@ -106,6 +106,18 @@
 
                             <tr>
                                 <th>
+                                    Barangay
+                                </th>
+                                <td>
+                                <input type="hidden" id="barangay" value="{{$user->barangay ?? ''}}" />
+                                    <select class="form-control" id="barangay_code" name="barangay">   
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
                                     Address
                                 </th>
                                 <td>
