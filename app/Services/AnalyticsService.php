@@ -221,18 +221,26 @@ class AnalyticsService
 
     public function getCoordinatorActivities()
     {
-        $coordinators = DB::table('activities')
-                        ->select(DB::raw('activities.title, users.name, users.first_name,users.last_name, users.image, users.created_at,regions.name as region_name, activities.support_how_much, activities.disbursed, max(activities.updated_at)'))
-                        ->leftJoin('users', 'activities.owner', '=', 'users.id')
-                        ->leftJoin('regions', 'regions.code', '=', 'users.region_code');
+ 
+        if(auth()->user()->hasRole(['site_admin','admin'])) {
+            $coordinators = DB::table('activities')
+                ->select(DB::raw('activities.title, users.name, users.first_name,users.last_name, users.image, users.created_at,regions.name as region_name, activities.support_how_much, activities.disbursed, max(activities.updated_at)'))
+                ->leftJoin('users', 'activities.owner', '=', 'users.id')
+                ->leftJoin('regions', 'regions.code', '=', 'users.region_code')
+                ->groupBy(['activities.title','users.name', 'users.first_name','users.last_name','users.image','users.created_at','regions.name','activities.support_how_much', 'activities.disbursed',])
+                ->orderBy('activities.updated_at')
+                ->paginate(20);
+        } else {
+            $coordinators = DB::table('activities')
+                ->select(DB::raw('activities.title, users.name, users.first_name,users.last_name, users.image, users.created_at,regions.name as region_name, activities.support_how_much, activities.disbursed, max(activities.updated_at)'))
+                ->leftJoin('users', 'activities.owner', '=', 'users.id')
+                ->leftJoin('regions', 'regions.code', '=', 'users.region_code')
+                ->where('activities.owner', auth()->user()->id)
+                ->groupBy(['activities.title','users.name', 'users.first_name','users.last_name','users.image','users.created_at','regions.name','activities.support_how_much', 'activities.disbursed',])
+                ->orderBy('activities.updated_at')
+                ->paginate(20);
+        }
         
-        // if(auth()->user()->hasRole('coordinator')) {
-        //     $coordinators->where('activities.owner', auth()->user()->id);
-        // }
-
-        $coordinators->groupBy(['activities.title','users.name', 'users.first_name','users.last_name','users.image','users.created_at','regions.name','activities.support_how_much', 'activities.disbursed',])
-                        ->orderBy('activities.updated_at')
-                        ->paginate(20);
         return $coordinators;
     }
 
