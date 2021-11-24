@@ -88,6 +88,7 @@ Route::prefix('/cms')->group(function() {
 
 
             Route::resource('bread',  'BreadController');   //create BREAD (resource)
+            Route::get('coordinators/view-as/{id}', 'UsersController@impersonate')->name('impersonate');
             Route::get('coordinators/show-invite/{id}', 'UsersController@showInvite')->name('coordinators.show-invite');
             Route::post('coordinators/re-invite', 'UsersController@reInvite')->name('coordinators.re-invite');
             Route::post('coordinators/send-invite', 'UsersController@sendInvite')->name('coordinators.send-invite');

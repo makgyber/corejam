@@ -299,4 +299,13 @@ class UsersController extends Controller
         request()->session()->flash('message', 'Role assignment completed');
         return redirect()->route('coordinators.index');
     }
+
+    public function impersonate($id)
+    {
+        $user = User::findOrFail($id);
+        if(auth()->user()->hasRole('admin')) {
+            auth()->login($user);
+        }
+        return redirect()->route('members.index');
+    }
 }
