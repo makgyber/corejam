@@ -126,7 +126,7 @@
                             @endforelse
                         </tbody>
                       </table>
-                      {{$members->links()}}
+                      {{$members->appends(request()->query())->links()}}
                     </div>
                 </div>
               </div>
