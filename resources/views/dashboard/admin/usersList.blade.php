@@ -114,9 +114,6 @@
                                   <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
                                 @endif
  
-                                @if(auth()->user()->hasRole('admin'))
-                                <a href="{{ route('impersonate',  $user->id) }}" class="btn btn-sm btn-info">View As</a>
-                                @endif
                               </td>
                             </tr>
                           @endforeach
