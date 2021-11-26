@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class AnalyticsService
 {
+    public function getBusinessOwners()
+    {
+        return User::where('business_type', '!=', 'null')->count();
+    }
+
     public function getAges($params=null)
     {
         $demoSql = 'count( *) as totalUsers,  

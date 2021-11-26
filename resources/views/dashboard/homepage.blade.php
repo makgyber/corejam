@@ -19,7 +19,7 @@
                 <!-- /.col-->
                 @include('dashboard.metrics.age')
                 <!-- /.col-->
-                
+                @include('dashboard.metrics.business')
                 </div>
                 <!-- /.col-->
               </div>
