@@ -31,6 +31,9 @@ class LocationsController extends Controller
     public function barangays(Request $request)
     {
         $barangays = Barangay::where('city_code', $request['city'])->get();
+        if(substr($request['city'],0,4) == '1339') {
+            $barangays = Barangay::where('city_code', 'like', '1339%')->get();
+        } 
         return $barangays;
     }
 }
