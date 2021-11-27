@@ -35,7 +35,7 @@
     @each('dashboard.messenger.partials.thread', $threads, 'thread', 'dashboard.messenger.partials.no-threads')
 </tbody>
     </table>
-
+{{$threads->links()}}
                     </div>
                 </div>
               </div>

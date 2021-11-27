@@ -23,11 +23,11 @@ class MessagesController extends Controller
     {
         if(auth()->user()->hasRole('admin')) {
             // All threads, ignore deleted/archived participants
-            $threads = Thread::getAllLatest()->get();
+            $threads = Thread::getAllLatest()->paginate(50);
         } else {
 
             // All threads that user is participating in
-            $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
+            $threads = Thread::forUser(Auth::id())->latest('updated_at')->paginate(50);
         }
 
         // All threads that user is participating in, with new messages

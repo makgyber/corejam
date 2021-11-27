@@ -45,7 +45,7 @@
                             </div>
 
                             @if($users->count() > 0)
-                            <details>
+                            <details open="true">
                                 <summary>Add Recipients</summary>
                                 <div class="form-group mt-3">
                                     <label class="control-label text-success   text-uppercase" for="selectAll"></label>
