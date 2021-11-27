@@ -138,7 +138,8 @@ class AnalyticsService
             'adults' => $ages->adults,
             'seniors' => $ages->seniors,
             'male'=>$genders->male,
-            'female'=>$genders->female
+            'female'=>$genders->female,
+            'businessOwners'=>$this->getBusinessOwners()
         ];
         return $totals;
     }

@@ -35,7 +35,6 @@ class DashboardController extends Controller
             'regionCounts' => $this->analytics->getRegionCounts(),
             'coordinators' => $this->analytics->getCoordinatorActivities(),
             'regionTargets'=> $this->analytics->getRegionTargets(),
-            'businessOwners' => $this->analytics->getBusinessOwners()
         ]);
     }
 
