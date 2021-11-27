@@ -60,10 +60,10 @@ class MessagesController extends Controller
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))
                         ->where('menuroles', 'like', '%coordinator%')
                         ->orderBy('last_name')->get();
-
+        $participants = User::whereIn('id', $thread->participantsUserIds())->get();
         $thread->markAsRead($userId);
-
-        return view('dashboard.messenger.show', compact('thread', 'users'));
+        
+        return view('dashboard.messenger.show', compact('thread', 'users', 'participants'));
     }
 
     /**

@@ -53,18 +53,17 @@
                                     <label class="text-success text-uppercase">
                                         <input type="checkbox" id="selectAll"
                                         class="m-1 d-inline-block " >Select All</label>
-                                    <div class="overflow-auto" style="height: 21em">
-                                        <div class="card-columns">
-                                            @foreach($users as $user)
-                                                <div class="card form-check col-12 border-0 pt-2 bg-light">
-                                                    <label title="{{ $user->name }}" for="rec{{ $user->id }}"><input type="checkbox" name="recipients[]"
-                                                    class="m-1 d-inline-block "   value="{{ $user->id }}" id="rec{{ $user->id }}">
-                                                    {!!$user->last_name!!}, {{$user->first_name}} {{$user->middle_name}}</label>
-                                                </div>
-                                            @endforeach
+                                   
+                                        <div class="flex">
+                                            <select class="js-example-basic-multiple" name="recipients[]" id="recipientSelect" multiple="multiple" style="width:100%">
+                                                @foreach($users as $user)
+                                                    <option value="{{ $user->id }}">{!!$user->last_name!!}, {{$user->first_name}} {{$user->middle_name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                    </div>
+                                   
                                 </div>
+                                
                             </details>
                             @endif
                     
@@ -83,12 +82,23 @@
 @endsection
 
 @section('javascript')
+<script src="{{ asset('js/axios.min.js') }}"></script> 
+<script src="{{ asset('js/select2.full.min.js') }}"></script> 
 <script>
-    document.getElementById('selectAll').onclick = function() {
-      var checkboxes = document.getElementsByName('recipients[]');
-      for (var checkbox of checkboxes) {
-          checkbox.checked = this.checked;
-      }
-  }
-  </script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            allowClear: true
+        });
+    
+        $("#selectAll").click(function(){
+            if($("#selectAll").is(':checked') ){
+                $("#recipientSelect > option").prop("selected","selected");
+            }else{
+                $("#recipientSelect").val('');
+            }
+            $("#recipientSelect").trigger('change');
+        });
+
+    });
+</script>
 @endsection

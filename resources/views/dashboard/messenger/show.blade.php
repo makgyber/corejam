@@ -32,11 +32,42 @@
                     @endforeach
                 </div> 
             </div> 
+
+            <div class="card bg-light">
+                <div class="card-body">
+    <h6> 
+        Participants
+    </h6>
+                            @foreach ($participants as $participant) 
+                                <span class="badge shadow-sm text-dark">{{$participant->last_name}}, {{$participant->first_name}}</span>
+                            @endforeach
+
+                </div>
+
+            </div>
             @include('dashboard.messenger.partials.form-message')
     </div>
 </div>
 @endsection
 
 @section('javascript')
+<script src="{{ asset('js/axios.min.js') }}"></script> 
+<script src="{{ asset('js/select2.full.min.js') }}"></script> 
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            allowClear: true
+        });
+    
+        $("#selectAll").click(function(){
+            if($("#selectAll").is(':checked') ){
+                $("#recipientSelect > option").prop("selected","selected");
+            }else{
+                $("#recipientSelect").val('');
+            }
+            $("#recipientSelect").trigger('change');
+        });
 
+    });
+</script>
 @endsection

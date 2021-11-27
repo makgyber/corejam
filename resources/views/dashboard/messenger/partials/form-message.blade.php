@@ -23,17 +23,13 @@
                             <label class="text-success text-uppercase">
                                 <input type="checkbox" id="selectAll"
                                 class="m-1 d-inline-block " >Select All</label>
-                            <div class="overflow-auto" style="height: 21em">
-                                <div class="card-columns">
-                                    @foreach($users as $user)
-                                        <div class="card form-check col-12 border-0 pt-2 bg-light">
-                                            <label title="{{ $user->name }}" for="rec{{ $user->id }}"><input type="checkbox" name="recipients[]"
-                                            class="m-1 d-inline-block "   value="{{ $user->id }}" id="rec{{ $user->id }}">
-                                            {!!$user->last_name!!}, {{$user->first_name}} {{$user->middle_name}}</label>
-                                        </div>
-                                    @endforeach
+                                <div class="flex">
+                                    <select class="js-example-basic-multiple" name="recipients[]" id="recipientSelect" multiple="multiple" style="width:100%">
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}">{!!$user->last_name!!}, {{$user->first_name}} {{$user->middle_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            </div>
 
                         </div>
                     </details>
