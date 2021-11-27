@@ -14,7 +14,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D">
+        <a target="_blank" href="https://m610.ph/registration?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D">
         <img src="{{asset('assets/img/qrpacman.jpg')}}" alt="" width="100%" height="600em">
         </a>
         <div class="container">
@@ -185,7 +185,7 @@ We are the official communications and coordination channel of Senator Manny Pac
             <div class="card-body text-center">
               <img src="{{asset('assets/img/qrhq.png')}}" alt="QR Code for Registration" width="220em" height="220em">
             </div>
-            <a target="_blank" href="https://m610.ph/qrcode?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
+            <a target="_blank" href="https://m610.ph/registration?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
           </div>
           <div class="rounded card shadow ">
             <div class="card-header content-center"><h5>Links to Social Media</h5></div>
