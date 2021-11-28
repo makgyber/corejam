@@ -58,7 +58,31 @@
                                     <textarea class="form-control" name="description">{{ $affiliation->description }}</textarea>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>
+                                    Country
+                                </th>
+                                <td>
+                                    <select class="form-control" id="country_id" name="country_id">   
+                                    @php
+                                        $defaultCountry = isset($user->country) ?: 'Philippines';
+                                    @endphp
+                                    @forelse ($countries ?? [] as $country)
+                                        @if ($defaultCountry == $country->name)
+                                            <option value="{{$country->id}}" selected>{{$country->name}}</option> 
+                                        @else
+                                            <option value="{{$country->id}}">{{$country->name}}</option>    
+                                        @endif
 
+                                    @empty
+                                    <option value="">No countries found</option>
+                                    @endforelse
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody id="localAddress">
                             <tr>
                                 <th>
                                     Region
@@ -104,7 +128,29 @@
                                     </select>
                                 </td>
                             </tr>
+                        </tbody>
+                        <tbody id="internationalAddress">
+                            <tr>
+                                <th>
+                                    State
+                                </th>
+                                <td>
+                                    <select class="form-control" id="state_id" name="state_id">
+                                    </select>
+                                </td>
+                            </tr>
 
+                            <tr>
+                                <th>
+                                    City/Municipality
+                                </th>
+                                <td>
+                                    <select class="form-control" id="world_city_id" name="world_city_id">   
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
                             <tr>
                                 <th>
                                     Address

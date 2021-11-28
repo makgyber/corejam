@@ -8,13 +8,14 @@ use App\Models\UserAffiliation;
 use App\Models\Regions;
 use App\Http\Requests\StoreAffiliationRequest;
 use App\Http\Requests\UpdateAffiliationRequest;
+use App\Models\Country;
 
 class AffiliationController extends Controller
 {
     var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
     public function index()
     {
-        $affiliations = auth()->user()->affiliations()->with('region')->get();
+        $affiliations = auth()->user()->affiliations()->get();
 
         return view('dashboard.affiliations.index', [
             'affiliations' => $affiliations,
@@ -25,9 +26,11 @@ class AffiliationController extends Controller
     public function create()
     {
         $affiliations = auth()->user()->affiliations();
+        
         return view('dashboard.affiliations.create',[
             'affiliations' => $affiliations,
             'regions' => Regions::all(),
+            'countries' => Country::all(),
             'user' => auth()->user()
         ]);
     }
@@ -44,7 +47,8 @@ class AffiliationController extends Controller
             'pivot' => $pivot,
             'position_other' => $pivot->position,
             'showOther'=>$showOther,
-            'positionOptions' => $this->positionOptions
+            'positionOptions' => $this->positionOptions,
+            'countries' => Country::all()
         ]);
     }
 
@@ -60,6 +64,9 @@ class AffiliationController extends Controller
             'region_code' => $validatedData['region_code'],
             'province_code' => $validatedData['province_code'],
             'city_code' => $validatedData['city_code'],
+            'country_id' => $validatedData['country_id'], 
+            'state_id' => $validatedData['state_id'], 
+            'world_city_id' => $validatedData['world_city_id'],
         ]);
 
         UserAffiliation::create([

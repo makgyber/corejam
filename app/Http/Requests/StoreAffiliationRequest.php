@@ -26,14 +26,17 @@ class StoreAffiliationRequest extends FormRequest
         return [
             'organisation_type' => 'required',
             'name' => 'required',
-            'description' => 'required',
-            'address' => 'required',
-            'region_code' => 'required',
-            'province_code' => 'required',
-            'city_code' => 'required',
-            'position' => 'required',
+            'description' => 'sometimes',
+            'address' => 'sometimes',
+            'region_code' => 'sometimes',
+            'province_code' => 'sometimes',
+            'city_code' => 'sometimes',
+            'position' => 'sometimes',
             'position_other' => '',
             'is_primary' => '',
+            'country_id' => '', 
+            'state_id' => '', 
+            'world_city_id' => ''
         ];
     }
 }

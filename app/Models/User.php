@@ -29,7 +29,7 @@ class User extends Authenticatable
         'contact_number', 'skillsets', 'is_registered_voter', 'region_code', 'province_code', 
         'city_code', 'barangay', 'voterid', 'recommended_date', 'birthday',
         'business_type', 'business_location', 'capitalization', 'created_by', 'gender', 'address',
-        'coordinator_level', 'coordinator_scope','image'
+        'coordinator_level', 'coordinator_scope','image','country_id', 'state_id', 'world_city_id'
     ];
 
     /**
@@ -79,6 +79,21 @@ class User extends Authenticatable
     public function region()
     {
         return $this->hasOne(Regions::class, 'code', 'region_code');
+    }
+
+    public function country()
+    {
+        return $this->hasOne(Country::class, 'name', 'country');
+    }
+
+    public function state()
+    {
+        return $this->hasOne(State::class, 'name', 'state');
+    }
+
+    public function worldCity()
+    {
+        return $this->hasOne(WorldCity::class, 'name', 'world_city');
     }
 
     public function province()

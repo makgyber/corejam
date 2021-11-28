@@ -31,12 +31,12 @@ class CreateMemberRequest extends FormRequest
             'birthday' => 'sometimes|date',
             'email' => 'required|email|unique:users,email',
             'contact_number' => 'string',
-            'region_code' => 'required|string',
-            'province_code' => 'required|string',
-            'city_code' => 'required|string',
-            'voterid' => 'string',
-            'barangay' => 'string',
-            'position_other' => 'required|string',
+            'region_code' => 'sometimes|string',
+            'province_code' => 'sometimes|string',
+            'city_code' => 'sometimes|string',
+            'voterid' => 'sometimes|string',
+            'barangay' => 'sometimes|string',
+            'position_other' => 'sometimes|string',
             'skillsets' => 'sometimes',
             'other_skillsets' => 'sometimes',
             'is_registered_voter' => 'sometimes',
@@ -44,7 +44,10 @@ class CreateMemberRequest extends FormRequest
             'business_location' => 'sometimes',
             'capitalization' => 'sometimes',
             'gender' => 'sometimes',
-            'address'=>'sometimes'
+            'address'=>'sometimes',
+            'country_id' => '', 
+            'state_id' => '', 
+            'world_city_id' => ''
         ];
     }
 }

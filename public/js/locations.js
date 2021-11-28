@@ -22,6 +22,19 @@ this.buildSelectOptions = function (data, selectedId) {
   return result;
 };
 
+this.buildSelectOptionsById = function (data, selectedId) {
+  var result = '<option></option>';
+  var selectedValue = document.getElementById(selectedId).value;
+
+  for (var i = 0; i < data.length; i++) {
+    result += '<option value="' + data[i].id + '"';
+    if (selectedValue == data[i].id) result += ' selected  ';
+    result += '>' + data[i].name + '</option>';
+  }
+
+  return result;
+};
+
 this.updateSelectProvince = function () {
   axios.get('/cms/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
     document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province');
@@ -65,9 +78,61 @@ this.updateSelectBarangays = function () {
   });
 };
 
+this.updateSelectStates = function () {
+  var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var country = document.getElementById("country_id").value;
+
+  if ($country) {
+    country = $country;
+  }
+
+  console.log(country);
+  axios.get('/cms/states?country=' + country).then(function (response) {
+    document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state_id');
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  });
+};
+
+this.updateSelectWorldCities = function () {
+  var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var $state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var state = document.getElementById("state_id").value;
+  var country = document.getElementById('country_id').value;
+
+  if ($state) {
+    state = $state;
+  }
+
+  if ($country) {
+    country = $country;
+  }
+
+  axios.get('/cms/worldcities?state=' + state + '&country=' + country).then(function (response) {
+    document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city_id');
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  });
+};
+
+this.toggleAddressGroups = function () {
+  if ($('#country_id').val() == '174') {
+    $('#localAddress').show();
+    $('#internationalAddress').hide();
+  } else {
+    $('#localAddress').hide();
+    $('#internationalAddress').show();
+  }
+};
+
 this.updateSelectProvince();
 this.updateSelectCities();
 this.updateSelectBarangays();
+this.updateSelectStates();
+this.updateSelectWorldCities();
+this.toggleAddressGroups();
 
 document.getElementById("region_code").onchange = function () {
   self.updateSelectProvince();
@@ -79,6 +144,16 @@ document.getElementById("province_code").onchange = function () {
 
 document.getElementById("city_code").onchange = function () {
   self.updateSelectBarangays();
+};
+
+document.getElementById("country_id").onchange = function () {
+  self.toggleAddressGroups();
+  self.updateSelectStates();
+  self.updateSelectWorldCities();
+};
+
+document.getElementById("state_id").onchange = function () {
+  self.updateSelectWorldCities();
 };
 
 /***/ })

@@ -30,9 +30,9 @@ class UpdateMemberRequest extends FormRequest
             'first_name' => 'required|string',
             'email' => 'sometimes|email',
             'contact_number' => 'sometimes|string',
-            'region_code' => 'required|string',
-            'province_code' => 'required|string',
-            'city_code' => 'required|string',
+            'region_code' => 'sometimes|string',
+            'province_code' => 'sometimes|string',
+            'city_code' => 'sometimes|string',
             'voterid' => 'sometimes',
             'barangay' => 'sometimes',
             'birthday' => 'sometimes|date',
@@ -44,7 +44,10 @@ class UpdateMemberRequest extends FormRequest
             'business_location' => 'sometimes',
             'capitalization' => 'sometimes',
             'gender' => 'sometimes',
-            'address'=>'sometimes'
+            'address'=>'sometimes',
+            'country_id' => '', 
+            'state_id' => '', 
+            'world_city_id' => ''
         ];
     }
 }

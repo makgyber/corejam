@@ -72,6 +72,8 @@ Route::prefix('/cms')->group(function() {
             Route::get('/provinces', 'LocationsController@provinces');
             Route::get('/cities', 'LocationsController@cities');
             Route::get('/barangays', 'LocationsController@barangays');
+            Route::get('/states', 'LocationsController@states');
+            Route::get('/worldcities', 'LocationsController@worldCities');
         // });
 
 

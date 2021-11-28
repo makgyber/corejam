@@ -26,7 +26,7 @@
                 @endif
                 <form action="{{ route('affiliations.store') }}" method="POST">
                     @csrf
-                    <table class="table table-striped table-bordered datatable">
+                    <table class="table table-borderless datatable">
                         <tbody>
                             <tr>
                                 <th>
@@ -57,20 +57,41 @@
                                     <textarea class="form-control" name="description">{{ old('description') }}</textarea>
                                 </td>
                             </tr>
+                        
+                            <tr>
+                                <th>
+                                    Country
+                                </th>
+                                <td>
+                                    <select class="form-control" id="country_id" name="country_id">   
+                                    @php
+                                        $defaultCountry = isset($user->country) ?: 'Philippines';
+                                    @endphp
+                                    @forelse ($countries ?? [] as $country)
+                                        @if ($defaultCountry == $country->name)
+                                            <option value="{{$country->id}}" selected>{{$country->name}}</option> 
+                                        @else
+                                            <option value="{{$country->id}}">{{$country->name}}</option>    
+                                        @endif
 
+                                    @empty
+                                    <option value="">No countries found</option>
+                                    @endforelse
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody id="localAddress">
                             <tr>
                                 <th>
                                     Region
                                 </th>
                                 <td>
                                     <select class="form-control" id="region_code" name="region_code">   
-
+                                        <option value=""></option>
                                     @forelse ($regions ?? [] as $region)
-                                        @if ($user->region_code == $region->code)
-                                            <option value="{{$region->code}}" selected>{{$region->name}}</option> 
-                                        @else
-                                            <option value="{{$region->code}}">{{$region->name}}</option>    
-                                        @endif
+                                    <option value="{{$region->code}}">{{$region->name}}</option>    
 
                                     @empty
                                     <option value="">No regions found</option>
@@ -103,7 +124,29 @@
                                     </select>
                                 </td>
                             </tr>
+                        </tbody>
+                        <tbody id="internationalAddress">
+                            <tr>
+                                <th>
+                                    State
+                                </th>
+                                <td>
+                                    <select class="form-control" id="state_id" name="state_id">
+                                    </select>
+                                </td>
+                            </tr>
 
+                            <tr>
+                                <th>
+                                    City/Municipality
+                                </th>
+                                <td>
+                                    <select class="form-control" id="world_city_id" name="world_city_id">   
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
                             <tr>
                                 <th>
                                     Address

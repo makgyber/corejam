@@ -25,7 +25,8 @@
                             <th>Address</th>
                             <th>Type</th>
                             <th>Position in Organisation</th>
-                            <th>Region</th>
+                            <th>Country</th>
+                            <th>Region / State</th>
                             <th>Province</th>
                             <th>City</th>
                             <th>Is Primary</th>
@@ -43,9 +44,10 @@
                               <td>{{ $affiliation->address }}</td>
                               <td>{{ $affiliation->organisation_type }}</td>
                               <td>{{ $affiliation->pivot->position }}</td>
-                              <td>{{ $affiliation->region->name }}</td>
-                              <td>{{ $affiliation->province->name }}</td>
-                              <td>{{ $affiliation->city->name }}</td>
+                              <td>{{ isset($affiliation->country_id) ? $affiliation->country->name : 'Philippines'}}</td>
+                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? $affiliation->state->name : $affiliation->region->name }}</td>
+                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)?'' : $affiliation->province->name }}</td>
+                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? $affiliation->worldCity->name :$affiliation->city->name }}</td>
                               <td>{{ $affiliation->pivot->is_primary  ? 'Yes' : 'No'}}</td>
                               <td>
                                 <a href="{{ url('/cms/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>

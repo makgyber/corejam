@@ -14,9 +14,9 @@ class AlterAffiliationsAddCountry extends Migration
     public function up()
     {
         Schema::table('affiliations', function (Blueprint $table) {
-            $table->string('country')->nullable();
-            $table->string('state')->nullable();
-            $table->string('world_city')->nullable();
+            $table->string('country_id')->nullable();
+            $table->string('state_id')->nullable();
+            $table->string('world_city_id')->nullable();
         });
     }
 
