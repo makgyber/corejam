@@ -131,6 +131,7 @@
                                     State
                                 </th>
                                 <td>
+                                    <input type="hidden" id="state" value="{{$user->state_id ?? ''}}" />
                                     <select class="form-control" id="state_id" name="state_id">
                                     </select>
                                 </td>
@@ -141,6 +142,7 @@
                                     City/Municipality
                                 </th>
                                 <td>
+                                    <input type="hidden" id="world_city" value="{{$user->world_city_id ?? ''}}" />
                                     <select class="form-control" id="world_city_id" name="world_city_id">   
                                     </select>
                                 </td>
