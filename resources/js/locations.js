@@ -73,10 +73,10 @@ this.updateSelectStates = function($country=null){
     if($country){
         country =  $country
     }
-console.log(country)
+
     axios.get( '/cms/states?country=' + country)
     .then(function (response) {
-        document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state')
+        document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state_id')
     })
     .catch(function (error) {
         // handle error
@@ -85,7 +85,7 @@ console.log(country)
 }
 
 this.updateSelectWorldCities = function($country=null, $state=null){
-    let state =  document.getElementById("state").value 
+    let state =  document.getElementById("state_id").value 
     let country = document.getElementById('country_id').value
     if($state){
         state =  $state

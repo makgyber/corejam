@@ -198,7 +198,7 @@ class UsersController extends Controller
             'password' => 'secret',
             'created_by' => auth()->user()->id,
             'coordinator_level' => $validated['coordinator_level'],
-            'coordinator_scope' => $coordinatorScope
+            'coordinator_scope' => $coordinatorScope,
         ]);
 
         if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {

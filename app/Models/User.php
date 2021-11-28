@@ -83,17 +83,17 @@ class User extends Authenticatable
 
     public function country()
     {
-        return $this->hasOne(Country::class, 'name', 'country');
+        return $this->belongsTo(Country::class);
     }
 
     public function state()
     {
-        return $this->hasOne(State::class, 'name', 'state');
+        return $this->belongsTo(State::class);
     }
 
     public function worldCity()
     {
-        return $this->hasOne(WorldCity::class, 'name', 'world_city');
+        return $this->belongsTo(WorldCity::class);
     }
 
     public function province()

@@ -107,7 +107,8 @@
                               <td><strong>{{ $member->first_name }} {{ $member->last_name }}</strong></td>
                               <td>{{ $member->email }}</td>
                               <td>{{ $member->contact_number }}</td>
-                              <td>{{ $member->region->name ??'' }}</td>
+                              <td><strong class="text-primary d-block">{{isset($member->country_id)? $member->country->name : 'Philippines' }}</strong>
+                                 {{ $member->region->name ?? ($member->state->name??'') }}</td>
                               <td>{{ str_replace(',', ', ', $member->skillsets) }}</td>
                               <td>
                                 <a href="{{ url('/cms/members/' . $member->id . '/edit?affiliation_id='. $affiliation_id) }}" class="btn btn-block btn-primary btn-sm">Edit</a>

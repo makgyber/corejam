@@ -98,7 +98,7 @@ this.updateSelectStates = function () {
 this.updateSelectWorldCities = function () {
   var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var $state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var state = document.getElementById("state").value;
+  var state = document.getElementById("state_id").value;
   var country = document.getElementById('country_id').value;
 
   if ($state) {

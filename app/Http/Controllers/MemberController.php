@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Imports\MemberImport;
+use App\Models\Country;
 use App\Services\MemberService;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -82,7 +83,8 @@ class MemberController extends Controller
             'user' => $user,
             'regions' => Regions::all(),
             'skillOptions' => $this->skillOptions,
-            'positionOptions' => $this->positionOptions
+            'positionOptions' => $this->positionOptions,
+            'countries' => Country::all()
         ]);
     }
 
@@ -136,7 +138,8 @@ class MemberController extends Controller
             'skillOptions' => $this->skillOptions,
             'position_other' => $affiliation->pivot->position,
             'showOther'=>$showOther,
-            'positionOptions' => $this->positionOptions
+            'positionOptions' => $this->positionOptions,
+            'countries' => Country::all()
         ]);
     }
 

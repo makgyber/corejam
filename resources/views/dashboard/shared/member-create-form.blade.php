@@ -19,7 +19,7 @@
 
 <div class="card-body" >
     <button type="submit" class="btn btn-primary">Save Details</button>
-    <a href="{{ route('members.index') }}" class="btn btn-primary">Return</a>
+    <a href="{{route('members.index', ['affiliation_id'=>request()->get('affiliation_id')])}}" class="btn btn-primary">Return</a>
 </div>
 
 </div>
