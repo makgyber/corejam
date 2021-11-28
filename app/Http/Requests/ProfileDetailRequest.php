@@ -42,7 +42,10 @@ class ProfileDetailRequest extends FormRequest
             'business_location' => 'sometimes',
             'capitalization' => 'sometimes',
             'gender' => 'sometimes',
-            'address'=>'sometimes'
+            'address'=>'sometimes',
+            'country_id'=>'',
+            'state_id'=>'',
+            'world_city_id'=>'',
         ];
     }
 }

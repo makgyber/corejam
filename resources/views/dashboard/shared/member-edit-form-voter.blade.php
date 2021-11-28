@@ -28,8 +28,11 @@
             <label for="country_id" class="form-label">Country</label>
             <select class="form-control" id="country_id" name="country_id">   
                 <option value=""></option>
+                @php
+                    $defaultCountry = isset($member->country_id)?$member->country_id:174;
+                @endphp
                 @forelse ($countries as $country)
-                    @if ($member->country_id == $country->id)
+                    @if ($defaultCountry == $country->id)
                         <option value="{{$country->id}}" selected>{{$country->name}}</option> 
                     @else
                         <option value="{{$country->id}}">{{$country->name}}</option>    

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Regions;
 use App\Http\Requests\ProfileDetailRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Models\Country;
 use App\Models\Target;
 
 class ProfileController extends Controller
@@ -75,7 +76,8 @@ class ProfileController extends Controller
             'regions' => Regions::all(),
             'skillsets' => $skillsets,
             'other_skillsets' => $other_skillsets,
-            'skillOptions' => $skillOptions
+            'skillOptions' => $skillOptions,
+            'countries' => Country::all()
         ]);
     }
 

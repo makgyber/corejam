@@ -88,6 +88,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="text-muted">Country</td>
+                        <td class="">
+                            @php
+                                $country = isset($user->country_id)? $user->country->name : 'Philippines';
+                            @endphp
+                        {{ $country }}
+                        </td>
+                    </tr>
+                    @if($country == 'Philippines')
+                    <tr>
                         <td class="text-muted">Region</td>
                         <td class="">
                         {{ $user->region->name ??'' }}
@@ -105,19 +115,33 @@
                         {{ $user->city->name ??'' }}
                         </td>
                     </tr>
-                    
-                    <tr>
-                        <td class="text-muted">Voter's ID</td>
-                        <td class="">
-                        {{ $user->voterid  }}
-                        </td>
-                    </tr>
                     <tr>
                         <td class="text-muted">Barangay Polling Center</td>
                         <td class="">
                         {{ $user->barangay  }}
                         </td>
                     </tr>
+                    @else
+                    <tr>
+                        <td class="text-muted">State</td>
+                        <td class="">
+                        {{ $user->state_id ? $user->state->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">City / Municipality</td>
+                        <td class="">
+                        {{ $user->world_city_id ? $user->worldCity->name : '' }}
+                        </td>
+                    </tr>
+                    @endif
+                    <tr>
+                        <td class="text-muted">Voter's ID</td>
+                        <td class="">
+                        {{ $user->voterid  }}
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td class="text-muted">Skills And Capabilities</td>
                         <td class="">
