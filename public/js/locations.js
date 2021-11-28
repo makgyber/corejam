@@ -88,7 +88,7 @@ this.updateSelectStates = function () {
 
   console.log(country);
   axios.get('/cms/states?country=' + country).then(function (response) {
-    document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state_id');
+    document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state');
   })["catch"](function (error) {
     // handle error
     console.log(error);
@@ -98,7 +98,7 @@ this.updateSelectStates = function () {
 this.updateSelectWorldCities = function () {
   var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var $state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var state = document.getElementById("state_id").value;
+  var state = document.getElementById("state").value;
   var country = document.getElementById('country_id').value;
 
   if ($state) {
@@ -110,7 +110,7 @@ this.updateSelectWorldCities = function () {
   }
 
   axios.get('/cms/worldcities?state=' + state + '&country=' + country).then(function (response) {
-    document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city_id');
+    document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city');
   })["catch"](function (error) {
     // handle error
     console.log(error);

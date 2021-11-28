@@ -64,11 +64,8 @@
                                 </th>
                                 <td>
                                     <select class="form-control" id="country_id" name="country_id">   
-                                    @php
-                                        $defaultCountry = isset($user->country) ?: 'Philippines';
-                                    @endphp
                                     @forelse ($countries ?? [] as $country)
-                                        @if ($defaultCountry == $country->name)
+                                        @if ($affiliation->country_id == $country->id)
                                             <option value="{{$country->id}}" selected>{{$country->name}}</option> 
                                         @else
                                             <option value="{{$country->id}}">{{$country->name}}</option>    
@@ -91,7 +88,7 @@
                                     <select class="form-control" id="region_code" name="region_code">   
 
                                     @forelse ($regions ?? [] as $region)
-                                        @if ($user->region_code == $region->code)
+                                        @if ($affiliation->region_code == $region->code)
                                             <option value="{{$region->code}}" selected>{{$region->name}}</option> 
                                         @else
                                             <option value="{{$region->code}}">{{$region->name}}</option>    
@@ -110,7 +107,7 @@
                                     Province
                                 </th>
                                 <td>
-                                    <input type="hidden" id="province" value="{{$user->province_code ?? ''}}" />
+                                    <input type="hidden" id="province" value="{{$affiliation->province_code ?? ''}}" />
                                     <select class="form-control" id="province_code" name="province_code">
 
                                     </select>
@@ -122,7 +119,7 @@
                                     City/Municipality
                                 </th>
                                 <td>
-                                <input type="hidden" id="city" value="{{$user->city_code ?? ''}}" />
+                                <input type="hidden" id="city" value="{{$affiliation->city_code ?? ''}}" />
                                     <select class="form-control" id="city_code" name="city_code">   
 
                                     </select>
@@ -135,6 +132,7 @@
                                     State
                                 </th>
                                 <td>
+                                    <input type="hidden" id="state" value="{{$affiliation->state_id ?? ''}}" />
                                     <select class="form-control" id="state_id" name="state_id">
                                     </select>
                                 </td>
@@ -145,6 +143,7 @@
                                     City/Municipality
                                 </th>
                                 <td>
+                                    <input type="hidden" id="world_city" value="{{$affiliation->world_city_id ?? ''}}" />
                                     <select class="form-control" id="world_city_id" name="world_city_id">   
                                     </select>
                                 </td>

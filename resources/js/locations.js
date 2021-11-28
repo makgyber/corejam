@@ -76,7 +76,7 @@ this.updateSelectStates = function($country=null){
 console.log(country)
     axios.get( '/cms/states?country=' + country)
     .then(function (response) {
-        document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state_id')
+        document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state')
     })
     .catch(function (error) {
         // handle error
@@ -85,7 +85,7 @@ console.log(country)
 }
 
 this.updateSelectWorldCities = function($country=null, $state=null){
-    let state =  document.getElementById("state_id").value 
+    let state =  document.getElementById("state").value 
     let country = document.getElementById('country_id').value
     if($state){
         state =  $state
@@ -96,7 +96,7 @@ this.updateSelectWorldCities = function($country=null, $state=null){
 
     axios.get( '/cms/worldcities?state=' + state + '&country=' + country)
     .then(function (response) {
-        document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city_id')
+        document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city')
     })
     .catch(function (error) {
         // handle error
