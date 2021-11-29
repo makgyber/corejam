@@ -103,6 +103,7 @@ class UsersController extends Controller
             'positionOptions' => $this->positionOptions,
             'position_other' => $positionOther,
             'showOther'=>$showOther,
+            'countries'=>Country::all()
         ]);
     }
 

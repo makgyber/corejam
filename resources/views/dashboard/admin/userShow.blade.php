@@ -63,6 +63,54 @@
                             <td>{{ $user->address }}</td>
                         </tr>
                         <tr>
+                            <th>Country</th>
+                            <td class="">
+                                @php
+                                    $country = isset($user->country_id)? $user->country->name : 'Philippines';
+                                @endphp
+                            {{ $country }}
+                            </td>
+                        </tr>
+                        @if($country == 'Philippines')
+                        <tr>
+                            <th>Region</th>
+                            <td class="">
+                            {{ $user->region->name ??'' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Province</th>
+                            <td class="">
+                            {{ $user->province->name ??'' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>City / Municipality</th>
+                            <td class="">
+                            {{ $user->city->name ??'' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Barangay Polling Center</th>
+                            <td class="">
+                            {{ $user->barangay  }}
+                            </td>
+                        </tr>
+                        @else
+                        <tr>
+                            <th>State</th>
+                            <td class="">
+                            {{ $user->state_id ? $user->state->name : '' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>City / Municipality</th>
+                            <td class="">
+                            {{ $user->world_city_id ? $user->worldCity->name : '' }}
+                            </td>
+                        </tr>
+                        @endif
+                        <tr>
                             <th>Is Registered Voter?</th>
                             <td>{{ $user->is_registered_voter ? 'Yes' : 'No'}}</td>
                         </tr>
