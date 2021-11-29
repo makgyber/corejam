@@ -272,7 +272,8 @@ class UsersController extends Controller
             'user'=>$user,
             'regions'=>Regions::all(),
             'roles'=>Role::all(),
-            'coordinatorLevels'=> $this->coordinatorLevels
+            'coordinatorLevels'=> $this->coordinatorLevels,
+            'countries'=>Country::all()
         ]); 
     }
 
@@ -293,6 +294,11 @@ class UsersController extends Controller
                 $coordinatorScope = $request['city_code'];
             } else if ($request['coordinator_level'] == 'municipal') {
                 $coordinatorScope = $request['city_code'];
+            }else if($request['coordinator_level'] == 'ofw') {
+                $coordinatorScope = $request['country_id'] . '|' . $request['state_id'] . '|' . $request['world_city_id'];
+                $user->country_id =$request['country_id'];
+                $user->state_id = $request['state_id'];
+                $user->world_city_id = $request['world_city_id'];
             }
 
             $user->menuroles = implode(',', $request['roles']);

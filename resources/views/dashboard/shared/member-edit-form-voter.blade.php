@@ -26,6 +26,7 @@
         <hr>
         <div class="mb-3">
             <label for="country_id" class="form-label">Country</label>
+            <input type="hidden" name="country" id="country" value="{{$member->country_id}}">
             <select class="form-control" id="country_id" name="country_id">   
                 <option value=""></option>
                 @php

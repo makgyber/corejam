@@ -85,13 +85,23 @@
                               <td>{{ $user->coordinator_level }}</td>
                               <td>
                                 @php
-                                  if(strlen($user->coordinator_scope) == 2) {
-                                    echo App\Models\Regions::where('code', $user->coordinator_scope)->first()->name;
-                                  } else  if(strlen($user->coordinator_scope) == 4) {
-                                    echo App\Models\Provinces::where('code', $user->coordinator_scope)->first()->name;
-                                  } else  if(strlen($user->coordinator_scope) > 4){
-                                    echo App\Models\Cities::where('code', $user->coordinator_scope)->first()->name;
+                                  if($user->coordinator_level =='ofw') {
+                                    if($user->coordinator_scope!=''){
+                                      $scope=explode('|', $user->coordinator_scope);
+                                      if(isset($scope[2]) && $scope[2]!='') echo App\Models\WorldCity::find($scope[2])->name . ', ';
+                                      if(isset($scope[1])) echo App\Models\State::find($scope[1])->name . ', ';
+                                      if(isset($scope[0])) echo App\Models\Country::find($scope[0])->name ;
+                                    }
+                                  }else{
+                                    if(strlen($user->coordinator_scope) == 2) {
+                                      echo App\Models\Regions::where('code', $user->coordinator_scope)->first()->name;
+                                    } else  if(strlen($user->coordinator_scope) == 4) {
+                                      echo App\Models\Provinces::where('code', $user->coordinator_scope)->first()->name;
+                                    } else  if(strlen($user->coordinator_scope) > 4){
+                                      echo App\Models\Cities::where('code', $user->coordinator_scope)->first()->name;
+                                    }
                                   }
+                                  
                                 @endphp
                               </td>
                               <td>

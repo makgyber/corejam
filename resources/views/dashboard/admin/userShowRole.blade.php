@@ -61,58 +61,9 @@
                         </div>
                     </div>
                     <div class="card col-6">
-                        <div class="card-header">
-                            <h5>Level and Area of Responsibility</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label for="coordinator_level" class="form-label">Coordinator Level</label>
-                                <select class="form-control" id="coordinator_level" name="coordinator_level">   
-                                    <option value="">Select coordinator level</option>
-                                    @forelse ($coordinatorLevels as $coordinatorLevel)
-                                        @if ($user->coordinator_level == $coordinatorLevel)
-                                            <option value="{{$coordinatorLevel}}" selected>{{$coordinatorLevel}}</option> 
-                                        @else
-                                            <option value="{{$coordinatorLevel}}">{{$coordinatorLevel}}</option>    
-                                        @endif
-                                    
-                                    @empty
-                                    
-                                    @endforelse
-                    
-                                </select>
-                            </div>
-                            <div class="mb-3" >
-                                <label for="region_code" class="form-label">Region</label>
-                                <select class="form-control" id="region_code" name="region_code">   
-                    
-                                    @forelse ($regions as $region)
-                                        @if (substr($user->coordinator_scope, 0, 2) == $region->code)
-                                            <option value="{{$region->code}}" selected>{{$region->name}}</option> 
-                                        @else
-                                            <option value="{{$region->code}}">{{$region->name}}</option>    
-                                        @endif
-                                    
-                                    @empty
-                                    <option value="">No regions found</option>
-                                    @endforelse
-                    
-                                </select>
-                            </div>
-                            <div class="mb-3 d-none" id="provinceCard">
-                                <input type="hidden" id="province" value="{{substr($user->coordinator_scope, 0, 4)}}" />
-                                <label for="province_code" class="form-label">Province</label>
-                                <select class="form-control" id="province_code" name="province_code">
-                    
-                                </select>
-                                </div>
-                            <div class="mb-3 d-none" id="cityCard">
-                            <input type="hidden" id="city" value="{{$user->coordinator_scope}}" />
-                                <label for="city_code" class="form-label">City/Municipality</label>
-                                <select class="form-control" id="city_code" name="city_code">   
-                    
-                                </select>
-                            </div>
+
+@include('dashboard.admin.area-of-responsibility', ['action' => 'edit', 'user' => $user])
+
                         </div>
                       
                 </div>
@@ -129,30 +80,7 @@
 @endsection
 
 @section('javascript')
-
-<script>
-    let self = this;
-    this.toggleArea = function(){
-        let value = document.getElementById("coordinator_level").value
-        console.log(value)
-        if(value === 'regional'){
-            document.getElementById('provinceCard').classList.add('d-none')
-            document.getElementById('cityCard').classList.add('d-none')
-        }else if(value === 'provincial'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.add('d-none')
-        }else if(value === 'city'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.remove('d-none')
-        }else if(value === 'municipal'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.remove('d-none')
-        }
-    }
-
-    this.toggleArea()
-    document.getElementById("coordinator_level").onchange = function(){self.toggleArea()}
-</script>
 <script src="{{ asset('js/axios.min.js') }}"></script> 
+<script src="{{ asset('js/arearesponsibility.js') }}"></script>
 <script src="{{ asset('js/locations.js') }}"></script>
 @endsection

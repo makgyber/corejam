@@ -48,6 +48,7 @@ mix.js('resources/js/coreui/media.js', 'public/js');
 mix.js('resources/js/coreui/media-cropp.js', 'public/js');
 mix.js('resources/js/locations.js', 'public/js');
 mix.js('resources/js/business.js', 'public/js');
+mix.js('resources/js/arearesponsibility.js', 'public/js');
 //*************** OTHER ****************** 
 //fonts
 mix.copy('node_modules/@coreui/icons/fonts', 'public/fonts');
