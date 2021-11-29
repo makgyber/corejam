@@ -32,6 +32,9 @@ class StoreCoordinatorRequest extends FormRequest
             'region_code' => 'sometimes',
             'province_code' => 'sometimes',
             'city_code' => 'sometimes',
+            'country_id' => '',
+            'state_id' => '',
+            'world_city_id' => ''
         ];
     }
 }

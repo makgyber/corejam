@@ -80,37 +80,8 @@
                     
                                 </select>
                             </div>
-                            <div class="mb-3" >
-                                <label for="region_code" class="form-label">Region</label>
-                                <select class="form-control" id="region_code" name="region_code">   
-                    
-                                    @forelse ($regions as $region)
-                                        @if (old('region_code') == $region->code)
-                                            <option value="{{$region->code}}" selected>{{$region->name}}</option> 
-                                        @else
-                                            <option value="{{$region->code}}">{{$region->name}}</option>    
-                                        @endif
-                                    
-                                    @empty
-                                    <option value="">No regions found</option>
-                                    @endforelse
-                    
-                                </select>
-                            </div>
-                            <div class="mb-3 d-none" id="provinceCard">
-                                <input type="hidden" id="province" value="{{old('province_code')}}" />
-                                <label for="province_code" class="form-label">Province</label>
-                                <select class="form-control" id="province_code" name="province_code">
-                    
-                                </select>
-                                </div>
-                            <div class="mb-3 d-none" id="cityCard">
-                            <input type="hidden" id="city" value="{{old('city_code')}}" />
-                                <label for="city_code" class="form-label">City/Municipality</label>
-                                <select class="form-control" id="city_code" name="city_code">   
-                    
-                                </select>
-                            </div>
+                            @include('dashboard.shared.member-create-form-locations')
+
                         </div>
                       
                 </div>
@@ -130,26 +101,78 @@
 
 <script>
     let self = this;
+    this.initCards = function(){
+        $('#localAddress').hide();
+        $('#internationalAddress').hide();
+        $('#barangayCard').hide();
+        $('#cityCard').hide();
+        $('#regionCard').hide();
+        $('#provinceCard').hide();
+    }
+
     this.toggleArea = function(){
         let value = document.getElementById("coordinator_level").value
-        console.log(value)
-        if(value === 'regional'){
-            document.getElementById('provinceCard').classList.add('d-none')
-            document.getElementById('cityCard').classList.add('d-none')
+        if (value === 'ofw') {
+            $('#country_id').val('');
+            $('#internationalAddress').show();
+            $('#localAddress').hide();
+            $('#regionCard').hide();
+            $('#provinceCard').hide();
+            $('#cityCard').hide();
+            $('#barangayCard').hide();
+        }else if(value === 'regional'){
+            $('#country_id').val(174);
+            $('#internationalAddress').hide();
+            $('#localAddress').show();
+            $('#regionCard').show();
+            $('#provinceCard').hide();
+            $('#cityCard').hide();
+            $('#barangayCard').hide();
         }else if(value === 'provincial'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.add('d-none')
+            $('#country_id').val(174);
+            $('#internationalAddress').hide();
+            $('#localAddress').show();
+            $('#regionCard').show();
+            $('#provinceCard').show();
+            $('#cityCard').hide();
+            $('#barangayCard').hide();
         }else if(value === 'city'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.remove('d-none')
+            $('#country_id').val(174);
+            $('#internationalAddress').hide();
+            $('#localAddress').show();
+            $('#regionCard').show();
+            $('#provinceCard').show();
+            $('#cityCard').show();
+            $('#barangayCard').hide();
         }else if(value === 'municipal'){
-            document.getElementById('provinceCard').classList.remove('d-none')
-            document.getElementById('cityCard').classList.remove('d-none')
+            $('#country_id').val(174);
+            $('#internationalAddress').hide();
+            $('#localAddress').show();
+            $('#regionCard').show();
+            $('#provinceCard').show();
+            $('#cityCard').show();
+            $('#barangayCard').hide();
+        }else if(value === 'barangay'){
+            $('#country_id').val(174);
+            $('#internationalAddress').hide();
+            $('#localAddress').show();
+            $('#regionCard').show();
+            $('#provinceCard').show();
+            $('#cityCard').show();
+            $('#barangayCard').show();
         }
     }
 
+    this.initCards()
     this.toggleArea()
     document.getElementById("coordinator_level").onchange = function(){self.toggleArea()}
+    $('#country_id').on('change', function(){
+        if($( this ).val()!=174) {
+            $('#coordinator_level').val('ofw');
+        }else{
+            $('#coordinator_level').val('');
+        }
+    })
 </script>
 <script src="{{ asset('js/axios.min.js') }}"></script> 
 <script src="{{ asset('js/locations.js') }}"></script>

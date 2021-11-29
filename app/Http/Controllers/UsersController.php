@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Regions;
 use Illuminate\Support\Facades\URL;
 use App\Imports\UsersImport;
+use App\Models\Country;
 use App\Models\Target;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
@@ -23,7 +24,7 @@ class UsersController extends Controller
     var $skillOptions = [
         'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
     ];
-    var $coordinatorLevels = ['regional', 'provincial', 'city', 'municipal'];
+    var $coordinatorLevels = ['ofw', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
 
     use RegistersUsers;
     /**
@@ -169,7 +170,8 @@ class UsersController extends Controller
     {
         return view('dashboard.admin.userCreate',[
             'regions' => Regions::all(),
-            'coordinatorLevels' => $this->coordinatorLevels
+            'coordinatorLevels' => $this->coordinatorLevels,
+            'countries'=>Country::all()
         ]);
     }
 
@@ -187,6 +189,8 @@ class UsersController extends Controller
                 $coordinatorScope = $request['city_code'];
             } else if ($request['coordinator_level'] == 'municipal') {
                 $coordinatorScope = $request['city_code'];
+            } else if($request['coordinator_level'] == 'ofw') {
+                $coordinatorScope = $request['country_id'] . '|' . $request['state_id'] . '|' . $request['world_city_id'];
             }
         }
 

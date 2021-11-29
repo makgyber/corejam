@@ -24,6 +24,7 @@ this.buildSelectOptionsById = function( data , selectedId){
 }
 
 this.updateSelectProvince = function(){
+    console.log('province update')
     axios.get( '/provinces?region=' + document.getElementById("region_code").value )
     .then(function (response) {
         document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province')
