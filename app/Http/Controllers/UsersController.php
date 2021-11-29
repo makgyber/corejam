@@ -204,6 +204,12 @@ class UsersController extends Controller
             'created_by' => auth()->user()->id,
             'coordinator_level' => $validated['coordinator_level'],
             'coordinator_scope' => $coordinatorScope,
+            'country_id' => $request['country_id'],
+            'state_id' => $request['state_id'],
+            'world_city_id' => $request['world_city_id'],
+            'region_code' => $request['region_code'],
+            'province_code' => $request['province_code'],
+            'city_code' => $request['city_code'],
         ]);
 
         if(isset($validated['as_admin']) && $validated['as_admin'] == 'true') {
