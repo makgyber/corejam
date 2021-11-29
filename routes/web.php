@@ -19,6 +19,11 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/qrcode', 'MemberController@qrCode')->name('member.qrcode');
 Route::get('/registration', 'MemberController@selfRegister')->name('member.selfregister');
 Route::post('/registration', 'MemberController@selfStore')->name('member.selfStore');
+Route::get('/provinces', 'LocationsController@provinces');
+            Route::get('/cities', 'LocationsController@cities');
+            Route::get('/barangays', 'LocationsController@barangays');
+            Route::get('/states', 'LocationsController@states');
+            Route::get('/worldcities', 'LocationsController@worldCities');
 
 Route::prefix('/cms')->group(function() {  
     Auth::routes();
