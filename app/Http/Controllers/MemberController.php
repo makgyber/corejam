@@ -244,7 +244,8 @@ class MemberController extends Controller
             'user' => $coordinator,
             'regions' => Regions::all(),
             'skillOptions' => $this->skillOptions,
-            'positionOptions' => $this->positionOptions
+            'positionOptions' => $this->positionOptions,
+            'countries' => Country::all()
         ]);
     }
 
