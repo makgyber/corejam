@@ -36,7 +36,7 @@ this.buildSelectOptionsById = function (data, selectedId) {
 };
 
 this.updateSelectProvince = function () {
-  axios.get('/cms/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
+  axios.get('/provinces?region=' + document.getElementById("region_code").value).then(function (response) {
     document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province');
     self.updateSelectCities(document.getElementById("province_code").value);
   })["catch"](function (error) {
@@ -53,7 +53,7 @@ this.updateSelectCities = function () {
     provinceCode = $province;
   }
 
-  axios.get('/cms/cities?province=' + provinceCode).then(function (response) {
+  axios.get('/cities?province=' + provinceCode).then(function (response) {
     document.getElementById("city_code").innerHTML = self.buildSelectOptions(response.data, 'city');
     self.updateSelectBarangays(document.getElementById("city_code").value);
   })["catch"](function (error) {
@@ -70,7 +70,7 @@ this.updateSelectBarangays = function () {
     cityCode = $city;
   }
 
-  axios.get('/cms/barangays?city=' + cityCode).then(function (response) {
+  axios.get('/barangays?city=' + cityCode).then(function (response) {
     document.getElementById("barangay_code").innerHTML = self.buildSelectOptions(response.data, 'barangay');
   })["catch"](function (error) {
     // handle error
@@ -86,8 +86,7 @@ this.updateSelectStates = function () {
     country = $country;
   }
 
-  console.log(country);
-  axios.get('/cms/states?country=' + country).then(function (response) {
+  axios.get('/states?country=' + country).then(function (response) {
     document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state');
   })["catch"](function (error) {
     // handle error
@@ -109,7 +108,7 @@ this.updateSelectWorldCities = function () {
     country = $country;
   }
 
-  axios.get('/cms/worldcities?state=' + state + '&country=' + country).then(function (response) {
+  axios.get('/worldcities?state=' + state + '&country=' + country).then(function (response) {
     document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city');
   })["catch"](function (error) {
     // handle error
