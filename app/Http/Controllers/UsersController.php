@@ -16,6 +16,7 @@ use App\Models\Country;
 use App\Models\Target;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
+use Yajra\Datatables\Datatables;
 
 class UsersController extends Controller
 {
@@ -56,6 +57,11 @@ class UsersController extends Controller
             'you' => auth()->user(),
             'users' => $users
         ]);
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(User::query())->make(true);
     }
 
     /**

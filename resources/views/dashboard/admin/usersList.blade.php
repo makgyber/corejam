@@ -49,9 +49,28 @@
                       </div>
                     </form>  
                     <div class="card-body">
+                      <table class="table table-responsive-sm table-striped table-sm" id="users-table">
+                        <thead>
+                        <tr>
+                          <th><input type="checkbox" name="delAll" id="delAll"></th>
+                          <th>Name</th>
+                          <th>E-mail</th>
+                          <th>Roles</th>
+                          <th>Coordinator Level</th>
+                          <th>Area</th>
+                          <th>Accepted</th>
+                          <td class="text-muted small text-right text-uppercase">({{$users->total()}} records found)
+                          </td>
+                        </tr>
+                      </thead>
+
+
                       <form action="{{ route('coordinators.destroy', $you->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
+
+                        
+
                         <button class="btn btn-danger btn-sm "
                               onclick="return confirm('Are you sure you want to delete selected members?')">
                               <i class="cil-trash"></i>
@@ -149,6 +168,21 @@
         checkbox.checked = this.checked;
     }
 }
+
+$(function() {
+    $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('datatables.data') !!}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'roles', name: 'roles' },
+            { data: 'coordinator_level', name: 'coordinator_level' }
+        ]
+    });
+});
 </script>
 
 @endsection
