@@ -24,6 +24,8 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
         if ($exists) {
             return null;
         }
+
+
         
         $affiliation = Affiliation::find(request()->get('affiliation_id'));
         $rowIndex = $row->getIndex();
@@ -35,7 +37,9 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
             $birthday = $this->transformDate($row['birthday']);
         }
 
-        
+        if($row['firstname']==null && $row['lastname']==null) {
+            return null;
+        }
 
         $user = User::firstOrCreate([
             'name' => $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'],
@@ -53,6 +57,8 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
             'region_code' => $affiliation->region_code,
             'province_code' => $affiliation->province_code,
             'city_code' => $affiliation->city_code,
+            'state_id' => $affiliation->state_id?:'',
+            'country_id' => $affiliation->country_id?:'',
             'barangay' => $row['barangaypollingcenter']?$row['barangaypollingcenter']:'',
             'voterid' => $row['votersid']?$row['votersid']:'',
             'birthday' => $birthday,
