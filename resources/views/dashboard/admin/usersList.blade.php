@@ -133,7 +133,7 @@
                     </div>
                 </div>
               </div>
-              {{ $users->links()}}
+              {{ $users->appends(request()->query())->links()}}
             </div>
           </div>
         </div>
