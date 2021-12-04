@@ -24,6 +24,7 @@
     <div class="mb-3">
         <label for="outreach" class="form-label">Choose an option</label>
         <select class="form-control" name="outreach" id="outreach">
+            <option value=""></option>
             @forelse($outreachOptions as $outreachOption)
             <option value="{{$outreachOption}}"
             {{ $outreachOption == $member->outreach ? 'selected' : ''}}
