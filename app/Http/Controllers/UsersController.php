@@ -16,17 +16,13 @@ use App\Models\Country;
 use App\Models\Target;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
-use Yajra\Datatables\Datatables;
+use App\Traits\HasMemberOptions;
 
 class UsersController extends Controller
 {
 
-    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
-    var $skillOptions = [
-        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
-    ];
-    var $coordinatorLevels = ['ofw', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
-
+    use HasMemberOptions;
+  
     use RegistersUsers;
     /**
      * Create a new controller instance.
@@ -76,7 +72,8 @@ class UsersController extends Controller
         return view('dashboard.admin.userShow', [
             'user' => User::findOrFail($id),
             'skillOptions' => $this->skillOptions,
-            'targets'=>$targets
+            'targets'=>$targets,
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 
@@ -109,7 +106,8 @@ class UsersController extends Controller
             'positionOptions' => $this->positionOptions,
             'position_other' => $positionOther,
             'showOther'=>$showOther,
-            'countries'=>Country::all()
+            'countries'=>Country::all(),
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 

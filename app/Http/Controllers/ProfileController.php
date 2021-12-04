@@ -9,9 +9,12 @@ use App\Http\Requests\ProfileDetailRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Models\Country;
 use App\Models\Target;
+use App\Traits\HasMemberOptions;
 
 class ProfileController extends Controller
 {
+    use HasMemberOptions;
+    
     public function index() 
     {
         $targets = Target::where('owner', auth()->user()->id)->with('activities')->paginate(5);
@@ -77,7 +80,8 @@ class ProfileController extends Controller
             'skillsets' => $skillsets,
             'other_skillsets' => $other_skillsets,
             'skillOptions' => $skillOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 

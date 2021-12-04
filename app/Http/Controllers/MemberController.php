@@ -13,14 +13,13 @@ use App\Imports\MemberImport;
 use App\Models\Country;
 use App\Services\MemberService;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Traits\HasMemberOptions;
 
 
 class MemberController extends Controller
 {
-    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
-    var $skillOptions = [
-        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
-    ];
+
+    use HasMemberOptions;
      
     /**
      * Display a listing of the resource.
@@ -84,7 +83,8 @@ class MemberController extends Controller
             'regions' => Regions::all(),
             'skillOptions' => $this->skillOptions,
             'positionOptions' => $this->positionOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'needsOptions' => $this->needsOptions
         ]);
     }
 
@@ -139,7 +139,8 @@ class MemberController extends Controller
             'position_other' => $affiliation->pivot->position,
             'showOther'=>$showOther,
             'positionOptions' => $this->positionOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'needsOptions' => $this->needsOptions
         ]);
     }
 
@@ -165,7 +166,7 @@ class MemberController extends Controller
         }
       
         $validated = $request->safe()->except(['skillsets', 'other_skillsets','position_other', 'position']);
- 
+
         $skillsets = '';
         if(!empty($request['skillsets'])) {
             if(is_array($request['skillsets'])) {
