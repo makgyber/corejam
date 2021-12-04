@@ -35,7 +35,7 @@
                         @include('dashboard.metrics.region-counts')
                       
 
-
+                        @include('dashboard.metrics.global-region-counts')
                       
                       <!-- /.row-->
                       @include('dashboard.metrics.activities')

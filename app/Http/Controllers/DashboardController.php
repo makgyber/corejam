@@ -33,6 +33,7 @@ class DashboardController extends Controller
             'drillTo' => '',
             'totals' => $this->analytics->getTotals(null),
             'regionCounts' => $this->analytics->getRegionCounts(),
+            'globalRegionCounts' => $this->analytics->getGlobalRegionCounts(),
             'coordinators' => $this->analytics->getCoordinatorActivities(),
             'regionTargets'=> $this->analytics->getRegionTargets(),
         ]);

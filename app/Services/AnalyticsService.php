@@ -261,4 +261,17 @@ class AnalyticsService
         
         return $regionStats;
     }
+
+    public function getGlobalRegionCounts()
+    {
+        $globalRegionCounts = DB::table('countries')
+                        ->select(DB::raw('countries.subregion, count(users.id) as user_count'))
+                        ->leftJoin('users', 'countries.id', '=', 'users.country_id')
+                        ->where('subregion', '!=', '')
+                        ->groupBy(['countries.subregion'])
+                        ->orderBy('countries.subregion')
+                    
+                        ->get();
+        return $globalRegionCounts;
+    }
 }

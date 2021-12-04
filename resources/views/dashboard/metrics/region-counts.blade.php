@@ -1,3 +1,4 @@
+<h3>National</h3>
 <div class="row">
 @forelse($regionCounts as $regionCount)
     <div class="col-sm-6">
