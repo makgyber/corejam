@@ -261,4 +261,9 @@ class AnalyticsService
         
         return $regionStats;
     }
+
+    public function getGlobalCounts(Type $var = null)
+    {
+        # code...
+    }
 }

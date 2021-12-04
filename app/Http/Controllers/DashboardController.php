@@ -57,17 +57,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function byProvince()
-    {
-        
-    }
-
-    public function byCity()
-    {
-        
-    }
-
-    public function byBarangay()
+    public function affiliations()
     {
         
     }
