@@ -16,3 +16,20 @@
     </div>
 
 </div>
+
+<div class="card-header">
+    <h5>Outreach / Mission</h5>
+</div>
+<div class="card-body">
+    <div class="mb-3">
+        <label for="outreach" class="form-label">Choose an option</label>
+        <select class="form-control" name="outreach" id="outreach">
+            @forelse($outreachOptions as $outreachOption)
+            <option value="{{$outreachOption}}"
+            {{ $outreachOption == $member->outreach ? 'selected' : ''}}
+            >{{$outreachOption}}</option>
+            @empty
+            @endforelse
+        </select>
+    </div>
+</div>

@@ -21,6 +21,8 @@ class MemberController extends Controller
     var $skillOptions = [
         'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
     ];
+    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
+
      
     /**
      * Display a listing of the resource.
@@ -84,7 +86,8 @@ class MemberController extends Controller
             'regions' => Regions::all(),
             'skillOptions' => $this->skillOptions,
             'positionOptions' => $this->positionOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'outreachOptions' => $this->outreachOptions
         ]);
     }
 
@@ -139,7 +142,8 @@ class MemberController extends Controller
             'position_other' => $affiliation->pivot->position,
             'showOther'=>$showOther,
             'positionOptions' => $this->positionOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'outreachOptions' => $this->outreachOptions
         ]);
     }
 
@@ -165,7 +169,7 @@ class MemberController extends Controller
         }
       
         $validated = $request->safe()->except(['skillsets', 'other_skillsets','position_other', 'position']);
- 
+
         $skillsets = '';
         if(!empty($request['skillsets'])) {
             if(is_array($request['skillsets'])) {

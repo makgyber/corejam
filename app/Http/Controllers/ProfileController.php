@@ -12,6 +12,8 @@ use App\Models\Target;
 
 class ProfileController extends Controller
 {
+    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
+    
     public function index() 
     {
         $targets = Target::where('owner', auth()->user()->id)->with('activities')->paginate(5);
@@ -77,7 +79,8 @@ class ProfileController extends Controller
             'skillsets' => $skillsets,
             'other_skillsets' => $other_skillsets,
             'skillOptions' => $skillOptions,
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'outreachOptions'=>$this->outreachOptions
         ]);
     }
 

@@ -47,7 +47,8 @@ class CreateMemberRequest extends FormRequest
             'address'=>'sometimes',
             'country_id' => '', 
             'state_id' => '', 
-            'world_city_id' => ''
+            'world_city_id' => '',
+            'outreach' => '',
         ];
     }
 }

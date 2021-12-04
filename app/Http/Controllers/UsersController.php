@@ -25,6 +25,8 @@ class UsersController extends Controller
         'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
     ];
     var $coordinatorLevels = ['ofw', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
+    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
+  
 
     use RegistersUsers;
     /**
@@ -70,7 +72,8 @@ class UsersController extends Controller
         return view('dashboard.admin.userShow', [
             'user' => User::findOrFail($id),
             'skillOptions' => $this->skillOptions,
-            'targets'=>$targets
+            'targets'=>$targets,
+            'outreachOptions'=>$this->outreachOptions
         ]);
     }
 
@@ -103,7 +106,8 @@ class UsersController extends Controller
             'positionOptions' => $this->positionOptions,
             'position_other' => $positionOther,
             'showOther'=>$showOther,
-            'countries'=>Country::all()
+            'countries'=>Country::all(),
+            'outreachOptions'=>$this->outreachOptions
         ]);
     }
 
