@@ -78,13 +78,25 @@
                 </div>
                 <!-- /.col-->
               </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      @include('dashboard.metrics.affiliation-counts')
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- /.row-->
               <div class="row">
                 <div class="col-md-12">
                   <div class="card">
                     <div class="card-header">Registration Activities</div>
                     <div class="card-body">
-                        @include('dashboard.metrics.location-counts')
+                      
+
+                      @include('dashboard.metrics.location-counts')
 
                   </div>
                   

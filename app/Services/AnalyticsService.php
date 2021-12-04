@@ -155,7 +155,7 @@ class AnalyticsService
             'seniors' => $ages->seniors,
             'male'=>$genders->male,
             'female'=>$genders->female,
-            'businessOwners'=>$this->getBusinessOwners($params)
+            'businessOwners'=>$this->getBusinessOwners($params),
         ];
         return $totals;
     }
@@ -289,5 +289,61 @@ class AnalyticsService
                     
                         ->get();
         return $globalRegionCounts;
+    }
+
+    public function getAffiliationCounts($params=null)
+    {
+        $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id');
+
+        if (isset($params['barangay'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.barangay', $params['barangay'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } else if (isset($params['city_code'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.city_code', $params['city_code'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.province_code', 'like', '13%')
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+
+            } else {
+                $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.province_code', $params['province_code'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.region_code', $params['region_code'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } 
+       
+        return $affiliationCounts;
     }
 }
