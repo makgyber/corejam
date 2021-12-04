@@ -8,9 +8,25 @@ use Illuminate\Support\Facades\DB;
 
 class AnalyticsService
 {
-    public function getBusinessOwners()
+    public function getBusinessOwners($params = null)
     {
-        return User::where('business_type', '!=', 'null')->count();
+        $businessOwners =User::where('business_type', '!=', 'null');
+        if (isset($params['barangay'])) {
+            $businessOwners->where('barangay', $params['barangay']);
+        } else if (isset($params['city_code'])) {
+            $businessOwners->where('city_code', $params['city_code']);
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $businessOwners->where('province_code', 'like', '13%');
+            } else {
+                $businessOwners->where('province_code', $params['province_code']);
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $businessOwners->where('region_code', $params['region_code']);
+        }
+        return $businessOwners->count();
     }
 
     public function getAges($params=null)
@@ -139,7 +155,7 @@ class AnalyticsService
             'seniors' => $ages->seniors,
             'male'=>$genders->male,
             'female'=>$genders->female,
-            'businessOwners'=>$this->getBusinessOwners()
+            'businessOwners'=>$this->getBusinessOwners($params)
         ];
         return $totals;
     }

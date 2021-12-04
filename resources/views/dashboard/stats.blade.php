@@ -74,6 +74,7 @@
               <div class="row">
                 @include('dashboard.metrics.gender')
                 @include('dashboard.metrics.age')
+                @include('dashboard.metrics.business')
                 </div>
                 <!-- /.col-->
               </div>
