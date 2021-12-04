@@ -9,10 +9,11 @@ use App\Http\Requests\ProfileDetailRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Models\Country;
 use App\Models\Target;
+use App\Traits\HasMemberOptions;
 
 class ProfileController extends Controller
 {
-    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
+    use HasMemberOptions;
     
     public function index() 
     {
@@ -80,7 +81,7 @@ class ProfileController extends Controller
             'other_skillsets' => $other_skillsets,
             'skillOptions' => $skillOptions,
             'countries' => Country::all(),
-            'outreachOptions'=>$this->outreachOptions
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 

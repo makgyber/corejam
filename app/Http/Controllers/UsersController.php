@@ -16,18 +16,13 @@ use App\Models\Country;
 use App\Models\Target;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
+use App\Traits\HasMemberOptions;
 
 class UsersController extends Controller
 {
 
-    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
-    var $skillOptions = [
-        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
-    ];
-    var $coordinatorLevels = ['ofw', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
-    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
+    use HasMemberOptions;
   
-
     use RegistersUsers;
     /**
      * Create a new controller instance.
@@ -73,7 +68,7 @@ class UsersController extends Controller
             'user' => User::findOrFail($id),
             'skillOptions' => $this->skillOptions,
             'targets'=>$targets,
-            'outreachOptions'=>$this->outreachOptions
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 
@@ -107,7 +102,7 @@ class UsersController extends Controller
             'position_other' => $positionOther,
             'showOther'=>$showOther,
             'countries'=>Country::all(),
-            'outreachOptions'=>$this->outreachOptions
+            'needsOptions'=>$this->needsOptions
         ]);
     }
 

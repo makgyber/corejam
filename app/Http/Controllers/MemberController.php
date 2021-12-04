@@ -13,16 +13,13 @@ use App\Imports\MemberImport;
 use App\Models\Country;
 use App\Services\MemberService;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Traits\HasMemberOptions;
 
 
 class MemberController extends Controller
 {
-    var $positionOptions = ['Bishop', 'Pastor', 'Elder', 'Board Member/Director', 'Member', 'Other'];
-    var $skillOptions = [
-        'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
-    ];
-    var $outreachOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
 
+    use HasMemberOptions;
      
     /**
      * Display a listing of the resource.
@@ -87,7 +84,7 @@ class MemberController extends Controller
             'skillOptions' => $this->skillOptions,
             'positionOptions' => $this->positionOptions,
             'countries' => Country::all(),
-            'outreachOptions' => $this->outreachOptions
+            'needsOptions' => $this->needsOptions
         ]);
     }
 
@@ -143,7 +140,7 @@ class MemberController extends Controller
             'showOther'=>$showOther,
             'positionOptions' => $this->positionOptions,
             'countries' => Country::all(),
-            'outreachOptions' => $this->outreachOptions
+            'needsOptions' => $this->needsOptions
         ]);
     }
 
