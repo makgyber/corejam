@@ -20,10 +20,11 @@
                 @include('dashboard.metrics.age')
                 <!-- /.col-->
                 @include('dashboard.metrics.business')
+                @include('dashboard.metrics.coopmember')
                 </div>
                 <!-- /.col-->
               </div>
-              <!-- /.row-->
+              <!-- /.row-->  
               <div class="row">
 
                 <div class="col-md-12">

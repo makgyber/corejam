@@ -1,4 +1,4 @@
-<div class="col-sm-4 col-lg-4">
+<div class="col-sm-3 col-lg-3">
     <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
       <div class="card-header position-relative d-flex justify-content-center align-items-center bg-gradient-warning text-white">
         <h4>

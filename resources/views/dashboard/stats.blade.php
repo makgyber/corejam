@@ -75,6 +75,7 @@
                 @include('dashboard.metrics.gender')
                 @include('dashboard.metrics.age')
                 @include('dashboard.metrics.business')
+                @include('dashboard.metrics.coopmember')
                 </div>
                 <!-- /.col-->
               </div>

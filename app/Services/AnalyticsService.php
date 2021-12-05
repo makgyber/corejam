@@ -29,6 +29,27 @@ class AnalyticsService
         return $businessOwners->count();
     }
 
+    public function getCoopMembers($params = null)
+    {
+        $coopMembers =User::where('coop_member', 'yes');
+        if (isset($params['barangay'])) {
+            $coopMembers->where('barangay', $params['barangay']);
+        } else if (isset($params['city_code'])) {
+            $coopMembers->where('city_code', $params['city_code']);
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+                $coopMembers->where('province_code', 'like', '13%');
+            } else {
+                $coopMembers->where('province_code', $params['province_code']);
+            }
+            
+        } else if (isset($params['region_code'])) {
+            $coopMembers->where('region_code', $params['region_code']);
+        }
+        return $coopMembers->count();
+    }
+
     public function getAges($params=null)
     {
         $demoSql = 'count( *) as totalUsers,  
@@ -156,6 +177,7 @@ class AnalyticsService
             'male'=>$genders->male,
             'female'=>$genders->female,
             'businessOwners'=>$this->getBusinessOwners($params),
+            'coopMembers'=>$this->getCoopMembers($params) 
         ];
         return $totals;
     }
