@@ -94,7 +94,7 @@
                     <div class="card-body">
                       
 
-                      @include('dashboard.metrics.location-counts')
+                      @include('dashboard.metrics.global-location-counts')
 
                   </div>
                   

@@ -60,8 +60,8 @@ class DashboardController extends Controller
             'params' => $params,
             'subregions' => $this->analytics->getGlobalSubRegions(),
             'totals' => $this->analytics->getGlobalTotals($params),
-            'locationCounts' => $this->analytics->getLocationCounts($params),
-            'affiliationCounts' => $this->analytics->getAffiliationCounts($params)
+            'locationCounts' => $this->analytics->getGlobalLocationCounts($params),
+            'affiliationCounts' => $this->analytics->getGlobalAffiliationCounts($params)
         ]);
     }
 

@@ -193,6 +193,45 @@ class AnalyticsService
         return $regionCounts;
     }
 
+    public function getGlobalLocationCounts($params)
+    {
+
+        if(!isset($params)) {
+            return $locationCounts = [];
+        } else if(isset($params['subregion']) && !isset($params['country_id'])) {
+
+            return $locationCounts = DB::table('countries')
+                        ->select(DB::raw('countries.id, countries.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'countries.id', '=', 'users.country_id')
+                        ->where('countries.subregion', $params['subregion'])
+                        ->groupBy(['countries.id','countries.name'])
+                        ->orderBy('countries.name')
+                        ->get();
+
+        } else if(isset($params['subregion']) && isset($params['country_id']) && !isset($params['state_id'])) {
+
+            return $locationCounts = DB::table('states')
+                        ->select(DB::raw('states.id, states.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'states.id', '=', 'users.state_id')
+                        ->where('states.country_id', $params['country_id'])
+                        ->groupBy(['states.id','states.name'])
+                        ->orderBy('states.name')
+                        ->get();
+
+        } else if(isset($params['subregion']) && isset($params['country_id']) && isset($params['state_id']) &&  !isset($params['world_city_id'])) {
+            return $locationCounts = DB::table('world_cities')
+                        ->select(DB::raw('world_cities.id, world_cities.name, count(users.id) as user_count'))
+                        ->leftJoin('users', 'world_cities.id', '=', 'users.world_city_id')
+                        ->where('world_cities.state_id', $params['state_id'])
+                        ->where('world_cities.country_id', $params['country_id'])
+                        ->groupBy(['world_cities.id','world_cities.name'])
+                        ->orderBy('world_cities.name')
+                        ->get();
+        } 
+
+        return $locationCounts = [];
+    }
+
     public function getLocationCounts($params)
     {
 
@@ -460,6 +499,51 @@ class AnalyticsService
                     
                         ->get();
         return $globalRegionCounts;
+    }
+
+    public function getGlobalAffiliationCounts($params=null)
+    {
+        $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id');
+
+        if (isset($params['world_city_id'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.world_city_id', $params['world_city_id'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } else if (isset($params['state_id'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.state_id', $params['state_id'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } else if (isset($params['country_id'])) {
+
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->where('affiliations.country_id', $params['country_id'])
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+            
+        } else if (isset($params['subregion'])) {
+            $affiliationCounts = DB::table('affiliations')
+                        ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
+                        ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
+                        ->whereIn('affiliations.country_id', Country::select('id')->where('subregion', $params['subregion'])->get()) 
+                        ->groupBy(['affiliations.name'])
+                        ->orderBy('affiliations.name')
+                        ->get();
+        } 
+       
+        return $affiliationCounts;
     }
 
     public function getAffiliationCounts($params=null)

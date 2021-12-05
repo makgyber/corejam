@@ -63,7 +63,9 @@ class LocationsController extends Controller
 
     public function countriesBySubregion(Request $request)
     {
-        $countries = Country::where('subregion', $request['subregion'])->get();
+        $countries = Country::where('subregion', $request['subregion'])
+                    ->where('id', '!=', 174)
+                    ->get();
         return $countries;
     }
 }
