@@ -37,6 +37,7 @@ class MemberService
 
         $validatedData = $request->safe()->except(['position_other', 'skillsets', 'other_skillsets']);
 
+
         $member = User::create(
             $validatedData + [
             'name' =>  $request['first_name'] . ' ' . $request['middle_name'] . ' ' . $request['last_name'],

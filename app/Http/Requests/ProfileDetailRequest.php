@@ -47,7 +47,8 @@ class ProfileDetailRequest extends FormRequest
             'state_id'=>'',
             'world_city_id'=>'',
             'outreach' => '',
-            'needs' => ''
+            'needs' => '',
+            'coop_member' => '',
         ];
     }
 }

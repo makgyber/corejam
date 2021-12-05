@@ -27,3 +27,10 @@
     </div>
     
 </div>
+<div class="card-header">
+    <h5>Are you a co-op member?</h5>
+    <div>
+        <input type="radio" name="coop_member" id="coop_member_yes" class="m-2" value="yes" {{ $member->coop_member == 'yes' ? 'checked' : '' }}>Yes
+        <input type="radio" name="coop_member" id="coop_member_no" class="m-2" value="no"  {{ $member->coop_member == 'no' ? 'checked' : '' }}>No
+    </div>
+</div>

@@ -29,7 +29,8 @@ class User extends Authenticatable
         'contact_number', 'skillsets', 'is_registered_voter', 'region_code', 'province_code', 
         'city_code', 'barangay', 'voterid', 'recommended_date', 'birthday',
         'business_type', 'business_location', 'capitalization', 'created_by', 'gender', 'address',
-        'coordinator_level', 'coordinator_scope','image','country_id', 'state_id', 'world_city_id', 'outreach','needs'
+        'coordinator_level', 'coordinator_scope','image','country_id', 'state_id', 'world_city_id', 'outreach','needs', 
+        'coop_member'
     ];
 
     /**
