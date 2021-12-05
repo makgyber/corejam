@@ -20,10 +20,11 @@ Route::get('/qrcode', 'MemberController@qrCode')->name('member.qrcode');
 Route::get('/registration', 'MemberController@selfRegister')->name('member.selfregister');
 Route::post('/registration', 'MemberController@selfStore')->name('member.selfStore');
 Route::get('/provinces', 'LocationsController@provinces');
-            Route::get('/cities', 'LocationsController@cities');
-            Route::get('/barangays', 'LocationsController@barangays');
-            Route::get('/states', 'LocationsController@states');
-            Route::get('/worldcities', 'LocationsController@worldCities');
+Route::get('/cities', 'LocationsController@cities');
+Route::get('/barangays', 'LocationsController@barangays');
+Route::get('/states', 'LocationsController@states');
+Route::get('/countries', 'LocationsController@countriesBySubregion');
+Route::get('/worldcities', 'LocationsController@worldCities');
 
 Route::prefix('/cms')->group(function() {  
     Auth::routes();
@@ -32,7 +33,8 @@ Route::prefix('/cms')->group(function() {
         
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/stats', 'DashboardController@stats')->name('stats');
-
+        Route::get('/globalstats', 'DashboardController@globalstats')->name('globalstats');
+        
         Route::post('/avatar', 'AvatarController@store')->name('avatar');
 
         Route::group(['prefix' => 'messages'], function () {

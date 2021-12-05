@@ -368,4 +368,13 @@ class AnalyticsService
        
         return $affiliationCounts;
     }
+
+    public function getGlobalSubRegions()
+    {
+        return DB::table('countries')
+                    ->select('subregion')
+                    ->distinct()
+                    ->orderBy('subregion')
+                    ->get();
+    }
 }

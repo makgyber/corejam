@@ -1,4 +1,3 @@
-
 let self = this;
 
 this.buildSelectOptions = function( data , selectedId){
@@ -24,7 +23,6 @@ this.buildSelectOptionsById = function( data , selectedId){
 }
 
 this.updateSelectProvince = function(){
-    console.log('province update')
     axios.get( '/provinces?region=' + document.getElementById("region_code").value )
     .then(function (response) {
         document.getElementById("province_code").innerHTML = self.buildSelectOptions(response.data, 'province')
@@ -126,5 +124,5 @@ document.getElementById("region_code").onchange = function(){self.updateSelectPr
 document.getElementById("province_code").onchange = function(){self.updateSelectCities()}
 document.getElementById("city_code").onchange = function(){self.updateSelectBarangays()}
 document.getElementById("country_id").onchange = function(){self.toggleAddressGroups();self.updateSelectStates();self.updateSelectWorldCities()}
-document.getElementById("state_id").onchange = function(){self.updateSelectWorldCities()}
+ 
 

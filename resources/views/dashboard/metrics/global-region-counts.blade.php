@@ -11,7 +11,7 @@
                 <div>{{$regionCount->subregion}}</div>
                 <div class="ml-auto font-weight-bold mr-2">{{$regionCount->user_count}}</div>
                     <div class="text-muted small">
-                        <a href="{{ route('stats', ['region_code'=>$regionCount->subregion])}}"><i class="cil-search"></i></a>
+                        <a href="{{ route('globalstats', ['subregion'=>$regionCount->subregion])}}"><i class="cil-search"></i></a>
                     </div>
                 </div>
                 <div class="progress-group-bars">

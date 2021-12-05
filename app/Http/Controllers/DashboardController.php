@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Activity;
 use App\Models\Affiliation;
 use App\Models\Configuration;
+use App\Models\Country;
 use App\Models\Regions;
 use App\Services\AnalyticsService;
 use Illuminate\Support\Facades\DB;
@@ -18,17 +19,12 @@ class DashboardController extends Controller
 
     public function __construct(AnalyticsService  $analyticsService)
     {
+        $this->middleware('auth');
         $this->analytics = $analyticsService;
     }
 
     public function index()
     {
-        $analytics = new AnalyticsService();
-
-        if(!auth()->check()) {
-            return view('auth.login');
-        }
-
         return view('dashboard.homepage', [
             'drillTo' => '',
             'totals' => $this->analytics->getTotals(null),
@@ -44,11 +40,6 @@ class DashboardController extends Controller
      */
     public function stats(Request $request)
     {
-
-        if(!auth()->check()) {
-            return view('auth.login');
-        }
-
         $params = $request->all();
         return view('dashboard.stats', [
             'params' => $params,
@@ -59,18 +50,19 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function byProvince()
+    /**
+     * $category -> country, state, city, 
+     */
+    public function globalstats(Request $request)
     {
-        
+        $params = $request->all();
+        return view('dashboard.globalstats', [
+            'params' => $params,
+            'subregions' => $this->analytics->getGlobalSubRegions(),
+            'totals' => $this->analytics->getTotals($params),
+            'locationCounts' => $this->analytics->getLocationCounts($params),
+            'affiliationCounts' => $this->analytics->getAffiliationCounts($params)
+        ]);
     }
 
-    public function byCity()
-    {
-        
-    }
-
-    public function byBarangay()
-    {
-        
-    }
 }

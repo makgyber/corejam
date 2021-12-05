@@ -60,4 +60,10 @@ class LocationsController extends Controller
         }
         return $worldCities->get();
     }
+
+    public function countriesBySubregion(Request $request)
+    {
+        $countries = Country::where('subregion', $request['subregion'])->get();
+        return $countries;
+    }
 }

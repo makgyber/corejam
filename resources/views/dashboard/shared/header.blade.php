@@ -45,7 +45,7 @@
             @else
               {{ Auth::user()->email }}
             @endif
-            </a><small class="text-uppercase text-success">
+            </a><small class="text-uppercase text-success flex w-100 d-block text-center">
               @if(Auth::user()->hasRole('coordinator'))
                  {{Auth::user()->coordinator_level . ' coordinator'}}
               @else
