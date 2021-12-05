@@ -7,6 +7,6 @@ trait HasMemberOptions
     public $skillOptions = [
         'Preaching', 'Teaching', 'Evangelism', 'Discipleship', 'Leadership', 'Administration', 'Finance'
     ];
-    public $coordinatorLevels = ['ofw', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
+    public $coordinatorLevels = ['ofw', 'luzon', 'visayas', 'mindanao', 'regional', 'provincial', 'city', 'municipal', 'barangay'];
     public $needsOptions = ['Pabahay', 'Trabaho', 'Sustainable livelihood', 'Libreng edukasyon'];
 }
