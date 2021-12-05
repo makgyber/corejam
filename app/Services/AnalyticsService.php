@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Affiliation;
 use App\Models\Configuration;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,21 @@ class AnalyticsService
         return $businessOwners->count();
     }
 
+    public function getGlobalBusinessOwners($params = null)
+    {
+        $businessOwners =User::where('business_type', '!=', 'null');
+        if (isset($params['world_city_id'])) {
+            $businessOwners->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $businessOwners->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $businessOwners->where('country_id', $params['country_id']);
+        }else if(isset($params['subregion'])) {
+            $businessOwners->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
+        }
+        return $businessOwners->count();
+    }
+
     public function getCoopMembers($params = null)
     {
         $coopMembers =User::where('coop_member', 'yes');
@@ -46,6 +62,21 @@ class AnalyticsService
             
         } else if (isset($params['region_code'])) {
             $coopMembers->where('region_code', $params['region_code']);
+        }
+        return $coopMembers->count();
+    }
+
+    public function getGlobalCoopMembers($params = null)
+    {
+        $coopMembers =User::where('coop_member', 'yes');
+        if (isset($params['world_city_id'])) {
+            $coopMembers->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $coopMembers->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $coopMembers->where('country_id', $params['country_id']);
+        }else if(isset($params['subregion'])) {
+            $coopMembers->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
         }
         return $coopMembers->count();
     }
@@ -77,6 +108,51 @@ class AnalyticsService
         }
 
         return $demographics->first();
+    }
+
+    public function getGlobalAges($params=null)
+    {
+        $demoSql = 'count( *) as totalUsers,  
+                    sum(if(timestampdiff( YEAR, birthday, now() ) <= 29, 1, 0)) as youth, 
+                    sum(if(timestampdiff( YEAR, birthday, now() ) > 29 && timestampdiff( YEAR, birthday, now() ) < 60, 1, 0)) as adults, 
+                    sum(if(timestampdiff( YEAR, birthday, now() ) >59, 1, 0)) as seniors
+        ';
+
+        $demographics = DB::table('users')->select(DB::raw($demoSql));
+
+        if (isset($params['world_city_id'])) {
+            $demographics->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $demographics->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $demographics->where('country_id', $params['country_id']);
+        }else if(isset($params['subregion'])) {
+            $demographics->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
+        }
+
+        return $demographics->first();
+    }
+
+    public function getGlobalGenders($params=null)
+    {
+        $genderSql = 'count( *) as totalUsers,  
+                sum(if(gender = "M", 1, 0)) as male, 
+                sum(if(gender = "F", 1, 0)) as female
+        ';                   
+        $gender =  DB::table('users')
+                    ->select(DB::raw($genderSql));
+
+        if (isset($params['world_city_id'])) {
+            $gender->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $gender->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $gender->where('country_id', $params['country_id']);
+        } else if(isset($params['subregion'])) {
+            $gender->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
+        }
+                    
+        return $gender->first();               
     }
 
     public function getGenders($params=null)
@@ -184,21 +260,21 @@ class AnalyticsService
 
     public function getGlobalTotals($params=null)
     {
-        $ages = $this->getAges($params);
-        $genders = $this->getGenders($params);
+        $ages = $this->getGlobalAges($params);
+        $genders = $this->getGlobalGenders($params);
                     
         $totals = [
             'targetRegistrations' => $this->getTargetRegistrations($params), 
-            'coordinators' => $this->getCoordinatorCount($params), 
-            'registered_voters' => $this->getRegisteredVoters($params),
-            'total_users' => $this->getUserCount($params),
+            'coordinators' => $this->getGlobalCoordinatorCount($params), 
+            'registered_voters' => $this->getGlobalRegisteredVoters($params),
+            'total_users' => $this->getGlobalUserCount($params),
             'youth' => $ages->youth,
             'adults' => $ages->adults,
             'seniors' => $ages->seniors,
             'male'=>$genders->male,
             'female'=>$genders->female,
-            'businessOwners'=>$this->getBusinessOwners($params),
-            'coopMembers'=>$this->getCoopMembers($params) 
+            'businessOwners'=>$this->getGlobalBusinessOwners($params),
+            'coopMembers'=>$this->getGlobalCoopMembers($params) 
         ];
         return $totals;
     }
@@ -225,6 +301,25 @@ class AnalyticsService
  
         return $users->count();
     }
+
+    public function getGlobalCoordinatorCount($params=null)
+    {
+        $users = User::where('menuroles', 'coordinator');
+
+        if (isset($params['world_city_id'])) {
+            $users->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $users->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $users->where('country_id', $params['country_id']);
+        } else if(isset($params['subregion'])) {
+            $users->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
+        }
+ 
+        return $users->count();
+    }
+
+
 
     public function getTargetRegistrations($params=null)
     {
@@ -262,6 +357,23 @@ class AnalyticsService
         return $users->count();
     }
 
+    public function getGlobalRegisteredVoters($params=null)
+    {
+        $users = User::where('is_registered_voter', 1);
+
+        if (isset($params['world_city_id'])) {
+            $users->where('world_city_id', $params['world_city_id']);
+        } else if (isset($params['state_id'])) {
+            $users->where('state_id', $params['state_id']); 
+        } else if (isset($params['country_id'])) {
+            $users->where('country_id', $params['country_id']);
+        } else if(isset($params['subregion'])) {
+            $users->whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->get();
+        }
+
+        return $users->count();
+    }
+
     public function getUserCount($params=null) 
     {
 
@@ -280,6 +392,22 @@ class AnalyticsService
         } else if (isset($params['region_code'])) {
             return User::where('region_code', $params['region_code'])->count();
         } 
+
+        return User::count();
+    }
+
+    public function getGlobalUserCount($params=null) 
+    {
+
+        if (isset($params['world_city_id'])) {
+            return User::where('world_city_id', $params['world_city_id'])->count();
+        } else if (isset($params['state_id'])) {
+            return User::where('state_id', $params['state_id'])->count(); 
+        } else if (isset($params['country_id'])) {
+            return User::where('country_id', $params['country_id'])->count();
+        } else if(isset($params['subregion'])) {
+            return User::whereIn('country_id', Country::select('id')->where('subregion', $params['subregion']))->count();
+        }
 
         return User::count();
     }
