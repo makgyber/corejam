@@ -29,7 +29,7 @@ this.toggleArea = function () {
     $('#provinceCard').hide();
     $('#cityCard').hide();
     $('#barangayCard').hide();
-  } else if (value === 'regional') {
+  } else if (['regional', 'luzon', 'visayas', 'mindanao'].includes(value)) {
     $('#country_id').val(174);
     $('#internationalAddress').hide();
     $('#localAddress').show();

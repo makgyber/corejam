@@ -191,6 +191,8 @@ class UsersController extends Controller
                 $coordinatorScope = $request['city_code'];
             } else if($request['coordinator_level'] == 'ofw') {
                 $coordinatorScope = $request['country_id'] . '|' . $request['state_id'] . '|' . $request['world_city_id'];
+            } else if(in_array($request['coordinator_level'],['luzon', 'visayas', 'mindanao'])) {
+                $coordinatorScope = $request['coordinator_level'];
             }
         }
 
@@ -304,6 +306,8 @@ class UsersController extends Controller
                 $user->country_id =$request['country_id'];
                 $user->state_id = $request['state_id'];
                 $user->world_city_id = $request['world_city_id'];
+            }else if(in_array($request['coordinator_level'],['luzon', 'visayas', 'mindanao'])) {
+                $coordinatorScope = $request['coordinator_level'];
             }
 
             $user->menuroles = implode(',', $request['roles']);
