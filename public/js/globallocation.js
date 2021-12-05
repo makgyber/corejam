@@ -25,7 +25,7 @@ this.buildSelectOptionsById = function (data, selectedId) {
 this.updateSelectWorldCities = function () {
   var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var $state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var state = document.getElementById("state_id").value;
+  var state = document.getElementById("state").value;
   var country = document.getElementById('country_id').value;
 
   if ($state) {
@@ -46,14 +46,16 @@ this.updateSelectWorldCities = function () {
 
 this.updateSelectStates = function () {
   var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var country = document.getElementById("country_id").value;
+  var country = document.getElementById("country").value;
 
   if ($country) {
     country = $country;
   }
 
+  console.log(country);
   axios.get('/states?country=' + country).then(function (response) {
     document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state');
+    self.updateSelectWorldCities(country, document.getElementById("state_id").value);
   })["catch"](function (error) {
     // handle error
     console.log(error);
@@ -71,6 +73,7 @@ this.updateSelectCountries = function () {
 
   axios.get('/countries?subregion=' + subregion).then(function (response) {
     document.getElementById("country_id").innerHTML = self.buildSelectOptionsById(response.data, 'country');
+    self.updateSelectStates(document.getElementById("country_id").value);
   })["catch"](function (error) {
     // handle error
     console.log(error);
@@ -83,17 +86,14 @@ this.updateSelectWorldCities();
 
 document.getElementById("subregion").onchange = function () {
   self.updateSelectCountries();
-  self.updateSelectStates();
-  self.updateSelectWorldCities();
 };
 
 document.getElementById("country_id").onchange = function () {
-  self.updateSelectStates();
-  self.updateSelectWorldCities();
+  self.updateSelectStates(this.value);
 };
 
 document.getElementById("state_id").onchange = function () {
-  self.updateSelectWorldCities();
+  self.updateSelectWorldCities(null, this.value);
 };
 
 /***/ })

@@ -12,7 +12,7 @@ this.buildSelectOptionsById = function( data , selectedId){
 }
 
 this.updateSelectWorldCities = function($country=null, $state=null){
-    let state =  document.getElementById("state_id").value 
+    let state =  document.getElementById("state").value 
     let country = document.getElementById('country_id').value
     if($state){
         state =  $state
@@ -32,15 +32,16 @@ this.updateSelectWorldCities = function($country=null, $state=null){
 }
 
 this.updateSelectStates = function($country=null){
-    let country =  document.getElementById("country_id").value 
+    
+    let country =  document.getElementById("country").value 
     if($country){
         country =  $country
     }
-
+    console.log(country)
     axios.get( '/states?country=' + country)
     .then(function (response) {
         document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state')
-        self.updateSelectWorldCities(document.getElementById("state_id").value)
+        self.updateSelectWorldCities(country, document.getElementById("state_id").value)
     })
     .catch(function (error) {
         // handle error
@@ -69,6 +70,7 @@ this.updateSelectCountries = function($subregion=null){
 this.updateSelectCountries()
 this.updateSelectStates()
 this.updateSelectWorldCities()
-document.getElementById("subregion").onchange = function(){self.updateSelectCountries();}
-document.getElementById("country_id").onchange = function(){self.updateSelectStates();}
-document.getElementById("state_id").onchange = function(){self.updateSelectWorldCities();}
+
+document.getElementById("subregion").onchange = function(){self.updateSelectCountries()}
+document.getElementById("country_id").onchange = function(){self.updateSelectStates(this.value)}
+document.getElementById("state_id").onchange = function(){self.updateSelectWorldCities(null, this.value)}
