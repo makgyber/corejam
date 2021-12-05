@@ -148,6 +148,10 @@ document.getElementById("city_code").onchange = function () {
 document.getElementById("country_id").onchange = function () {
   self.toggleAddressGroups();
   self.updateSelectStates();
+  document.getElementById("world_city_id").innerHTML = '<option></option>';
+};
+
+document.getElementById("state_id").onchange = function () {
   self.updateSelectWorldCities();
 };
 

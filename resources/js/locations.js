@@ -123,6 +123,13 @@ this.toggleAddressGroups()
 document.getElementById("region_code").onchange = function(){self.updateSelectProvince()}
 document.getElementById("province_code").onchange = function(){self.updateSelectCities()}
 document.getElementById("city_code").onchange = function(){self.updateSelectBarangays()}
-document.getElementById("country_id").onchange = function(){self.toggleAddressGroups();self.updateSelectStates();self.updateSelectWorldCities()}
+document.getElementById("country_id").onchange = function(){
+    self.toggleAddressGroups();
+    self.updateSelectStates();
+    document.getElementById("world_city_id").innerHTML = '<option></option>';
+}
+document.getElementById("state_id").onchange = function(){self.updateSelectWorldCities();}
+
+
  
 
