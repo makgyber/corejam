@@ -45,8 +45,13 @@
             @else
               {{ Auth::user()->email }}
             @endif
-            
-            </a>
+            </a><small class="text-uppercase text-success">
+              @if(Auth::user()->hasRole('coordinator'))
+                 {{Auth::user()->coordinator_level . ' coordinator'}}
+              @else
+                 {{Auth::user()->menuroles}}
+              @endif
+            </small>
             <div class="dropdown-menu dropdown-menu-right pt-0">
               <div class="dropdown-header text-success py-3"><strong>{{ Auth::user()->email }}</strong></div>
               <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>

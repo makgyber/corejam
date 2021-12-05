@@ -92,6 +92,8 @@
                                       if(isset($scope[1])) echo App\Models\State::find($scope[1])->name . ', ';
                                       if(isset($scope[0])) echo App\Models\Country::find($scope[0])->name ;
                                     }
+                                  }elseif(in_array($user->coordinator_level, ['luzon', 'visayas', 'mindanao'])){
+                                    echo $user->coordinator_level;
                                   }else{
                                     if(strlen($user->coordinator_scope) == 2) {
                                       echo App\Models\Regions::where('code', $user->coordinator_scope)->first()->name;
