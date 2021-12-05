@@ -118,6 +118,5 @@
   <script src="{{ asset('js/coreui-chartjs.bundle.js') }}"></script>
   <script src="{{ asset('js/main.js') }}" defer></script>
   <script src="{{ asset('js/axios.min.js') }}"></script> 
-  <script src="{{ asset('js/locations.js') }}"></script>
-  <script src="{{ asset('js/business.js') }}"></script>
+  <script src="{{ asset('js/phlocations.js') }}"></script> 
 @endsection

@@ -1,10 +1,10 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./resources/js/locations.js":
-/*!***********************************!*\
-  !*** ./resources/js/locations.js ***!
-  \***********************************/
+/***/ "./resources/js/phlocations.js":
+/*!*************************************!*\
+  !*** ./resources/js/phlocations.js ***!
+  \*************************************/
 /***/ (function() {
 
 var self = this;
@@ -16,19 +16,6 @@ this.buildSelectOptions = function (data, selectedId) {
   for (var i = 0; i < data.length; i++) {
     result += '<option value="' + data[i].code + '"';
     if (selectedValue == data[i].code) result += ' selected  ';
-    result += '>' + data[i].name + '</option>';
-  }
-
-  return result;
-};
-
-this.buildSelectOptionsById = function (data, selectedId) {
-  var result = '<option></option>';
-  var selectedValue = document.getElementById(selectedId).value;
-
-  for (var i = 0; i < data.length; i++) {
-    result += '<option value="' + data[i].id + '"';
-    if (selectedValue == data[i].id) result += ' selected  ';
     result += '>' + data[i].name + '</option>';
   }
 
@@ -78,60 +65,9 @@ this.updateSelectBarangays = function () {
   });
 };
 
-this.updateSelectStates = function () {
-  var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var country = document.getElementById("country_id").value;
-
-  if ($country) {
-    country = $country;
-  }
-
-  axios.get('/states?country=' + country).then(function (response) {
-    document.getElementById("state_id").innerHTML = self.buildSelectOptionsById(response.data, 'state');
-  })["catch"](function (error) {
-    // handle error
-    console.log(error);
-  });
-};
-
-this.updateSelectWorldCities = function () {
-  var $country = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var $state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var state = document.getElementById("state_id").value;
-  var country = document.getElementById('country_id').value;
-
-  if ($state) {
-    state = $state;
-  }
-
-  if ($country) {
-    country = $country;
-  }
-
-  axios.get('/worldcities?state=' + state + '&country=' + country).then(function (response) {
-    document.getElementById("world_city_id").innerHTML = self.buildSelectOptionsById(response.data, 'world_city');
-  })["catch"](function (error) {
-    // handle error
-    console.log(error);
-  });
-};
-
-this.toggleAddressGroups = function () {
-  if ($('#country_id').val() == '174') {
-    $('#localAddress').show();
-    $('#internationalAddress').hide();
-  } else {
-    $('#localAddress').hide();
-    $('#internationalAddress').show();
-  }
-};
-
 this.updateSelectProvince();
 this.updateSelectCities();
 this.updateSelectBarangays();
-this.updateSelectStates();
-this.updateSelectWorldCities();
-this.toggleAddressGroups();
 
 document.getElementById("region_code").onchange = function () {
   self.updateSelectProvince();
@@ -145,12 +81,6 @@ document.getElementById("city_code").onchange = function () {
   self.updateSelectBarangays();
 };
 
-document.getElementById("country_id").onchange = function () {
-  self.toggleAddressGroups();
-  self.updateSelectStates();
-  self.updateSelectWorldCities();
-};
-
 /***/ })
 
 /******/ 	});
@@ -160,7 +90,7 @@ document.getElementById("country_id").onchange = function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./resources/js/locations.js"]();
+/******/ 	__webpack_modules__["./resources/js/phlocations.js"]();
 /******/ 	
 /******/ })()
 ;

@@ -9,7 +9,7 @@
                     <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-pin"></use>
                 </svg>
                 <div>{{$affiliationCount->name??''}}</div>
-                <div class="ml-auto font-weight-bold mr-2">{{$affiliationCount->user_count}}</div>
+                <div class="ml-auto font-weight-bold mr-2">{{$affiliationCount->user_count??''}}</div>
                     <div class="text-muted small">
                         
                     </div>

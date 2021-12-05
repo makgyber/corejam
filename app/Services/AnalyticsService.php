@@ -182,6 +182,27 @@ class AnalyticsService
         return $totals;
     }
 
+    public function getGlobalTotals($params=null)
+    {
+        $ages = $this->getAges($params);
+        $genders = $this->getGenders($params);
+                    
+        $totals = [
+            'targetRegistrations' => $this->getTargetRegistrations($params), 
+            'coordinators' => $this->getCoordinatorCount($params), 
+            'registered_voters' => $this->getRegisteredVoters($params),
+            'total_users' => $this->getUserCount($params),
+            'youth' => $ages->youth,
+            'adults' => $ages->adults,
+            'seniors' => $ages->seniors,
+            'male'=>$genders->male,
+            'female'=>$genders->female,
+            'businessOwners'=>$this->getBusinessOwners($params),
+            'coopMembers'=>$this->getCoopMembers($params) 
+        ];
+        return $totals;
+    }
+
     public function getCoordinatorCount($params=null)
     {
         $users = User::where('menuroles', 'coordinator');
