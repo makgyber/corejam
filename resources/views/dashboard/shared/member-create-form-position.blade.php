@@ -18,7 +18,7 @@
 </div>
 <hr>
 <div class="card-header">
-    <h5>Outreach / Mission</h5>
+    <h5>Type of Community Outreach / Mission</h5>
 </div>
 <div class="card-body">
     <div class="mb-3">
