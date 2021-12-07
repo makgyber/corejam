@@ -46,6 +46,6 @@
 @section('javascript')
 
 <script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/locations.js') }}"></script>
-<script src="{{ asset('js/business.js') }}"></script>
+<script src="{{ mix('js/locations.js') }}"></script>
+<script src="{{ mix('js/business.js') }}"></script>
 @endsection

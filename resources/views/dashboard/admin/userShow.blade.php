@@ -253,6 +253,6 @@
 @section('javascript')
 
 <script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/locations.js') }}"></script>
+<script src="{{ mix('js/locations.js') }}"></script>
 
 @endsection

@@ -47,7 +47,7 @@ mix.js('resources/js/coreui/menu-edit.js', 'public/js');
 mix.js('resources/js/coreui/media.js', 'public/js');
 mix.js('resources/js/coreui/media-cropp.js', 'public/js');
 mix.js('resources/js/business.js', 'public/js');
-mix.js('resources/js/locations.js', 'public/js');
+mix.js('resources/js/locations.js', 'public/js').version();
 mix.js('resources/js/phlocations.js', 'public/js');
 mix.js('resources/js/sharedlocation.js', 'public/js');
 mix.js('resources/js/globallocation.js', 'public/js');
