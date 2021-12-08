@@ -556,7 +556,7 @@ class AnalyticsService
             $affiliationCounts = DB::table('affiliations')
                         ->select(DB::raw('affiliations.name, count(user_affiliation.user_id) as user_count'))
                         ->leftJoin('user_affiliation', 'affiliations.id', '=', 'user_affiliation.affiliation_id')
-                        ->where('affiliations.barangay', $params['barangay'])
+                        ->where('affiliations.city_code', $params['city_code'])
                         ->groupBy(['affiliations.name'])
                         ->orderBy('affiliations.name')
                         ->get();
