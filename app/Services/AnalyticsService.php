@@ -617,7 +617,6 @@ class AnalyticsService
             return DB::table('users')
                     ->select(DB::raw('count(*) as needcount, needs'))
                     ->where('needs', '!=', null)
-                    ->where('region_code', $params['region_code'])
                     ->where('barangay', $params['barangay'])
                     ->groupBy('needs')
                     ->orderByDesc('needcount')
