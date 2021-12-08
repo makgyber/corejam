@@ -25,6 +25,7 @@
                 <!-- /.col-->
               </div>
               <!-- /.row-->  
+              @include('dashboard.metrics.needs')
               <div class="row">
 
                 <div class="col-md-12">

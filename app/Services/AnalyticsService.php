@@ -610,4 +610,14 @@ class AnalyticsService
                     ->orderBy('subregion')
                     ->get();
     }
+
+    public function needsCount()
+    {
+        return DB::table('users')
+                ->select(DB::raw('count(*) as needcount, needs'))
+                ->where('needs', '!=', null)
+                ->groupBy('needs')
+                ->orderByDesc('needcount')
+                ->get();
+    }
 }
