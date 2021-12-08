@@ -47,7 +47,8 @@ class DashboardController extends Controller
             'regions' => Regions::all(),
             'totals' => $this->analytics->getTotals($params),
             'locationCounts' => $this->analytics->getLocationCounts($params),
-            'affiliationCounts' => $this->analytics->getAffiliationCounts($params)
+            'affiliationCounts' => $this->analytics->getAffiliationCounts($params),
+            'needsCount' => $this->analytics->needsCount($params)
         ]);
     }
 

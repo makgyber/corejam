@@ -79,7 +79,7 @@
                 </div>
                 <!-- /.col-->
               </div>
-
+              @include('dashboard.metrics.needs')
               <div class="row">
                 <div class="col-md-12">
                   <div class="card">

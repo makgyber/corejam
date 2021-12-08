@@ -611,8 +611,61 @@ class AnalyticsService
                     ->get();
     }
 
-    public function needsCount()
+    public function needsCount($params=null)
     {
+        if (isset($params['barangay'])) {
+            return DB::table('users')
+                    ->select(DB::raw('count(*) as needcount, needs'))
+                    ->where('needs', '!=', null)
+                    ->where('region_code', $params['region_code'])
+                    ->where('barangay', $params['barangay'])
+                    ->groupBy('needs')
+                    ->orderByDesc('needcount')
+                    ->get();
+        } else if (isset($params['city_code'])) {
+            return DB::table('users')
+                    ->select(DB::raw('count(*) as needcount, needs'))
+                    ->where('needs', '!=', null)
+                    ->where('region_code', $params['region_code'])
+                    ->where('city_code', $params['city_code'])
+                    ->groupBy('needs')
+                    ->orderByDesc('needcount')
+                    ->get();
+        } else if (isset($params['province_code'])) {
+
+            if($params['province_code'] == '1300') {
+
+                return DB::table('users')
+                    ->select(DB::raw('count(*) as needcount, needs'))
+                    ->where('needs', '!=', null)
+                    ->where('region_code', $params['region_code'])
+                    ->where('province_code', 'like', '13%')
+                    ->groupBy('needs')
+                    ->orderByDesc('needcount')
+                    ->get();
+
+            } else {
+
+                return DB::table('users')
+                    ->select(DB::raw('count(*) as needcount, needs'))
+                    ->where('needs', '!=', null)
+                    ->where('region_code', $params['region_code'])
+                    ->where('province_code', $params['province_code'])
+                    ->groupBy('needs')
+                    ->orderByDesc('needcount')
+                    ->get();
+            }
+            
+        } else if (isset($params['region_code'])) {
+            return DB::table('users')
+                ->select(DB::raw('count(*) as needcount, needs'))
+                ->where('needs', '!=', null)
+                ->where('region_code', $params['region_code'])
+                ->groupBy('needs')
+                ->orderByDesc('needcount')
+                ->get();
+        } 
+
         return DB::table('users')
                 ->select(DB::raw('count(*) as needcount, needs'))
                 ->where('needs', '!=', null)
