@@ -621,11 +621,11 @@ class AnalyticsService
                     ->groupBy('needs')
                     ->orderByDesc('needcount')
                     ->get();
+
         } else if (isset($params['city_code'])) {
             return DB::table('users')
                     ->select(DB::raw('count(*) as needcount, needs'))
                     ->where('needs', '!=', null)
-                    ->where('region_code', $params['region_code'])
                     ->where('city_code', $params['city_code'])
                     ->groupBy('needs')
                     ->orderByDesc('needcount')
@@ -637,7 +637,6 @@ class AnalyticsService
                 return DB::table('users')
                     ->select(DB::raw('count(*) as needcount, needs'))
                     ->where('needs', '!=', null)
-                    ->where('region_code', $params['region_code'])
                     ->where('province_code', 'like', '13%')
                     ->groupBy('needs')
                     ->orderByDesc('needcount')
@@ -648,7 +647,6 @@ class AnalyticsService
                 return DB::table('users')
                     ->select(DB::raw('count(*) as needcount, needs'))
                     ->where('needs', '!=', null)
-                    ->where('region_code', $params['region_code'])
                     ->where('province_code', $params['province_code'])
                     ->groupBy('needs')
                     ->orderByDesc('needcount')
