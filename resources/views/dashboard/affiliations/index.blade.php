@@ -46,8 +46,8 @@
                               <td>{{ $affiliation->pivot->position }}</td>
                               <td>{{ isset($affiliation->country_id) ? $affiliation->country->name : 'Philippines'}}</td>
                               <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? ($affiliation->state->name??'') : $affiliation->region->name }}</td>
-                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)?'' : $affiliation->province->name }}</td>
-                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? ($affiliation->worldCity->name??'') :$affiliation->city->name }}</td>
+                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? '' : $affiliation->province->name ??''}}</td>
+                              <td>{{ isset($affiliation->country_id) && ($affiliation->country_id!=174)? ($affiliation->worldCity->name??'') :$affiliation->city->name ??''}}</td>
                               <td>{{ $affiliation->pivot->is_primary  ? 'Yes' : 'No'}}</td>
                               <td>
                                 <a href="{{ url('/cms/affiliations/' . $affiliation->id . '/edit') }}" class="btn btn-block btn-primary btn-sm">Edit</a>
