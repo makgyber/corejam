@@ -34,7 +34,7 @@
 <style>
     .photocard {
         width:165px;
-        background-image: url("{{url($user->image ? 'storage/'.$user->image : 'assets/img/m610.png')}}");
+        background-image: url("{{url($user->image ? 'storage/'.$user->image : 'assets/img/m610.jpg')}}");
         background-position:center;
         background-size:cover;
     }
