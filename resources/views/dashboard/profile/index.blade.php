@@ -28,7 +28,8 @@
         <div class="card">
           <div class="card-header">
               <h5 class="d-inline-block">Personal Information <a href="{{route('faq', 'profile')}}" target="_blank"><span class="badge rounded-pill bg-light text-dark">?</span></a></h5>
-               <a href="{{ route('profile.edit') }}" class="btn btn-primary btn-sm float-right">Edit Profile</a>
+               <a href="{{ route('profile.edit') }}" class="btn btn-primary btn-sm float-right ">Edit Profile</a>
+               <a href="{{ route('profile.card', ['q' => Crypt::encrypt(['s'=>auth()->user()->id])]) }}" class="btn btn-primary btn-sm float-right mr-2">ID Card</a>
           </div>
           <div class="card-body">
             <table class="table table-borderless table-sm table-hover">

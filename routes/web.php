@@ -69,6 +69,7 @@ Route::prefix('/cms')->group(function() {
                 Route::get('/show-change-password', 'ProfileController@showChangePassword')->name('profile.show-change-password');
                 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
                 Route::put('/', 'ProfileController@store')->name('profile.store');
+                Route::get('/card', 'ProfileController@card')->name('profile.card');
             });
             
             

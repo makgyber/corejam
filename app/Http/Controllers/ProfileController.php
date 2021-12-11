@@ -99,4 +99,16 @@ class ProfileController extends Controller
         return view('dashboard.profile.changepassword');
     }
 
+    public function card(Request $request)
+    {
+        if(!$request['q']) {
+            abort(404);
+        }
+
+        $params = decrypt($request['q']);
+        $user = User::findOrFail($params['s']);
+
+        return view('dashboard.profile.card', ['user' => $user]);
+    }
+
 }
