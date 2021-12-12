@@ -32,9 +32,6 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError, WithBatch
             return null;
         }
 
-
-
-        
         $affiliation = Affiliation::find(request()->get('affiliation_id'));
         $rowIndex = $row->getIndex();
         $row      = $row->toArray();
