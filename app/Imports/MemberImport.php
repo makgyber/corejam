@@ -9,9 +9,11 @@ use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Throwable;
 
-class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
+class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError, WithBatchInserts, WithChunkReading
 {
 /**
     * @param array $row
@@ -109,5 +111,15 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError
     {
         logger('Import error', [$e]);
         return null;
+    }
+
+    public function batchSize(): int
+    {
+        return 500;
+    }
+    
+    public function chunkSize(): int
+    {
+        return 500;
     }
 }
