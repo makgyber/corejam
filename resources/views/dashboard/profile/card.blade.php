@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-    <div class="card m-auto flex vh-100 col-md-8 col-lg-6 col-sm-12" style="min-width:500px">
+    <div class="card m-auto flex vh-100 col-md-8 col-lg-6 col-sm-12" style="min-width:500px;max-width:640px;">
         <div class="row text-center">
             <img src="{{asset('assets/img/id_top_wpic.png')}}" alt="" srcset="" class="img-fluid">
         </div>
