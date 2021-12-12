@@ -27,6 +27,12 @@ class MemberImport implements OnEachRow, WithHeadingRow, SkipsOnError, WithBatch
             return null;
         }
 
+        $exists2 = User::where('name', $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'])->first();
+        if ($exists2) {
+            return null;
+        }
+
+
 
         
         $affiliation = Affiliation::find(request()->get('affiliation_id'));
