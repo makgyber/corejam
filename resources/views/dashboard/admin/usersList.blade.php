@@ -121,10 +121,15 @@
 
                                 @if($you->id != $user->id)
                                 <a href="{{ route('coordinators.show-role', $user->id) }}" class="btn btn-sm btn-success">Role</a>
+                                @if(auth()->user()->hasRole('admin'))
+                                   <a href="{{ route('impersonate',  $user->id) }}" class="btn btn-sm btn-info">Log As</a>
+                                @endif
                                 @endif
                                 @if( 'user' == $user->menuroles )
                                   <a href="{{ route('coordinators.show-invite',  $user->id) }}" class="btn btn-sm btn-info">Invite</a>
                                 @endif
+
+                                
  
                               </td>
                             </tr>

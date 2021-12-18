@@ -49,10 +49,12 @@
                                 <summary>Add Recipients</summary>
                                 <div class="form-group mt-3">
                                     <label class="control-label text-success   text-uppercase" for="selectAll"></label>
-
-                                    <label class="text-success text-uppercase">
+                                    @if(auth()->user()->hasRole('admin'))
+                                    <label class="text-success text-uppercase">        
                                         <input type="checkbox" id="selectAll"
-                                        class="m-1 d-inline-block " >Select All</label>
+                                        class="m-1 d-inline-block " >Select All
+                                    </label>
+                                    @endif
                                    
                                         <div class="flex">
                                             <select class="js-example-basic-multiple" name="recipients[]" id="recipientSelect" multiple="multiple" style="width:100%">

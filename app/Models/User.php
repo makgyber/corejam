@@ -107,6 +107,11 @@ class User extends Authenticatable
         return $this->belongsTo(Cities::class, 'city_code', 'code');
     }
 
+    public function barangayVotingCenter()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay', 'code');
+    }
+
     public function notes()
     {
         return $this->hasMany(Notes::class);
