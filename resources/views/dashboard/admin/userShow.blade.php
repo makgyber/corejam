@@ -66,7 +66,7 @@
                             <th>Country</th>
                             <td class="">
                                 @php
-                                    $country = isset($user->country_id)? $user->country->name : 'Philippines';
+                                    $country = isset($user->country_id)? $user->country->name??'' : 'Philippines';
                                 @endphp
                             {{ $country }}
                             </td>
@@ -93,7 +93,7 @@
                         <tr>
                             <th>Barangay Polling Center</th>
                             <td class="">
-                            {{ $user->barangayVotingCenter->name?: ($user->barangay??'')  }}
+                            
                             </td>
                         </tr>
                         @else
@@ -126,7 +126,7 @@
                             <th>Address</th>
                             <td>
                                 {{ $user->street??'' }}
-                                {{ $user->barangayVotingCenter->name?: ($user->barangay??'') }}
+                                
                                 {{ $user->city->name??'' }}
                                 {{ $user->province->name??'' }}
                                 {{ $user->region->name??'' }}
