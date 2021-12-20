@@ -93,7 +93,7 @@
                         <tr>
                             <th>Barangay Polling Center</th>
                             <td class="">
-                            {{ $user->barangayVotingCenter->name ?? ''  }}
+                            {{ $user->barangay?: ($user->barangayVotingCenter->name??'')  }}
                             </td>
                         </tr>
                         @else
@@ -126,7 +126,7 @@
                             <th>Address</th>
                             <td>
                                 {{ $user->street??'' }}
-                                {{ $user->barangayVotingCenter->name??'' }}
+                                {{ $user->barangay?: ($user->barangayVotingCenter->name??'') }}
                                 {{ $user->city->name??'' }}
                                 {{ $user->province->name??'' }}
                                 {{ $user->region->name??'' }}
