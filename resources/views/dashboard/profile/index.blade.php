@@ -119,7 +119,7 @@
                     <tr>
                         <td class="text-muted">Barangay Polling Center</td>
                         <td class="">
-                        {{ $user->barangayVotingCenter->name }}
+                        {{ $user->barangayVotingCenter->name ?? ''}}
                         </td>
                     </tr>
                     @else
