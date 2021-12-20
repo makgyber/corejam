@@ -92,8 +92,8 @@
                         </tr>
                         <tr>
                             <th>Barangay Polling Center</th>
-                            <td class="">
-                            
+                            <td class="">    
+                            {{ is_numeric($user->barangay) ? $user->barangayVotingCenter->name : ($user->barangay ?? '') }}
                             </td>
                         </tr>
                         @else
@@ -126,7 +126,7 @@
                             <th>Address</th>
                             <td>
                                 {{ $user->street??'' }}
-                                
+                                {{ is_numeric($user->barangay) ? $user->barangayVotingCenter->name : ($user->barangay ?? '') }}
                                 {{ $user->city->name??'' }}
                                 {{ $user->province->name??'' }}
                                 {{ $user->region->name??'' }}
