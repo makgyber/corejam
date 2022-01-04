@@ -16,7 +16,7 @@
               <li>
                   <h5>{{$kit->label}}</h5>
                   <p>{{$kit->description}}</p>
-                  <a href="{{$kit->filepath}}" target="_blank" rel="noopener noreferrer">Click here</a>
+                  <a href="{{$kit->filepath}}" target="_blank" rel="noopener noreferrer" class="btn btn-info btn-sm">Click here</a>
               </li>
         @empty
        
