@@ -2,7 +2,31 @@
 
 @section('content')
 
+@php
+    $kits = App\Models\Toolkit::all();
+@endphp
+
 <div class="animated fadeIn">
+    @if($kits->count())
+    <div class="row card col-12">
+        <div class="card-header"><strong>Latest media for download</strong></div>
+        <div class="card-body">
+        <ol>
+        @forelse ($kits as $kit )
+              <li>
+                  <h5>{{$kit->label}}</h5>
+                  <p>{{$kit->description}}</p>
+                  <a href="{{$kit->filepath}}" target="_blank" rel="noopener noreferrer">Click here</a>
+              </li>
+        @empty
+       
+        @endforelse
+        </ol>
+    </div>
+    </div>
+    @endif
+
+
     <div class="row card col-12">
         <div class="card-header"><strong>SMP Media Kit Google Drive</strong></div>
         <div class="card-body">
