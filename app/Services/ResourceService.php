@@ -33,7 +33,11 @@ class ResourceService{
         $result = '';
         if(isset($request[$columnName])){
             $file = $request[$columnName];
-            $result = $file->store('mediafiles');
+            $path = $file->store('mediafiles');
+
+            $result = '<code>&lt;div class="embed-responsive embed-responsive-4by3"&gt;&lt;iframe class="embed-responsive-item" src="';
+            $result.= env('APP_URL') . '/storage/' . $path;
+            $result.= '"&gt;&lt;/iframe&gt;&lt;/div&gt;</code>';
         }
         return $result;
     }
