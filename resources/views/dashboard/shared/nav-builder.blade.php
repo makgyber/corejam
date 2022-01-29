@@ -32,8 +32,7 @@ if(!function_exists('renderDropdown')){
 
 
         <div class="c-sidebar-brand">
-            <img class="c-sidebar-brand-full" src="{{ url('/assets/brand/m610.svg') }}" width="118" height="46" alt="M6:10 Logo">
-            <img class="c-sidebar-brand-minimized" src="{{ url('assets/brand/m610-signet.svg') }}" width="118" height="46" alt="M6:10 Logo">
+            <h1>ECMS</h1>
         </div>
         <ul class="c-sidebar-nav">
         @if(isset($appMenus['sidebar menu']))

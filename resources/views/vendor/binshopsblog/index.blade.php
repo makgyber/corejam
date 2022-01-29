@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div class="carousel-item bg-gradient-dark">
+      {{-- <div class="carousel-item bg-gradient-dark">
        <img src="{{asset('assets/img/m610.png')}}" alt="" width="100%" height="600em">
         <div class="container">
           <div class="carousel-caption text-start">
@@ -35,7 +35,7 @@
             <p class="lead my-3 d-flex flex-row-reverse">Matthew 6:10</p>
 
           </div>
-        </div>
+        </div> --}}
       </div>
       
     </div>
@@ -49,52 +49,6 @@
     </button>
   </div>
   
-    {{-- <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" style="background-image: url('{{asset('assets/img/m610.png')}}'); background-size: contain; background-repeat: no-repeat; background-position:center ">
-      
-      <div class="px-0 d-flex flex-row-reverse">
-        
-        <p class="lead mb-0"></p>
-        <h1 class="display-4 fst-italic ">
-            "Thy kingdom come,<br>
-            Thy will be done,<br>
-            on earth as it is in heaven."
-        </h1>
-      </div>
-      <p class="lead my-3 d-flex flex-row-reverse">Matthew 6:10</p>
-    </div> --}}
-  
-    {{-- <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block bg-gradient-warning">
-            <svg class="bd-placeholder-img " width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-          </div>
-        </div>
-      </div>
-    </div> --}}
   
     <div class="row g-5">
       <div class="col-md-8">
