@@ -161,14 +161,7 @@
 
 
 
-          <div class="rounded card shadow ">
-            <div class="card-header content-center "><h5>About Us</h5></div>
-            <div class="card-body  justify-content-center">
-              M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
-We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
-</div>
-            <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
-          </div>
+
 
 
 
@@ -187,6 +180,16 @@ We are the official communications and coordination channel of Senator Manny Pac
             </div>
             <a target="_blank" href="https://m610.ph/registration?p=eyJpdiI6IjkzOVowSDBQR05MUGFjMEJwOS96ekE9PSIsInZhbHVlIjoiTjRpVEo2elBFcmJ1QWtSTXo5azBDMG8rT244UytNUS81ZGt4b1liK2RiNFRzcnRoeEw1bHZzY2I5NmhLYWhMVyIsIm1hYyI6IjUxOTA2ZjhiOTgyMjQ2NTUwNjNhODcxMmJmZGVkNjNhMDhlMzJmY2U0ZTM4MmQ1MzRlMWUwODIxMGRkYTkzOGMiLCJ0YWciOiIifQ%3D%3D" class="btn btn-info btn-sm mt-3">Click Here to Register</a>
           </div>
+
+          <div class="rounded card shadow ">
+            <div class="card-header content-center "><h5>About Us</h5></div>
+            <div class="card-body  justify-content-center">
+              M6:10 refers to Matthew 6:10 where Jesus teaches his disciples to pray for God's Kingdom.
+We are the official communications and coordination channel of Senator Manny Pacquiao's presidential campaign to Christian churches all over the Philippines. 
+</div>
+            <a href="{{url('blog/about-us')}}" class="btn btn-info btn-sm mt-3">see more</a>
+          </div>
+          
           <div class="rounded card shadow ">
             <div class="card-header content-center"><h5>Links to Social Media</h5></div>
             <div class="card-body">
