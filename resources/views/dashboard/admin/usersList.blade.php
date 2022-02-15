@@ -45,7 +45,7 @@
                         <div class="mt-3 col-12">
                           <a href="{{ route('coordinators.index') }}" class="btn btn-light float-right">Reset</a>
                           <button class="btn btn-dark col-2 d-inline-block  float-right"><i class="cil-search" ></i> Search by Name</button>
-                          <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control col-4 d-inline-block  float-right">
+                          <input type="text" placeholder="Search" name="searchfilter" value="{{$params['searchfilter']??''}}" class="form-control col-4 d-inline-block  float-right">
 
                         </div>
                         
