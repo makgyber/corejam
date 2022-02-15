@@ -42,16 +42,47 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
+
+        // if($request->has('searchfilter')) {
+        //     $key = '%'.$request['searchfilter'].'%';
+        //     $users = User::where('name', 'like', $key)->paginate(20);
+        // } else {
+        //     $users = User::paginate(20);
+        // }
+
+        $users = User::where('id', '>', 0);
+
         if($request->has('searchfilter')) {
             $key = '%'.$request['searchfilter'].'%';
-            $users = User::where('name', 'like', $key)->paginate(20);
-        } else {
-            $users = User::paginate(20);
+            $users = $users->where('name', 'like', $key);
         }
+
+        if($request->has('region_code') && $request['region_code']!='') {
+            $users = $users->where('region_code', $request['region_code']);
+        }
+
+        if($request->has('province_code') && $request['province_code']!='') {
+            if($request['province_code'] != '1300') {
+                $users = $users->where('province_code', $request['province_code']);
+            }
+        }
+
+        if($request->has('city_code') && $request['city_code']!='') {
+            $users = $users->where('city_code', $request['city_code']);
+        }
+
+        if($request->has('barangay') && $request['barangay']!='') {
+            $users = $users->where('barangay', $request['barangay']);
+        }
+
+        $users=$users->paginate(20);
+
         
         return view('dashboard.admin.usersList', [
             'you' => auth()->user(),
-            'users' => $users
+            'users' => $users,
+            'regions'=> Regions::all(),
+            'params' => $request->all()
         ]);
     }
 

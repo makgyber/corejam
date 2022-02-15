@@ -43,9 +43,14 @@
                     <form method="GET" class="col-12">
                       <div class="row">
                         <div class="mt-3 col-12">
+                          <a href="{{ route('coordinators.index') }}" class="btn btn-light float-right">Reset</a>
                           <button class="btn btn-dark col-2 d-inline-block  float-right"><i class="cil-search" ></i> Search by Name</button>
                           <input type="text" placeholder="Search" name="searchfilter" value="{{$searchfilter??''}}" class="form-control col-4 d-inline-block  float-right">
+
                         </div>
+                        
+                        @include('dashboard.shared.area-search-panel', ['regions' => $regions ?? ''])
+                       
                       </div>
                     </form>  
                     <div class="card-body">
@@ -157,6 +162,7 @@
     }
 }
 </script>
-
+<script src="{{ asset('js/axios.min.js') }}"></script> 
+  <script src="{{ asset('js/phlocations.js') }}"></script> 
 @endsection
 
